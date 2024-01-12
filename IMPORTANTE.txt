@@ -1,0 +1,27 @@
+sintaxis basica de php
+
+etiqueta:
+<?php $variable ?>
+
+bucles:
+foreach($variable as $var):
+    //contenido
+endforeach;
+
+while(el normal)
+for(el normal)
+
+
+---------------------------------------------------------
+1- Iniciar el proyecto:
+
+en una terminal: npm run dev
+en otra terminal: php artisan serv
+---------------------------------------------------------
+
+---------------------------------------------------------
+Modelos: app/Models/
+Controladores: app/Http/controller/
+rutas: routes/web/
+---------------------------------------------------------
+
