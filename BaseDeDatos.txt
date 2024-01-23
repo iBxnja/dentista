@@ -1,0 +1,25 @@
+clientes: |
+idCliente
+Nombre
+Apellido
+Edad
+fk_idCita
+
+Notas: |
+idNota
+Nombre
+Texto
+
+Imagenes: |
+idImagen
+Imagen
+
+Citas: |
+idCita
+Dia
+Numero
+Mes
+Persona
+Acciones
+
+Otra cosa:
