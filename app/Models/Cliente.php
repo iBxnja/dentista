@@ -2,10 +2,60 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
-    use HasFactory;
+    protected $table = 'clientes';
+    protected $primaryKey = 'idCliente';
+    public $timestamps = false;
+
+    protected $fillable = [
+        'idCliente', 'nombre', 'apellido', 'edad',
+    ];
+
+    protected $hidden = [];
+
+    public function cargarDesdeRequest($request){
+        $this->idCliente = $request->input('id', $this->idCliente);
+        $this->nombre = $request->input('txtNombreCompleto');
+        $this->apellido = $request->input('txtApellido');
+        $this->edad = $request->input('txtEdad');
+    }  
+    
+    public function obtenerTodos()
+    {
+        $sql = "SELECT
+                  idCliente,
+                  nombre,
+                  apellido,
+                  edad
+                FROM clientes ORDER BY idCliente";
+        $lstRetorno = DB::select($sql);
+        return $lstRetorno;
+    }
+
+    public function guardar()
+    {
+        
+        DB::table('clientes')
+            ->where('idcliente', $this->idcliente)
+            ->update(array(
+                'nombre' => $this->nombre,
+                'apellido' => $this->apellido,
+                'edad' => $this->edad,
+            ));
+    }
+
+
+    #--------------------------------------------------------------------------------------
+    public function eliminar(){
+        #crear query(consulta) en una variable
+        $sql = "DELETE FROM clientes WHERE idCliente=?";
+    
+        $affected = DB::delete($sql, [$this->idCliente]);
+    }
+    #--------------------------------------------------------------------------------------
+
 }

@@ -29,6 +29,10 @@ Route::get('/register', function () {
 Route::get('/inicio', function () {
     return view('inicio/inicio');
 });
+Route::get('inicio/cliente-nuevo', function () {
+    return view('cliente/cliente-nuevo');
+});
+
 
 #---------------------------------------------------------------#
 #                  Controlador login                            #
@@ -50,12 +54,11 @@ Route::prefix('login')->group(function () {
 #---------------------------------------------------------------#
 Route::prefix('inicio')->group(function () {
     Route::get('/cliente-listar', [ControladorCliente::class, 'index'])->name('cliente-listar');
-    Route::get('/cliente-nuevo', [ControladorCliente::class, 'nuevo'])->name('cliente-nuevo');
+    Route::post('/cliente-nuevo', [ControladorCliente::class, 'guardar'])->name('cliente.guardar');
+    Route::get('/cliente-listar/{id}/eliminar', [ControladorCliente::class, 'eliminar'])->name('cliente.eliminar');
     
-
+    // Route::get('/mostrar-clientes', [ControladorCliente::class, 'mostrarClientes'])->name('mostrar.clientes');
     // Route::get('/culturas', [culturaControlador::class, 'index']);
-    // Route::post('/culturas', [culturaControlador::class, 'guardar']);
-    // Route::get('/culturas/{id}/eliminar', [culturaControlador::class, 'eliminar'])->name('culturas.eliminar');
 });
 
 

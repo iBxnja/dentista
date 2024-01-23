@@ -8,7 +8,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
             </svg>  
         </button>        
-        <a href="#" class="text-white cel:text-lg">Cliente</a>
+        <a href="/inicio/cliente-listar" class="text-white cel:text-lg">Cliente</a>
         <a href="#" class="text-white cel:text-lg">Notas</a>
         <a href="#" class="text-white cel:text-lg">Controlador</a>
         <a href="#" class="text-white cel:text-lg">Controlador</a>
