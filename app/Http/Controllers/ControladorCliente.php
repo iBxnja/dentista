@@ -14,39 +14,35 @@ class ControladorCliente extends Controller
 
         return view('cliente.cliente-listar', compact('aClientes'));
     }
-
     public function guardar(Request $request){
         // dd($request->all());
-        $entidad = new Cliente();
-        $entidad->cargarDesdeRequest($request);
-
-        if ($entidad->nombre == '') {
-            return view('inicio.inicio');
+        $cliente = new Cliente();
+        $cliente->cargarDesdeRequest($request);
+    
+        if (empty($cliente->nombre) || empty($cliente->apellido) || empty($cliente->edad)) {
+            $error = "¡Parece que ocurrió un error!.";
+            return view('inicio.inicio', compact('error'));
         } else {
-            $entidad->guardar();
-            $cliente = new Cliente();
+            $cliente->guardar();
+            $mensaje = "¡Excelente, se agrego correctamente el cliente <span class='text-black font-bold'>$cliente->nombre $cliente->apellido</span>!.";
             $aClientes = $cliente->obtenerTodos();
-            return view('cliente.cliente-nuevo', compact('aClientes'));    
+            return view('inicio.inicio', compact('mensaje'));    
         }
     }
 
-    public function eliminar($id){   
-        #Cliente::find(
-        # Este método se utiliza para buscar un registro en la tabla asociada
-        #al modelo mediante su clave primaria. El argumento $id es el valor de
-        #la clave primaria del registro que se está buscando.
+
+    
+    public function eliminar($id) {   
         $cliente = Cliente::find($id);
-        $mensaje = "¡Excelente, se elimino correctamente!.";
+        $mensajeRojo = "¡Excelente, se eliminó correctamente el cliente <span class='text-black font-bold'>$cliente->nombre $cliente->apellido</span>!.";
         $error = "¡Parece que ocurrió un error!.";
+    
         if ($cliente) {
             $cliente->eliminar();
-            $aClientes = $cliente->obtenerTodos();
-            // Puedes redirigir a la página de lista de culturas u otra página después de la eliminación.
-            return view('cliente.cliente-listar', compact('mensaje', 'aClientes'));
+            return view('inicio.inicio', compact('mensajeRojo'));    
         } else {
-            // Manejo de error si la cultura no se encuentra.
             return view('cliente.cliente-listar', ['error' => $error]);
         }
     }
-
+    
 }

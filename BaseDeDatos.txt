@@ -3,7 +3,6 @@ idCliente
 Nombre
 Apellido
 Edad
-fk_idCita
 
 Notas: |
 idNota
@@ -21,5 +20,6 @@ Numero
 Mes
 Persona
 Acciones
+fk_idCliente
 
 Otra cosa:

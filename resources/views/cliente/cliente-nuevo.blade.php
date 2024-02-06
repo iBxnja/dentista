@@ -6,6 +6,11 @@
             <h2 class="cel:text-base text-white">{{ $error }}</h2>
         </div>
         @endif
+        @if(isset($mensaje))
+        <div class="w-11/12 cel:mt-5 cel:mb-2 cel:rounded-2xl h-16 bg-green-500 grid place-items-center">
+            <h2 class="cel:text-base text-white">{{ $mensaje }}</h2>
+        </div>
+        @endif
         <form method="POST" class="flex items-center justify-center flex-col cel:w-11/12 h-full mt-5">
             @csrf
             <h2 class="cel:text-4xl cel:font-semibold text-purple-700 cel:my-5">Nuevo cliente</h2>

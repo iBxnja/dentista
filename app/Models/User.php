@@ -42,10 +42,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    //creo la function y le envio por parametro la clave
-    public function encriptarClave($password){
-        //este atributo es igual a la encriptación del txt con el metodo bcrypt
-        $this->attributes["password"] = bcrypt($password);
+    #encriptar la pass
+    public function setPasswordAttribute($password) {
+        #forma de encriptarla
+        $this->attributes['password'] = bcrypt($password);
     }
 
 }
+?>

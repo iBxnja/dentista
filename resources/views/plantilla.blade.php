@@ -6,14 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dentista</title>
     @vite('resources/css/app.css')
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
+    @yield('scripts')
 </head>
 <body>
-    <div class="absolute top-0 -z-10 h-full w-full bg-white">
-        <div class="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px]
-         -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]">
-        </div>
-    </div>
+    <div class="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"></div>
     @include('header')
     <main class="w-full h-full">
         @yield('contenido')

@@ -36,16 +36,21 @@ class Cliente extends Model
         return $lstRetorno;
     }
 
+    public function obtenerNombreApellido()
+    {
+        return Cliente::orderBy('idCliente')->select('idCliente', 'nombre', 'apellido')->get();
+    }
+
     public function guardar()
     {
-        
-        DB::table('clientes')
-            ->where('idcliente', $this->idcliente)
-            ->update(array(
+        $cliente = Cliente::updateOrCreate(
+            ['idCliente' => $this->idCliente],
+            [
                 'nombre' => $this->nombre,
                 'apellido' => $this->apellido,
                 'edad' => $this->edad,
-            ));
+            ]
+        );
     }
 
 

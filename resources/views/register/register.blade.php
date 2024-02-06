@@ -32,7 +32,7 @@
                         cel:h-8
                         text-center border-2 border-gray-200 rounded-md bg-white w-full
                          placeholder-gray-900 p-2 my-2 focus:bg-white text-xs" placeholder="Nombre completo"
-                        id="txtNombre" name="txtNombreRegister">
+                        id="name" name="name">
                     </div>
                     <div class="
                     cel:m-0
@@ -43,7 +43,7 @@
                         cel:h-8
                         text-center border-2 border-gray-200 rounded-md bg-white w-full
                          placeholder-gray-900 p-2 my-2 focus:bg-white text-xs" placeholder="Email"
-                        id="email" name="txtEmailRegister">
+                        id="email" name="email">
                     </div>
                     <div class="
                     cel:m-0
@@ -54,18 +54,18 @@
                         cel:h-8
                         text-center border-2 border-gray-200 rounded-md bg-white w-full
                          placeholder-gray-900 p-2 my-2 focus:bg-white text-xs" placeholder="Contraseña"
-                        id="password" name="txtContraseñaRegister">
+                        id="password" name="password">
                     </div>
                     <div class="
                     cel:m-0
                     md:m-1
                     m-3 flex flex-col items-center justify-center w-5/6">
                         <label for="txtconfirmarContraseñaRegister" class="text-xl cel:text-base">Confirmar contraseña</label>
-                        <input type="confirmarPassword" class="
+                        <input type="password" class="
                         cel:h-8
                         text-center border-2 border-gray-200 rounded-md bg-white w-full
                          placeholder-gray-900 p-2 my-2 focus:bg-white text-xs" placeholder="Confirmar contraseña"
-                        id="password" name="txtconfirmarContraseñaRegister">
+                        id="passwordConfirmed" name="passwordConfirmed">
                     </div>
                     <div class="
                     cel:m-0 text-center
