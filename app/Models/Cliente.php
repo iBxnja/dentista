@@ -12,15 +12,16 @@ class Cliente extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idCliente', 'nombre', 'apellido', 'edad',
+        'idCliente', 'nombre', 'apellido', 'edad', 'dni',
     ];
 
     protected $hidden = [];
 
     public function cargarDesdeRequest($request){
         $this->idCliente = $request->input('id', $this->idCliente);
-        $this->nombre = $request->input('txtNombreCompleto');
+        $this->nombre = $request->input('txtNombre');
         $this->apellido = $request->input('txtApellido');
+        $this->dni = $request->input('txtDni');
         $this->edad = $request->input('txtEdad');
     }  
     
@@ -49,9 +50,11 @@ class Cliente extends Model
                 'nombre' => $this->nombre,
                 'apellido' => $this->apellido,
                 'edad' => $this->edad,
+                'dni' => $this->dni,
             ]
         );
     }
+    
 
 
     #--------------------------------------------------------------------------------------

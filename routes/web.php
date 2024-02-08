@@ -1,12 +1,14 @@
 <?php
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ControladorCita;
 use App\Http\Controllers\ControladorLogin;
 use App\Http\Controllers\ControladorCliente;
 use App\Http\Controllers\ControladorImagen;
 use App\Http\Controllers\ControladorNota;
 use App\Http\Controllers\ControladorRegister;
-
+use App\Http\Controllers\EventoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -133,8 +135,6 @@ Route::prefix('inicio')->group(function () {
     Route::get('/cita-listar/{id}/eliminar', [ControladorCita::class, 'eliminar'])->name('cita.eliminar');
     
 });
-
-
 #---------------------------------------------------------------#
 
 
@@ -150,7 +150,6 @@ Route::prefix('inicio')->group(function () {
     Route::get('/imagenes-listar', [ControladorImagen::class, 'index'])->name('imagenes');
     Route::get('/imagenes-listar/{id}/eliminar', [ControladorImagen::class, 'eliminar'])->name('imagenes.eliminar');
 });
-
-
-
 #---------------------------------------------------------------#
+
+

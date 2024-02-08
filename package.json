@@ -15,6 +15,8 @@
     },
     "dependencies": {
         "datatables.net-bs4": "^1.13.8",
+        "fullcalendar": "^6.1.10",
+        "fullcalendar-scheduler": "^6.1.10",
         "jquery": "^3.7.1"
     }
 }

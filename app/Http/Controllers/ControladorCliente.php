@@ -7,26 +7,38 @@ use Illuminate\Http\Request;
 
 class ControladorCliente extends Controller
 {
-    public function index(){
-
+    public function index(Request $request)
+    {
+        $buscarpor = $request->get('buscarpor');
+    
         $cliente = new Cliente();
-        $aClientes = $cliente->obtenerTodos();
-
-        return view('cliente.cliente-listar', compact('aClientes'));
+    
+        // Utiliza Eloquent para obtener todos los clientes
+        $query = $cliente->query();
+    
+        // Verifica si se proporcionó un término de búsqueda
+        if ($buscarpor) {
+            $query->where('nombre', 'like', '%' . $buscarpor . '%');
+        }
+    
+        $aClientes = $query->get();
+    
+        return view('cliente.cliente-listar', compact('aClientes', 'buscarpor'));
     }
     public function guardar(Request $request){
         // dd($request->all());
         $cliente = new Cliente();
         $cliente->cargarDesdeRequest($request);
-    
+        
         if (empty($cliente->nombre) || empty($cliente->apellido) || empty($cliente->edad)) {
             $error = "¡Parece que ocurrió un error!.";
             return view('inicio.inicio', compact('error'));
         } else {
             $cliente->guardar();
-            $mensaje = "¡Excelente, se agrego correctamente el cliente <span class='text-black font-bold'>$cliente->nombre $cliente->apellido</span>!.";
+            $mensaje = "¡Excelente, se agregó correctamente el cliente <span class='text-black font-bold'>$cliente->nombre $cliente->apellido</span>!.";
+            // dd($mensaje);
             $aClientes = $cliente->obtenerTodos();
-            return view('inicio.inicio', compact('mensaje'));    
+            return view('inicio.inicio', compact('mensaje'));  
         }
     }
 
@@ -34,7 +46,7 @@ class ControladorCliente extends Controller
     
     public function eliminar($id) {   
         $cliente = Cliente::find($id);
-        $mensajeRojo = "¡Excelente, se eliminó correctamente el cliente <span class='text-black font-bold'>$cliente->nombre $cliente->apellido</span>!.";
+        $mensajeRojo = "<span class='text-xl text-white font-bold'>¡Excelente, se eliminó correctamente el cliente<span> <span class='text-black font-bold text-lg'>$cliente->nombre $cliente->apellido</span>!.";
         $error = "¡Parece que ocurrió un error!.";
     
         if ($cliente) {

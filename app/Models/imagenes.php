@@ -17,7 +17,7 @@ class imagenes extends Model
     ];
 
     public function cargarDesdeRequest($request)
-    {
+    { 
         $this->idImagen = $request->input('id') != "0" ? $request->input('id') : $this->idImagen;
         $this->imagen = $request->file('imagen');
         $this->titulo = $request->input('txtTitulo');
