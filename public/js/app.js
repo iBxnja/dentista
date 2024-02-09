@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('¡DOM cargado correctamente para trabajar!.');
 
     const menuAbrir = document.getElementById('menuAbrir');
@@ -15,4 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     menuAbrir.addEventListener('click', toggleMenu);
     menuCerrar.addEventListener('click', toggleMenu);
+
+
+
+
+
+
+
 });

@@ -12,7 +12,6 @@
                 <h2 class="cel:text-base text-white">{{ $mensaje }}</h2>
             </div>
         @endif
-
         
     </section>
 @endsection

@@ -27,14 +27,14 @@
                 </div>
                 <div class="flex flex-col justify-center items-center w-5/12 mt-7 cel:w-full">
                     <label for="txtTitulo" class="text-xl mb-4">Titulo</label>
-                    <input type="text" name="txtTitulo" id="txtTitulo" class="w-full h-8 rounded-lg border-2 border-black text-center">
+                    <input type="text" name="txtTitulo" id="txtTitulo" class="w-full h-8 rounded-lg border-2 border-black text-center" placeholder="Escribe el titulo de la imagen">
                 </div>
                 <div class="flex flex-col justify-center items-center w-5/12 mt-7 cel:w-full">
                     <label for="txtTexto" class="text-xl mb-4">Observación</label>
-                    <textarea type="text" name="txtTexto" id="txtTexto" class="w-full h-40 resize-none rounded-lg border-2 border-black text-center"></textarea>
+                    <textarea type="text" name="txtTexto" id="txtTexto" class="w-full h-40 resize-none rounded-lg border-2 border-black text-center" placeholder="Escribe la observación de la imagen"></textarea>
                 </div>
                 <div class="flex flex-col justify-center items-center w-5/12 mt-7 cel:w-full">
-                    <label for="imagen" class="text-xl mb-4">Imagen</label>
+                    <label for="imagen" class="text-xl mb-4">Selecciona la imagen</label>
                     <input type="file" name="imagen" id="imagen" accept=".jpg, .png, .jpeg" required class="w-full h-8">
                 </div>
             </div>            

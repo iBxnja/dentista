@@ -10,11 +10,8 @@ class ControladorCita extends Controller{
     
 
     public function index(){
-        $cita = new Cita();
-        $aCita = $cita->obtenerTodos();
-        $nuevaCita = new Cita();
-        $aaCita = $nuevaCita->obtenerTodosConNombreCliente();
-        return view('citas.cita-listar', compact('aCita', 'aaCita'));
+
+        return view('citas.cita-listar');
     }
     public function enviarNombreApellido(){
         $cliente = new Cliente();

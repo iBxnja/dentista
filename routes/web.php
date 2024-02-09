@@ -46,6 +46,12 @@ Route::get('inicio/cita-nuevo', function () {
 Route::get('inicio/imagenes-nuevo', function () {
     return view('imagenes/imagenes-nuevo');
 });
+Route::get('inicio/notas-nuevo', function () {
+    return view('notas/notas-nuevo');
+});
+// Route::get('inicio/notas-mostrar', function () {
+//     return view('notas/notas-mostrar/{id}');
+// });
 
 
 
@@ -95,11 +101,13 @@ Route::prefix('inicio')->group(function () {
 #---------------------------------------------------------------#
 Route::prefix('inicio')->group(function () {
     Route::get('/notas-listar', [ControladorNota::class, 'index'])->name('notas-listar');
-    // Route::post('/cliente-nuevo', [ControladorNota::class, 'guardar']);
-    // Route::get('/cliente-listar/{id}/eliminar', [ControladorNota::class, 'eliminar'])->name('cliente.eliminar');
-    
-    // Route::get('/mostrar-clientes', [ControladorCliente::class, 'mostrarClientes'])->name('mostrar.clientes');
-    // Route::get('/culturas', [culturaControlador::class, 'index']);
+    Route::get('/notas-nuevo', [ControladorNota::class, 'enviarNombreApellido'])->name('notas-nuevo');
+    Route::post('/notas-nuevo', [ControladorNota::class, 'guardar']);
+    Route::get('/notas-listar/{id}/eliminar', [ControladorNota::class, 'eliminar'])->name('notas.eliminar');
+    Route::get('/notas-mostrar/{id}', [ControladorNota::class, 'mostrarNota'])->name('notas-mostrar');
+
+
+
 });
 #---------------------------------------------------------------#
 

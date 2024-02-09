@@ -19,21 +19,21 @@
                 <div class="w-full h-full flex items-center justify-around">
                     <div class="flex flex-col justify-center items-start w-5/12">
                         <label for="txtNombre" class="text-xl mb-4">Nombre</label>
-                        <input type="text" name="txtNombre" id="txtNombre" class="w-full h-8 rounded-lg border-2 border-black">
+                        <input type="text" name="txtNombre" id="txtNombre" class="w-full h-8 rounded-lg border-2 border-black" placeholder="Escribe el nombre del cliente. Ej: Benjamin">
                     </div>            
                     <div class="flex flex-col justify-center items-start w-5/12">
                         <label for="txtApellido" class="text-xl mb-4">Apellido</label>
-                        <input type="text" name="txtApellido" id="txtApellido" class="w-full h-8 rounded-lg border-2 border-black">
+                        <input type="text" name="txtApellido" id="txtApellido" class="w-full h-8 rounded-lg border-2 border-black" placeholder="Escribe el apellido del cliente. Ej: Gonzalez">
                     </div>
                 </div>
                 <div class="w-full h-full  flex items-center justify-around">
                     <div class="flex flex-col justify-center items-start w-5/12">
                         <label for="txtDni" class="text-xl mb-4">Dni</label>
-                        <input type="text" name="txtDni" id="txtDni" class="w-full h-8 rounded-lg border-2 border-black">
+                        <input type="text" name="txtDni" id="txtDni" class="w-full h-8 rounded-lg border-2 border-black" placeholder="Escribe el dni del cliente. Ej: 11222333">
                     </div>            
                     <div class="flex flex-col justify-center items-start w-5/12">
                         <label for="txtEdad" class="text-xl mb-4">Edad</label>
-                        <input type="text" name="txtEdad" id="txtEdad" class="w-full h-8 rounded-lg border-2 border-black">
+                        <input type="text" name="txtEdad" id="txtEdad" class="w-full h-8 rounded-lg border-2 border-black" placeholder="Escribe la edad del cliente. Ej: 20">
                     </div>
                 </div>
             <button type="submit" name="btnAgregar" class="bg-purple-700 text-white w-64 h-40 mt-8 rounded-2xl">Agregar</button>
