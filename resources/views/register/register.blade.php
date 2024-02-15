@@ -15,7 +15,7 @@
             cel:w-5/6
             md:h-11/12
             w-4/6 h-5/6 flex flex-col items-center justify-center ">
-                <form action="" method="POST" class="
+                <form action="{{ route('register.store') }}" method="POST" class="
                 cel:w-11/12
                 w-2/4 h-4/5 flex items-center justify-center flex-col">
                     @csrf
@@ -27,51 +27,51 @@
                     cel:m-0
                     md:m-1
                     m-3 flex flex-col items-center justify-center w-5/6">
-                        <label for="txtNombreRegister" class="text-xl cel:text-base">Nombre completo</label>
+                        <label for="name" class="text-xl cel:text-base">Nombre completo</label>
                         <input type="text" class="
                         cel:h-8
                         text-center border-2 border-gray-200 rounded-md bg-white w-full
                          placeholder-gray-900 p-2 my-2 focus:bg-white text-xs" placeholder="Nombre completo"
-                        id="name" name="name">
+                        id="name" name="name" required>
                     </div>
                     <div class="
                     cel:m-0
                     md:m-1
                     m-3 flex flex-col items-center justify-center w-5/6">
-                        <label for="txtEmailRegister" class="text-xl cel:text-base">Email</label>
+                        <label for="email" class="text-xl cel:text-base">Email</label>
                         <input type="email" class="
                         cel:h-8
                         text-center border-2 border-gray-200 rounded-md bg-white w-full
                          placeholder-gray-900 p-2 my-2 focus:bg-white text-xs" placeholder="Email"
-                        id="email" name="email">
+                        id="email" name="email" required>
                     </div>
                     <div class="
                     cel:m-0
                     md:m-1
                     m-3 flex flex-col items-center justify-center w-5/6">
-                        <label for="txtContraseñaRegister" class="text-xl cel:text-base">Contraseña</label>
+                        <label for="password" class="text-xl cel:text-base">Contraseña</label>
                         <input type="password" class="
                         cel:h-8
                         text-center border-2 border-gray-200 rounded-md bg-white w-full
                          placeholder-gray-900 p-2 my-2 focus:bg-white text-xs" placeholder="Contraseña"
-                        id="password" name="password">
+                        id="password" name="password" required>
                     </div>
                     <div class="
                     cel:m-0
                     md:m-1
                     m-3 flex flex-col items-center justify-center w-5/6">
-                        <label for="txtconfirmarContraseñaRegister" class="text-xl cel:text-base">Confirmar contraseña</label>
+                        <label for="passwordConfirmed" class="text-xl cel:text-base">Confirmar contraseña</label>
                         <input type="password" class="
                         cel:h-8
                         text-center border-2 border-gray-200 rounded-md bg-white w-full
                          placeholder-gray-900 p-2 my-2 focus:bg-white text-xs" placeholder="Confirmar contraseña"
-                        id="passwordConfirmed" name="passwordConfirmed">
+                        id="password_confirmation" name="password_confirmation" required>
                     </div>
                     <div class="
                     cel:m-0 text-center
                     md:mb-2
                     mb-5">
-                        <span class="text-sm">Ya tienes cuenta? </span><a href="" class="text-green-900 cel:text-sm">Ingresa aca.</a>
+                        <span class="text-sm">Ya tienes cuenta? </span><a href="/login" class="text-green-900 cel:text-sm">Ingresa aca.</a>
                     </div>
                     @error('message')
                     <p>* Error</p>
@@ -80,7 +80,7 @@
                     cel:w-32 cel:text-sm
                     md:w-28 md:py-1
                     rounded-md bg-purple-500 w-40 text-lg
-                    text-white font-semibold p-2 my-3">Entrar</button>
+                    text-white font-semibold p-2 my-3">Registrar</button>
                 </form>
             </div>
         </section>

@@ -54,7 +54,7 @@
                     cel:m-0 text-center
                     md:mb-2
                     mb-5">
-                        <span class="text-sm">¿Todavia no tienes cuenta? </span><a href="" class="text-green-900 cel:text-sm">Registrate aca.</a>
+                        <span class="text-sm">¿Todavia no tienes cuenta? </span><a href="/register" class="text-green-900 cel:text-sm">Registrate aca.</a>
                     </div>
                     @error('message')
                     <p>* Error</p>

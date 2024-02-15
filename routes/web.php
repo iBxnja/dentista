@@ -1,14 +1,14 @@
 <?php
 
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\ControladorCalendario;
 use App\Http\Controllers\ControladorCita;
 use App\Http\Controllers\ControladorLogin;
 use App\Http\Controllers\ControladorCliente;
 use App\Http\Controllers\ControladorImagen;
 use App\Http\Controllers\ControladorNota;
 use App\Http\Controllers\ControladorRegister;
-use App\Http\Controllers\EventoController;
+use App\Http\Controllers\ControladorWebInforme;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,12 +25,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login', function () {
-    return view('login/login');
-});
-Route::get('/register', function () {
-    return view('register/register');
-});
+// Route::get('/login', function () {
+//     return view('login/login')->name('login');
+// });
+// Route::get('/register', function () {
+//     return view('register/register');
+// });
 
 Route::get('/inicio', function () {
     return view('inicio.inicio');
@@ -49,6 +49,9 @@ Route::get('inicio/imagenes-nuevo', function () {
 Route::get('inicio/notas-nuevo', function () {
     return view('notas/notas-nuevo');
 });
+Route::get('inicio/odontograma-nuevo', function () {
+    return view('odontograma/odontograma-nuevo');
+});
 // Route::get('inicio/notas-mostrar', function () {
 //     return view('notas/notas-mostrar/{id}');
 // });
@@ -57,21 +60,25 @@ Route::get('inicio/notas-nuevo', function () {
 
 
 
+#---------------------------------------------------------------#
+#                  Controlador Register                         #
+#---------------------------------------------------------------#
+Route::prefix('register')->group(function () {
+    Route::get('/register', [ControladorRegister::class, 'create'])->name('register.create');
+    Route::post('/register', [ControladorRegister::class, 'store'])->name('register.store');
+});
+
+
+#---------------------------------------------------------------#
+
 
 #---------------------------------------------------------------#
 #                  Controlador login                            #
 #---------------------------------------------------------------#
 Route::prefix('login')->group(function () {
-    
-    Route::get('/', [ControladorLogin::class, 'index'])
-        ->middleware('guest')#en Laravel se aplica a una ruta específica y establece un middleware llamado 'guest' para esa ruta.
-        ->name('login.index');#nombre que yo designo, puede ser otro
-
-    Route::post('/login', [ControladorLogin::class, 'store'])->name('login.store');#nombre que yo designo, puede ser otro
-    
-    Route::get('/logout', [ControladorLogin::class, 'destroy'])
-        ->middleware('auth')#Este middleware asegura que el usuario que intenta acceder a la ruta esté autenticado.
-        ->name('login.destroy');#nombre que yo designo, puede ser otro
+    Route::get('/login', [ControladorLogin::class, 'index'])->name('login');
+    Route::post('/login', [ControladorLogin::class, 'store'])->name('login.store');
+    Route::post('/logout', [ControladorLogin::class, 'destroy'])->name('login.destroy');
 });
 #---------------------------------------------------------------#
 
@@ -115,34 +122,18 @@ Route::prefix('inicio')->group(function () {
 
 
 
-#---------------------------------------------------------------#
-#                  Controlador Register                         #
-#---------------------------------------------------------------#
-Route::prefix('register')->group(function () {
-    Route::get('/register', [ControladorRegister::class, 'create'])
-        ->middleware('guest')#en Laravel se aplica a una ruta específica y establece un middleware llamado 'guest' para esa ruta.
-        ->name('register.index');#nombre que yo designo, puede ser otro
-    Route::post('/register', [ControladorRegister::class, 'store'])
-    ->name('register.store');#nombre que yo designo, puede ser otro
-});
-
-
-#---------------------------------------------------------------#
-
-
-
-
 
 #---------------------------------------------------------------#
 #                   Controlador Citas                           #
 #---------------------------------------------------------------#
 Route::prefix('inicio')->group(function () {
-    Route::get('/cita-listar', [ControladorCita::class, 'index'])->name('cita-listar');
-    Route::get('/cita-nuevo', [ControladorCita::class, 'enviarNombreApellido'])->name('cita-nuevo');
-    Route::post('/cita-nuevo', [ControladorCita::class, 'guardar']);
-    Route::get('/cita-listar/{id}/eliminar', [ControladorCita::class, 'eliminar'])->name('cita.eliminar');
-    
+    Route::get('/cita-listar', [ControladorCalendario::class, 'index'])->name('cita-listar');
+    Route::get('/cita-listar/events', [ControladorCalendario::class, 'getEvents'])->name('cita-listar-events');
+    Route::post('/cita-nuevo/crear', [ControladorCalendario::class, 'crearCita'])->name('cita-nuevo-crear');
+
 });
+
+
 #---------------------------------------------------------------#
 
 
@@ -157,6 +148,18 @@ Route::prefix('inicio')->group(function () {
     Route::post('/imagenes-nuevo', [ControladorImagen::class, 'guardar']);
     Route::get('/imagenes-listar', [ControladorImagen::class, 'index'])->name('imagenes');
     Route::get('/imagenes-listar/{id}/eliminar', [ControladorImagen::class, 'eliminar'])->name('imagenes.eliminar');
+});
+#---------------------------------------------------------------#
+
+
+
+
+
+#---------------------------------------------------------------#
+#                   Controlador imagenes                        #
+#---------------------------------------------------------------#
+Route::prefix('inicio')->group(function () {
+    Route::get('/informe-listar', [ControladorWebInforme::class, 'index'])->name('informe-listar');
 });
 #---------------------------------------------------------------#
 

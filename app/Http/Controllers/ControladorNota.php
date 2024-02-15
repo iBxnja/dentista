@@ -8,11 +8,25 @@ use Illuminate\Http\Request;
 
 class ControladorNota extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $Nota = new Nota();
-        $aNota = $Nota->obtenerTodos();
-        return view('notas.notas-listar', compact('aNota'));
+        $buscarpor = $request->get('buscarpor');
+        
+        $nota = new Nota();
+        $query = $nota->query();
+
+        if ($buscarpor) {
+            $query->where(function ($notaQuery) use ($buscarpor) {
+                $notaQuery->where('titulo', 'like', '%' . $buscarpor . '%')
+                          ->orWhereHas('cliente', function ($clienteQuery) use ($buscarpor) {
+                              $clienteQuery->where('nombre', 'like', '%' . $buscarpor . '%');
+                          });
+            });
+        }
+
+        $aNota = $query->with('cliente')->orderBy('idNota')->get();
+
+        return view('notas.notas-listar', compact('aNota', 'buscarpor'));
     }
 
     public function enviarNombreApellido()
@@ -32,11 +46,11 @@ class ControladorNota extends Controller
         $Nota->cargarDesdeRequest($request);
 
         if (empty($Nota->titulo) || empty($Nota->texto) || empty($Nota->numeroSesion) || empty($Nota->fk_idCliente)) {
-            $error = "¡Parece que ocurrió un error!.";
+            $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
             return view('inicio.inicio', compact('error'));
         } else {
             $Nota->guardar();
-            $mensaje = "¡Excelente, se agregó correctamente el cliente <span class='text-black font-bold'></span>!.";
+            $mensaje = "¡Excelente, se agregó correctamente la nota <span class='text-black font-bold'></span>!.";
             // dd($mensaje);
             $aNota = $Nota->obtenerTodos();
             return view('inicio.inicio', compact('mensaje'));
@@ -49,11 +63,11 @@ class ControladorNota extends Controller
 
         if ($nota) {
             $nota->eliminar();
-            $mensaje = "¡Excelente, se eliminó correctamente la nota!";
-            return redirect()->route('inicio.inicio')->with('mensaje', $mensaje);
+            $mensaje = "<span class='text-black font-bold'>¡Excelente, se eliminó correctamente la nota!.</span>";
+            return view('inicio.inicio', compact('mensaje')); 
         } else {
-            $error = "¡Parece que ocurrió un error!.";
-            return redirect()->route('inicio.inicio')->with('error', $error);
+            $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+            return view('inicio.inicio', compact('error')); 
         }
     }
 

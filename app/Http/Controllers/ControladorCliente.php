@@ -31,11 +31,11 @@ class ControladorCliente extends Controller
         $cliente->cargarDesdeRequest($request);
         
         if (empty($cliente->nombre) || empty($cliente->apellido) || empty($cliente->edad)) {
-            $error = "¡Parece que ocurrió un error!.";
+            $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
             return view('inicio.inicio', compact('error'));
         } else {
             $cliente->guardar();
-            $mensaje = "¡Excelente, se agregó correctamente el cliente <span class='text-black font-bold'>$cliente->nombre $cliente->apellido</span>!.";
+            $mensaje = "<span class='text-black font-bold'>¡Excelente, se agregó correctamente el cliente <span class='text-black font-bold'>$cliente->nombre $cliente->apellido</span>!.</span>";
             // dd($mensaje);
             $aClientes = $cliente->obtenerTodos();
             return view('inicio.inicio', compact('mensaje'));  
@@ -46,14 +46,14 @@ class ControladorCliente extends Controller
     
     public function eliminar($id) {   
         $cliente = Cliente::find($id);
-        $mensajeRojo = "<span class='text-xl text-white font-bold'>¡Excelente, se eliminó correctamente el cliente<span> <span class='text-black font-bold text-lg'>$cliente->nombre $cliente->apellido</span>!.";
-        $error = "¡Parece que ocurrió un error!.";
+        $mensaje = "<span class='text-black font-bold'>¡Excelente, se elimino correctamente el cliente <span class='text-black font-bold'>$cliente->nombre $cliente->apellido</span>!.</span>";
+        $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
     
         if ($cliente) {
             $cliente->eliminar();
-            return view('inicio.inicio', compact('mensajeRojo'));    
+            return view('inicio.inicio', compact('mensaje'));    
         } else {
-            return view('cliente.cliente-listar', ['error' => $error]);
+            return view('cita.cita-listar', compact('error'));  
         }
     }
     

@@ -9,10 +9,25 @@ use Illuminate\Support\Facades\Storage;
 
 class ControladorImagen extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $aImagenes = Imagenes::with('cliente')->get(); // Obtener todas las imágenes con la relación cargada
-        return view('imagenes.imagenes-listar', compact('aImagenes'));
+        $buscarpor = $request->get('buscarpor', '');
+        
+        $imagenes = new Imagenes();
+        $query = $imagenes->query();
+
+        if ($buscarpor) {
+            $query->where(function ($imagenQuery) use ($buscarpor) {
+                $imagenQuery->where('titulo', 'like', '%' . $buscarpor . '%')
+                            ->orWhereHas('cliente', function ($clienteQuery) use ($buscarpor) {
+                                $clienteQuery->where('nombre', 'like', '%' . $buscarpor . '%');
+                            });
+            });
+        }
+
+        $aImagenes = $query->with('cliente')->get();
+
+        return view('imagenes.imagenes-listar', compact('aImagenes', 'buscarpor'));
     }
 
     public function enviarNombreApellido(){
@@ -50,15 +65,16 @@ class ControladorImagen extends Controller
                     'texto' => $request->input('txtTexto'),
                     'fk_idCliente' => $request->input('lstfk_idCliente'),
                 ]);
+                $mensaje = "¡Excelente, se agregó correctamente la imagen!";
 
-                return redirect()->route('inicio.inicio')->with('mensaje', '¡Excelente, se agregó correctamente la imagen!');
+                return view('inicio.inicio', compact('mensaje'));  
             } catch (\Exception $e) {
-                $error = "¡Parece que ocurrió un error!.";
-                return redirect()->route('inicio.inicio')->with('error', $error);
+                $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+                return view('inicio.inicio', compact('error'));  
             }
         } else {
-            $error = "¡Parece que ocurrió un error!.";
-            return redirect()->route('inicio.inicio')->with('error', $error);
+            $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+            return view('inicio.inicio', compact('error'));  
         }
     }
 
@@ -69,10 +85,10 @@ class ControladorImagen extends Controller
         if ($imagen) {
             $imagen->eliminar();
             $mensaje = "¡Excelente, se eliminó correctamente la imagen!";
-            return redirect()->route('inicio.inicio')->with('mensaje', $mensaje);
+            return view('inicio.inicio', compact('mensaje'));  
         } else {
-            $error = "¡Parece que ocurrió un error!.";
-            return redirect()->route('inicio.inicio')->with('error', $error);
+            $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+            return view('inicio.inicio', compact('error'));  
         }
     }
 }

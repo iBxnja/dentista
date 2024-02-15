@@ -4,10 +4,16 @@
         <div class="w-11/12 h-full flex items-center justify-center flex-col ">
             <div class="w-full h-full flex items-center cel:justify-around">
                 <a href="/inicio/imagenes-nuevo">
-                    <button class="cel:my-4 cel:w-32 bg-green-400 text-white font-semibold cel:rounded-2xl cel:h-14
-                    md:my-4 md:w-36 md:rounded-2xl md:h-12 
-                    lg:my-4 lg:w-36 lg:rounded-2xl lg:h-14 
-                    xl:my-4 xl:w-40 xl:rounded-3xl xl:h-14 xl:text-lg">Nueva imagen</button>
+                    <button class="cel:my-4 cel:w-20 bg-green-400 cel:rounded-2xl cel:h-14
+                  md:my-4 md:w-20 md:rounded-2xl md:h-12
+                  lg:my-4 lg:w-20 lg:rounded-2xl lg:h-14
+                  xl:my-4 xl:w-20 xl:rounded-3xl xl:h-14 xl:text-lg
+                  grid place-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+          class="w-6 h-6 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+      </button>
                 </a>
                 <a href="/inicio/imagenes-listar">
                     <button class="cel:my-4 cel:w-20 bg-green-400 cel:rounded-2xl cel:h-14
@@ -21,6 +27,11 @@
                     </button>
                 </a>
             </div>
+            <form action="" class="w-full h-full flex items-center flex-col justify-center">
+            <div class="w-full h-20 bg-teal-400 flex items-center justify-start cel:justify-center">
+                <input type="text" name="buscarpor" id="buscarpor" class="text-center cel:w-7/12 w-1/4 h-10 cel:ml-0 ml-5 rounded-lg border-2 border-black" placeholder="Buscar un el titulo de una imagen..." value="{{ $buscarpor }}">
+                <button type="submit" class="cel:w-20 w-40 h-10 bg-green-500 text-white ml-5 rounded-lg">Buscar</button>
+              </div>
             <!--foreach-->
             @foreach ($aImagenes as $imagen)
                 <div class="relative cel:w-11/12 w-5/12 h-4/12 flex items-center justify-center flex-col my-10 border-b-2 border-black ">
@@ -36,6 +47,7 @@
                 </div>
             @endforeach
             <!--endforeach-->
+        </form>
         </div>
     </section>
 @endsection

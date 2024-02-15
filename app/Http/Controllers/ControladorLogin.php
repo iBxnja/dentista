@@ -2,34 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 class ControladorLogin extends Controller
 {
     public function index(){
+
         return view('login.login');
+
+
     }
     
-    public function store() {
-        #verifica si las credenciales ingresadas (correo y contraseña) son válidas para iniciar sesión.
-        #La función attempt en Laravel se utiliza para intentar autenticar a un usuario. 
-        if(auth()->attempt(request(['email', 'password'])) == false) {
-            #Si la autenticación no tiene éxito, se utiliza back() para redirigir al usuario a la página anterior
-            #withErrors para agregar mensajes de error a la sesión. 
-            return back()->withErrors([
-                'mensaje' => 'Email o contraseña incorrecto.',
-            ]);
-            #Si la autenticación es exitosa, se verifica el rol del usuario.
+    public function store(Request $request)
+    {
+        // Validación de los datos del formulario
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Intento de inicio de sesión
+        if (Auth::attempt($credentials)) {
+            session()->flash('bienvenido', '¡Bienvenido!.');
+            // Autenticación exitosa
+            return view('inicio.inicio');
         } else {
-            # Si el usuario autenticado tiene un rol de "admin"
-            if(auth()->user()->role == 'admin') {
-                #se redirige a la ruta llamada 'admin.index'(no esta definida)
-                return redirect()->route('admin.index');
-                #sino 
-            } else {
-                #te redirige a la galeria.
-                return redirect()->to('/galeria');
-            }
+            // Autenticación fallida
+            return back()->withErrors(['email' => 'Credenciales incorrectas'])->withInput();
         }
     }
 
@@ -38,6 +39,6 @@ class ControladorLogin extends Controller
         #cerrame la session
         auth()->logout();
         #redireccioname aca
-        return redirect()->to('/login');
+        return redirect()->to('login');
     }
 }

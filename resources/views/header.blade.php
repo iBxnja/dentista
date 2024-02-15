@@ -1,4 +1,4 @@
-<header class="w-full h-20 bg-gradient-to-t from-sky-400 to-cyan-300 flex items-center justify-between">
+<header class="w-full h-20 bg-teal-400 flex items-center justify-between">
     <button id="menuAbrir" class="text-white sm:hidden absolute cel:left-0 top-5 left-5 lg:hidden xl:hidden 2xl:hidden">
         <svg class="h-10 w-10 cel:ml-5"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="4" y1="6" x2="20" y2="6" />  <line x1="4" y1="12" x2="20" y2="12" />  <line x1="4" y1="18" x2="20" y2="18" /></svg>
     </button>
@@ -9,11 +9,15 @@
             </svg>  
         </button>     
 
-        <a href="/inicio" class="lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin ">Inicio</a>
-        <a href="/inicio/cliente-listar" class="lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin ">Cliente</a>
-        <a href="/inicio/notas-listar" class="lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin ">Notas</a>
-        <a href="/inicio/imagenes-listar" class="lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin ">Imagenes</a>
-        <a href="/inicio/cita-listar" class="lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin ">Citas</a>
-        <a href="#" class="lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin ">Controlador</a>
+        <a href="/inicio" class="lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin decoration-transparent">Inicio</a>
+        <a href="/inicio/cliente-listar" class="lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin decoration-transparent">Cliente</a>
+        <a href="/inicio/notas-listar" class="lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin decoration-transparent">Notas</a>
+        <a href="/inicio/imagenes-listar" class="lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin decoration-transparent">Imagenes</a>
+        <a href="/inicio/cita-listar" class="lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin decoration-transparent">Citas</a>
+        <a href="/inicio/informe-listar" class="lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin decoration-transparent">Informe</a>
+        @if(auth()->check())
+        <li class="list-none lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin ">Hola {{ auth()->user()->name }}</li>
+        <li class="list-none mr-6 ml-6 text-2xl"><a href="{{route('login.destroy')}}">Salir</a></li>
+        @endif
     </nav>
 </header>

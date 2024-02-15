@@ -1,8 +1,11 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Validation\Rule;
 
 class ControladorRegister extends Controller
 {
@@ -11,32 +14,42 @@ class ControladorRegister extends Controller
         return view('register.register');
     }
 
-    public function store(){
-        #validacion
-        #validación de los datos de la solicitud antes de procesarlos
-        #Si alguno de estos criterios de validación no se cumple, Laravel
-        #devolverá automáticamente una respuesta de error con los detalles
-        #de la validación al usuario, impidiendo que los datos incorrectos
-        #avancen al siguiente paso del flujo de trabajo.
-        $this->validate(request(),[
-            'name'=> 'required',
-            'email'=> 'required|email',
-            'password'=> 'required|confirmed',
-        ]);
-
-
-        #Creo un nuevo usuario utilizando el modelo User y el método create.
-        #Los datos del usuario se toman de la solicitud
-        #(request(['name', 'email', 'password'])), que ya ha pasado la validación.
-        $user = User::create(request(['name', 'email', 'password']));
-
-        #Esto es útil para evitar que el usuario tenga que iniciar sesión
-        #manualmente después de registrarse.
-        auth()->login($user);
-
-        #redirigo al usuario a la ruta
-        return redirect()->to('inicio.inicio');
-    }
+    public function store(Request $request)
+    {
+        try {
+            // Validación
+            $this->validate($request, [
+                'name' => [
+                    'required',
+                    Rule::unique('users', 'name')
+                ],
+                'email' => [
+                    'required',
+                    'email',
+                    Rule::unique('users', 'email')
+                ],
+                'password' => 'required|confirmed',
+            ]);
     
+            // Creación de usuario
+            $user = User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => bcrypt($request->input('password')),
+            ]);
+    
+            // Login del usuario
+            auth()->login($user);
+    
+            // Mensaje de éxito
+            Log::info('Registro exitoso. Usuario logueado.', ['user' => $user]);
+    
+            // Redirección a la página de inicio
+            return view('login');
+        } catch (\Exception $e) {
+            // Capturar cualquier excepción y registrarla para depuración
+            Log::error('Error durante el registro: ' . $e->getMessage());
+            dd('Error durante el registro: ' . $e->getMessage());
+        }
+    }
 }
-?>
