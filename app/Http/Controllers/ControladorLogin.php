@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 class ControladorLogin extends Controller
 {
     public function index(){
@@ -15,30 +14,33 @@ class ControladorLogin extends Controller
 
     }
     
-    public function store(Request $request)
-    {
-        // Validación de los datos del formulario
-        $credentials = $request->validate([
-            'email' => 'required|email',
+    public function loginVerify(Request $request){
+        $request->validate([
+            'email' => 'required',
             'password' => 'required',
         ]);
-
-        // Intento de inicio de sesión
-        if (Auth::attempt($credentials)) {
-            session()->flash('bienvenido', '¡Bienvenido!.');
-            // Autenticación exitosa
-            return view('inicio.inicio');
-        } else {
-            // Autenticación fallida
-            return back()->withErrors(['email' => 'Credenciales incorrectas'])->withInput();
-        }
+    
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+            return redirect()->route('inicio.inicio');
+        } 
+    
+        dd(Auth::attempt(['email' => $request->email, 'password' => $request->password]));
     }
+    
+    
+
+    
 
     #cerrar la session
     public function destroy() {
         #cerrame la session
         auth()->logout();
-        #redireccioname aca
-        return redirect()->to('login');
+    
+        # Mensaje para la siguiente solicitud
+        $mensaje = 'Has salido correctamente';
+        session()->flash('mensaje', $mensaje);
+    
+        # Redirección
+        return redirect()->to('/login/login');
     }
 }

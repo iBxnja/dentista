@@ -18,7 +18,7 @@ class ControladorRegister extends Controller
     {
         try {
             // Validación
-            $this->validate($request, [
+            $validatedData = $request->validate([
                 'name' => [
                     'required',
                     Rule::unique('users', 'name')
@@ -33,9 +33,9 @@ class ControladorRegister extends Controller
     
             // Creación de usuario
             $user = User::create([
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
-                'password' => bcrypt($request->input('password')),
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'password' => bcrypt($validatedData['password']),
             ]);
     
             // Login del usuario
@@ -43,13 +43,22 @@ class ControladorRegister extends Controller
     
             // Mensaje de éxito
             Log::info('Registro exitoso. Usuario logueado.', ['user' => $user]);
+            $mensaje = 'Te has registrado correctamente';
+            session()->flash('mensaje', $mensaje);
     
             // Redirección a la página de inicio
-            return view('login');
+            return redirect()->to('/inicio');
         } catch (\Exception $e) {
             // Capturar cualquier excepción y registrarla para depuración
             Log::error('Error durante el registro: ' . $e->getMessage());
-            dd('Error durante el registro: ' . $e->getMessage());
+    
+            // Redirigir al usuario a una página de error o mostrar un mensaje de error en la página de registro
+            return redirect()->back()->withErrors(['error' => 'Hubo un problema durante el registro. Por favor, inténtalo de nuevo.']);
         }
     }
+    
+
+
+
+    
 }

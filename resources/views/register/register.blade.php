@@ -71,7 +71,7 @@
                     cel:m-0 text-center
                     md:mb-2
                     mb-5">
-                        <span class="text-sm">Ya tienes cuenta? </span><a href="/login" class="text-green-900 cel:text-sm">Ingresa aca.</a>
+                        <span class="text-sm">Ya tienes cuenta? </span><a href="/login/login" class="text-green-900 cel:text-sm">Ingresa aca.</a>
                     </div>
                     @error('message')
                     <p>* Error</p>

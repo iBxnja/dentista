@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
-
+use UI;
 return [
 
     /*
@@ -159,6 +159,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Laravel\Ui\UiServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -207,9 +208,10 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
-
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+    ])->merge([
+        'UI' => Laravel\Ui\UiServiceProvider::class,
     ])->toArray(),
-
+    
 ];

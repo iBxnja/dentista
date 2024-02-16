@@ -16,8 +16,13 @@
         <a href="/inicio/cita-listar" class="lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin decoration-transparent">Citas</a>
         <a href="/inicio/informe-listar" class="lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin decoration-transparent">Informe</a>
         @if(auth()->check())
-        <li class="list-none lg:ml-5 lg:mr-5 xl:ml-5 xl:mr-5 2xl:mr-5 2xl:ml-5 text-white cel:text-lg lg:font-thin xl:font-thin 2xl:font-thin ">Hola {{ auth()->user()->name }}</li>
-        <li class="list-none mr-6 ml-6 text-2xl"><a href="{{route('login.destroy')}}">Salir</a></li>
+        <li class="mr-10 ml-6 overflow-auto text-sm">Hola {{ auth()->user()->name }}</li>
+        @endif
+        @if(auth()->check())
+        <form action="{{ route('login.destroy') }}" method="POST">
+            @csrf
+            <button type="submit">Salir</button>
+        </form>
         @endif
     </nav>
 </header>

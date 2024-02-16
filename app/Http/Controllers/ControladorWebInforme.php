@@ -5,6 +5,7 @@ use App\Models\Cliente;
 use App\Models\Imagenes;
 use App\Models\Cita;
 use App\Models\Nota;
+use App\Models\Calendario;
 use Illuminate\Http\Request;
 
 class ControladorWebInforme extends Controller
@@ -16,9 +17,9 @@ class ControladorWebInforme extends Controller
 
         $totalClientes = Cliente::count();
         $totalImagenes = Imagenes::count();
-        $totalCitas = Cita::count();
         $totalNotas = Nota::count();
+        $totalCalendario = Calendario::count();
 
-        return view('informe.informe-listar', compact('totalClientes', 'totalImagenes', 'totalCitas', 'totalNotas', 'aClientes'));
+        return view('informe.informe-listar', compact('totalClientes', 'totalImagenes', 'totalNotas', 'aClientes', 'totalCalendario'));
     }
 }

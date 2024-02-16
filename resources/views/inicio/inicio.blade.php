@@ -11,13 +11,22 @@
             <h2 class="cel:text-sm text-white">{!! $mensajeRojo !!}</h2>
         </div>
         @endif
+        @if(isset($error))
+        <div class="text-lg mt-5 w-11/12 cel:mt-5 cel:mb-2 cel:rounded-lg h-16 bg-red-500 grid place-items-center text-center overflow-auto">
+            <h2 class="cel:text-sm text-white">{!! $error !!}</h2>
+        </div>
+        @endif
         
         @if(isset($bienvenido))
         <div class="text-lg mt-5 w-11/12 cel:mt-5 cel:mb-2 cel:rounded-lg h-16 bg-red-500 grid place-items-center text-center overflow-auto">
             <h2 class="cel:text-sm text-white">{{ session('bienvenido') }}</h2>
         </div>
         @endif
-
+        @if(session('mensaje'))
+            <div class="alert alert-success">
+                {{ session('mensaje') }}
+            </div>
+        @endif
         <div class="w-full cel:h-full md:h-full lg:h-screen xl:h-screen 2xl:h-screen flex items-center justify-center cel:flex-col cel:text-center md:flex-col md:text-center">
             <div class="cel:w-11/12 w-6/12 flex cel:items-center items-start justify-center flex-col md:items-center">
                 <h2 class="cel:ml-0 md:ml-0 ml-10 cel:text-6xl text-9xl cel:mt-5 text-teal-400 font-bold">Dentista</h2>

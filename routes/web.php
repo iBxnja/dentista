@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\BookController;
 use App\Http\Controllers\ControladorCalendario;
-use App\Http\Controllers\ControladorCita;
 use App\Http\Controllers\ControladorLogin;
 use App\Http\Controllers\ControladorCliente;
 use App\Http\Controllers\ControladorImagen;
@@ -76,9 +74,9 @@ Route::prefix('register')->group(function () {
 #                  Controlador login                            #
 #---------------------------------------------------------------#
 Route::prefix('login')->group(function () {
-    Route::get('/login', [ControladorLogin::class, 'index'])->name('login');
-    Route::post('/login', [ControladorLogin::class, 'store'])->name('login.store');
-    Route::post('/logout', [ControladorLogin::class, 'destroy'])->name('login.destroy');
+    Route::get('/login', [ControladorLogin::class, 'index'])->name('login.index');
+    Route::post('login', [ControladorLogin::class, 'loginVerify'])->name('login.store');
+    Route::post('/login/logout', [ControladorLogin::class, 'destroy'])->name('login.destroy');
 });
 #---------------------------------------------------------------#
 
@@ -128,9 +126,11 @@ Route::prefix('inicio')->group(function () {
 #---------------------------------------------------------------#
 Route::prefix('inicio')->group(function () {
     Route::get('/cita-listar', [ControladorCalendario::class, 'index'])->name('cita-listar');
+    Route::get('/cita-listado', [ControladorCalendario::class, 'enviarListado'])->name('cita-listado');
     Route::get('/cita-listar/events', [ControladorCalendario::class, 'getEvents'])->name('cita-listar-events');
     Route::post('/cita-nuevo/crear', [ControladorCalendario::class, 'crearCita'])->name('cita-nuevo-crear');
-
+    Route::get('/cita-listar/{id}/eliminar', [ControladorCalendario::class, 'eliminar'])->name('cita.eliminar');
+    Route::get('/cita-nuevo', [ControladorCalendario::class, 'enviarNombreApellido']);
 });
 
 
@@ -147,7 +147,7 @@ Route::prefix('inicio')->group(function () {
     Route::get('/imagenes-nuevo', [ControladorImagen::class, 'enviarNombreApellido'])->name('imagenes-nuevo');
     Route::post('/imagenes-nuevo', [ControladorImagen::class, 'guardar']);
     Route::get('/imagenes-listar', [ControladorImagen::class, 'index'])->name('imagenes');
-    Route::get('/imagenes-listar/{id}/eliminar', [ControladorImagen::class, 'eliminar'])->name('imagenes.eliminar');
+    Route::get('/notas-listar/{id}/eliminar', [ControladorImagen::class, 'eliminar'])->name('notas.eliminar');
 });
 #---------------------------------------------------------------#
 
@@ -164,3 +164,7 @@ Route::prefix('inicio')->group(function () {
 #---------------------------------------------------------------#
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

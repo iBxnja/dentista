@@ -15,7 +15,7 @@
         </div>
         <div class="shadow-neutral-600 shadow-md border-4 border-teal-600 mt-5 mx-10 w-80 h-40 bg-teal-400 rounded-xl flex items-center justify-center flex-col overflow-hidden">
             <h4 class="text-lg">Citas Totales:</h4>
-            <span class="text-6xl">{{ $totalCitas }}</span>
+            <span class="text-6xl">{{ $totalCalendario }}</span>
         </div>
         <div class="shadow-neutral-600 shadow-md border-4 border-teal-600 mt-5 mx-10 w-80 h-40 bg-teal-400 rounded-xl flex items-center justify-center flex-col overflow-hidden">
             <h4 class="text-lg">Usuario:</h4>

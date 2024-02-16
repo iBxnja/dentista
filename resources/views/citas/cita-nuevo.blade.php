@@ -1,72 +1,20 @@
 @extends('plantilla')
+@section('contenido')
+    <section class="w-full h-full flex items-center justify-center flex-col">
+        <!-- formulario en la vista 'cita-nuevo' -->
+        <form id="formulario-cita" action="{{ route('cita-nuevo-crear') }}" method="POST" class="w-11/12 h-full flex items-center justify-center flex-col">
+            @csrf
+            <h2 class="text-4xl mt-10">Nueva cita</h2>
+            <div class="w-full h-full flex items-center justify-center flex-col my-5">
+                <label for="nombre" class="text-xl cel:text-sm cel:text-center">Nombre completo</label>
+                <input type="text" name="nombre" required placeholder="Escribe el nombre del cliente. Ej: Daniela Mercedes" class="mt-4 text-center w-5/12 h-8 rounded-lg border-2 border-black cel:text-center">
+            </div>
+            <div class="w-full h-full flex items-center justify-center flex-col">
+                <label for="fecha" class="text-xl cel:text-sm cel:text-center">Fecha de la cita</label>
+                <input type="datetime-local" name="fecha" required class="mt-4 text-center w-5/12 mb-5 h-8 rounded-lg border-2 border-black cel:text-center">
+            </div>
+            <button type="submit" onclick="crearCita()" class="bg-teal-500 text-white w-64 h-14 rounded-2xl">Agendar Cita</button>
+        </form>
+    </section>
+@endsection
 
-<!-- formulario en la vista 'cita-nuevo' -->
-<form id="formulario-cita" action="{{ route('cita-nuevo-crear') }}" method="POST">
-    @csrf
-    <label for="nombre">Nombre:</label>
-    <input type="text" name="nombre" required>
-
-    <label for="fecha">Fecha:</label>
-    <input type="datetime-local" name="fecha" required>
-
-    <button type="submit" onclick="crearCita()">Agendar Cita</button>
-
-</form>
-
-<script>
-//     function crearCita() {
-//     // Obtén los datos del formulario
-//     var nombre = document.querySelector('input[name="nombre"]').value;
-//     var fecha = document.querySelector('input[name="fecha"]').value;
-
-//     // Obtén el token CSRF
-//     var csrfToken = document.querySelector('input[name="_token"]').value;
-
-//     // Envia los datos al servidor utilizando AJAX
-//     $.ajax({
-//         url: '/inicio/cita-listar/crear',
-//         type: 'POST',
-//         data: {
-//             _token: csrfToken,
-//             nombre: nombre,
-//             fecha: fecha
-//         },
-//         success: function (data) {
-//             // Éxito: Actualiza el calendario con la nueva cita
-//             actualizarCalendario(data);
-//         },
-//         error: function (error) {
-//             console.error('Error al crear la cita:', error);
-//             alert('Error al crear la cita. Consulta la consola para más detalles.');
-//         }
-//     });
-// }
-
-// function actualizarCalendario(nuevaCita) {
-//     console.log('Llamada a actualizarCalendario');
-
-//     var calendarEl = document.getElementById('calendar');
-
-//     if (calendarEl) {
-//         var calendar = new FullCalendar.Calendar(calendarEl);
-//         calendar.addEvent({
-//             title: nuevaCita.title,
-//             start: nuevaCita.start
-//         });
-
-//         // Refleja visualmente la nueva cita en el calendario
-//         calendar.render();
-
-//         alert('Cita agendada correctamente');
-
-//         // Limpia el formulario
-//         document.querySelector('input[name="nombre"]').value = '';
-//         document.querySelector('input[name="fecha"]').value = '';
-//     } else {
-//         console.error('Elemento del calendario no encontrado.');
-//     }
-// }
-
-
-
-</script>
