@@ -14,6 +14,13 @@ class ControladorRegister extends Controller
         return view('register.register');
     }
 
+
+
+
+
+
+
+    
     public function store(Request $request)
     {
         try {
@@ -31,11 +38,11 @@ class ControladorRegister extends Controller
                 'password' => 'required|confirmed',
             ]);
     
-            // Creación de usuario
+            // Creación de usuario sin encriptar la contraseña
             $user = User::create([
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
-                'password' => bcrypt($validatedData['password']),
+                'password' => $validatedData['password'],
             ]);
     
             // Login del usuario
@@ -56,8 +63,6 @@ class ControladorRegister extends Controller
             return redirect()->back()->withErrors(['error' => 'Hubo un problema durante el registro. Por favor, inténtalo de nuevo.']);
         }
     }
-    
-
 
 
     

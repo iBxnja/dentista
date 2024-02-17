@@ -7,6 +7,7 @@ use App\Http\Controllers\ControladorImagen;
 use App\Http\Controllers\ControladorNota;
 use App\Http\Controllers\ControladorRegister;
 use App\Http\Controllers\ControladorWebInforme;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,9 +51,6 @@ Route::get('inicio/notas-nuevo', function () {
 Route::get('inicio/odontograma-nuevo', function () {
     return view('odontograma/odontograma-nuevo');
 });
-// Route::get('inicio/notas-mostrar', function () {
-//     return view('notas/notas-mostrar/{id}');
-// });
 
 
 
@@ -74,7 +72,7 @@ Route::prefix('register')->group(function () {
 #                  Controlador login                            #
 #---------------------------------------------------------------#
 Route::prefix('login')->group(function () {
-    Route::get('/login', [ControladorLogin::class, 'index'])->name('login.index');
+    Route::get('login', [ControladorLogin::class, 'index'])->name('login.index');
     Route::post('login', [ControladorLogin::class, 'loginVerify'])->name('login.store');
     Route::post('/login/logout', [ControladorLogin::class, 'destroy'])->name('login.destroy');
 });
@@ -164,6 +162,15 @@ Route::prefix('inicio')->group(function () {
 #---------------------------------------------------------------#
 
 
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/informe-listar', [ControladorWebInforme::class, 'index'])->name('informe-listar');
+    // Otras rutas protegidas...
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 

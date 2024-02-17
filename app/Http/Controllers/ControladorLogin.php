@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Log;
 class ControladorLogin extends Controller
 {
     public function index(){
@@ -13,23 +16,53 @@ class ControladorLogin extends Controller
 
 
     }
-    
-    public function loginVerify(Request $request){
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-    
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            return redirect()->route('inicio.inicio');
-        } 
-    
-        dd(Auth::attempt(['email' => $request->email, 'password' => $request->password]));
-    }
-    
-    
 
-    
+
+
+
+public function loginVerify(Request $request)
+{
+    // Validar datos del formulario
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    // Obtener el usuario de la base de datos
+    $user = User::where('email', $request->email)->first();
+
+    // Verificar si el usuario existe y la contraseña coincide
+    if ($user && $this->validatePassword($request->password, $user->password)) {
+        // Autenticar al usuario
+        Auth::login($user);
+
+        // Redirigir a la página deseada después del inicio de sesión
+        return redirect('/inicio');
+    }
+
+    // Autenticación fallida
+    return back()->withErrors(['email' => 'Credenciales no válidas']);
+}
+
+// Función para validar la contraseña de manera segura
+private function validatePassword($inputPassword, $hashedPassword)
+{
+    return hash_equals($hashedPassword, $inputPassword);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     #cerrar la session
     public function destroy() {
@@ -44,3 +77,5 @@ class ControladorLogin extends Controller
         return redirect()->to('/login/login');
     }
 }
+
+

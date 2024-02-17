@@ -32,7 +32,7 @@
             w-4/6 h-5/6 flex flex-col items-center justify-center ">
                 <form action="{{ route('login.store') }}" method="POST" class="
                 cel:w-11/12
-                w-2/4 h-4/5 flex items-center justify-center flex-col">
+                w-2/4 h-4/5 flex items-center justify-center flex-col" >
                     @csrf
                     <h2 class="text-5xl font-bold text-purple-500 mb-5
                     cel:text-3xl
@@ -54,11 +54,10 @@
                     md:m-3
                     m-5 flex flex-col items-center justify-center w-5/6">
                         <label for="password" class="text-xl cel:text-base">Contraseña</label>
-                        <input type="password" class="
+                        <input type="password" id="password" name="password" class="
                         cel:h-8
                         text-center border-2 border-gray-200 rounded-md bg-white w-full
-                         placeholder-gray-900 p-2 my-2 focus:bg-white text-xs" placeholder="Contraseña"
-                        id="password" name="password">
+                         placeholder-gray-900 p-2 my-2 focus:bg-white text-xs" placeholder="Contraseña">
                     </div>
                     <button type="submit" class="
                     cel:w-32 cel:text-sm
@@ -77,4 +76,4 @@
     </main>
     
 </body>
-</html>
+</html>r

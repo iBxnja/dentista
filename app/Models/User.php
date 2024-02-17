@@ -42,11 +42,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    #encriptar la pass
-    public function setPasswordAttribute($password) {
-        #forma de encriptarla
-        $this->attributes['password'] = bcrypt($password);
-    }
+    // #encriptar la pass
+    // public function setPasswordAttribute($password) {
+    //     #forma de encriptarla
+    //     $this->attributes['password'] = bcrypt($password);
+    // }
 
 
 
