@@ -36,18 +36,6 @@ class Nota extends Model
 {
     return Nota::with('cliente')->orderBy('idNota')->get();
 }
-    // public function obtenerTodos()
-    // {
-    //     $sql = "SELECT
-    //               idNota,
-    //               titulo,
-    //               texto,
-    //               numeroSesion,
-    //               fk_idCliente
-    //             FROM notas ORDER BY idNota";
-    //     $lstRetorno = DB::select($sql);
-    //     return $lstRetorno;
-    // }
     
 
     public function guardar()

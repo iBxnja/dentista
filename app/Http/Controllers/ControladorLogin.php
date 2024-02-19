@@ -41,7 +41,8 @@ public function loginVerify(Request $request)
     }
 
     // Autenticación fallida
-    return back()->withErrors(['email' => 'Credenciales no válidas']);
+    $error = "Email y/o contraseña incorrectas";
+    return view('login.login', compact('error'));
 }
 
 // Función para validar la contraseña de manera segura

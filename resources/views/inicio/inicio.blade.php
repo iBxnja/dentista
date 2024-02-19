@@ -2,24 +2,24 @@
 @section('contenido')
     <section class="w-full h-full flex flex-col items-center justify-around">
         @if(isset($mensaje))
-        <div class="mt-5 w-11/12 cel:mt-5 cel:mb-2 cel:rounded-lg h-16 bg-green-500 grid place-items-center text-center overflow-auto">
+        <div class="w-11/12 cel:mt-5 cel:mb-2 cel:rounded-2xl h-16 bg-green-500 grid place-items-center mt-4 overflow-hidden">
             <h2 class="cel:text-sm text-sm text-white">{!! $mensaje !!}</h2>
         </div>
         @endif
         @if(isset($mensajeRojo))
-        <div class="text-lg mt-5 w-11/12 cel:mt-5 cel:mb-2 cel:rounded-lg h-16 bg-red-500 grid place-items-center text-center overflow-auto">
+        <div class="w-11/12 cel:mt-5 cel:mb-2 cel:rounded-2xl h-16 bg-red-500 grid place-items-center mt-4 overflow-hidden">
             <h2 class="cel:text-sm text-white">{!! $mensajeRojo !!}</h2>
         </div>
         @endif
         @if(isset($error))
-        <div class="text-lg mt-5 w-11/12 cel:mt-5 cel:mb-2 cel:rounded-lg h-16 bg-red-500 grid place-items-center text-center overflow-auto">
+        <div class="w-11/12 cel:mt-5 cel:mb-2 cel:rounded-2xl h-16 bg-red-500 grid place-items-center mt-4 overflow-hidden">
             <h2 class="cel:text-sm text-white">{!! $error !!}</h2>
         </div>
         @endif
         
         @if(isset($bienvenido))
-        <div class="text-lg mt-5 w-11/12 cel:mt-5 cel:mb-2 cel:rounded-lg h-16 bg-red-500 grid place-items-center text-center overflow-auto">
-            <h2 class="cel:text-sm text-white">{{ session('bienvenido') }}</h2>
+        <div class="w-11/12 cel:mt-5 cel:mb-2 cel:rounded-2xl h-16 bg-green-500 grid place-items-center mt-4 overflow-hidden">
+            <h2 class="cel:text-base text-white">{{ session('bienvenido') }}</h2>
         </div>
         @endif
         @if(session('mensaje'))

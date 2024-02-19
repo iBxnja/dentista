@@ -39,7 +39,7 @@ class ControladorCalendario extends Controller
     
             $eventos[] = [
                 'titulo' => $cita->nombre,
-                'fecha' => $fecha->format('Y-m-d\TH:i:s'),
+                'fecha' => $fecha->format('d-m-y\TH:i:s'),
             ];
         }
     
@@ -49,36 +49,67 @@ class ControladorCalendario extends Controller
 
     public function crearCita(Request $request)
 {
-    $mensaje = "¡Excelente, se agregó correctamente la cita!";
     // Valida los datos del formulario
     $request->validate([
         'nombre' => 'required|string',
         'fecha' => 'required|date',
     ]);
 
-    // Crea una nueva cita en la base de datos
-    Calendario::create([
-        'nombre' => $request->input('nombre'),
-        'fecha' => $request->input('fecha'),
-    ]);
+    try {
+        // Crea una nueva cita en la base de datos
+        $nuevaCita = Calendario::create([
+            'nombre' => $request->input('nombre'),
+            'fecha' => $request->input('fecha'),
+        ]);
 
-    // Devuelve una respuesta JSON indicando que la cita se ha agendado correctamente
-    // return response()->json(['mensaje' => 'Cita agendada correctamente']);
-    return view('inicio.inicio', compact('mensaje'));
+        // Almacena información de la cita en la sesión antes de mostrar el mensaje
+        session(['citaAgregada' => [
+            'id' => $nuevaCita->idCalendario, // Asegúrate de ajustar el nombre de la columna según tu modelo
+            'nombre' => $nuevaCita->nombre, // Asegúrate de ajustar el nombre de la columna según tu modelo
+            'fecha' => $nuevaCita->fecha, // Asegúrate de ajustar el nombre de la columna según tu modelo
+            // Puedes agregar más campos según sea necesario
+        ]]);
+
+        // Mensaje de éxito
+        $mensaje = "¡Excelente, se agregó correctamente la cita!";
+
+        // Hacer un dd del contenido de la sesión citaAgregada
+        dd(session('citaAgregada'));
+    } catch (\Exception $e) {
+        // Mensaje de error
+        $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+        return view('inicio.inicio', compact('error'));
+    }
 }
+
 
 
 
 
 public function eliminar($id) {   
     $calendario = Calendario::find($id);
-    $mensaje = "<span class='text-black font-bold'>¡Excelente, se elimino correctamente la cita!.</span>";
-    $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
 
     if ($calendario) {
+        // Almacena información de la cita en la sesión antes de eliminarla
+        session(['citaEliminada' => [
+            'id' => $calendario->idCalendario, // Ajusta el nombre de la columna según tu modelo
+            'nombre' => $calendario->nombre, // Ajusta el nombre de la columna según tu modelo
+            'fecha' => $calendario->fecha, // Ajusta el nombre de la columna según tu modelo
+            // Puedes agregar más campos según sea necesario
+        ]]);
+
+        // Elimina la cita
         $calendario->eliminar();
+
+        // Hacer un dd del contenido de la sesión citaEliminada
+        dd(session('citaEliminada'));
+
+        // Mensaje de éxito
+        $mensaje = "<span class='text-black font-bold'>¡Excelente, se eliminó correctamente la cita!.</span>";
         return view('inicio.inicio', compact('mensaje'));    
     } else {
+        // Mensaje de error
+        $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
         return view('cita.cita-listar', compact('error'));  
     }
 }

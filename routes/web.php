@@ -5,6 +5,7 @@ use App\Http\Controllers\ControladorLogin;
 use App\Http\Controllers\ControladorCliente;
 use App\Http\Controllers\ControladorImagen;
 use App\Http\Controllers\ControladorNota;
+use App\Http\Controllers\ControladorOdontograma;
 use App\Http\Controllers\ControladorRegister;
 use App\Http\Controllers\ControladorWebInforme;
 use Illuminate\Support\Facades\Auth;
@@ -57,6 +58,20 @@ Route::get('inicio/odontograma-nuevo', function () {
 
 
 #---------------------------------------------------------------#
+#                  Controlador Odontograma                      #
+#---------------------------------------------------------------#
+Route::prefix('inicio')->group(function () {
+    Route::get('/odontograma-listar', [ControladorOdontograma::class, 'index'])->name('odontograma-listar');
+});
+
+
+#---------------------------------------------------------------#
+
+
+
+
+
+#---------------------------------------------------------------#
 #                  Controlador Register                         #
 #---------------------------------------------------------------#
 Route::prefix('register')->group(function () {
@@ -66,6 +81,9 @@ Route::prefix('register')->group(function () {
 
 
 #---------------------------------------------------------------#
+
+
+
 
 
 #---------------------------------------------------------------#
@@ -145,7 +163,7 @@ Route::prefix('inicio')->group(function () {
     Route::get('/imagenes-nuevo', [ControladorImagen::class, 'enviarNombreApellido'])->name('imagenes-nuevo');
     Route::post('/imagenes-nuevo', [ControladorImagen::class, 'guardar']);
     Route::get('/imagenes-listar', [ControladorImagen::class, 'index'])->name('imagenes');
-    Route::get('/notas-listar/{id}/eliminar', [ControladorImagen::class, 'eliminar'])->name('notas.eliminar');
+    Route::get('/imagenes-listar/{id}/eliminar', [ControladorImagen::class, 'eliminar'])->name('imagenes.eliminar');
 });
 #---------------------------------------------------------------#
 
@@ -154,7 +172,7 @@ Route::prefix('inicio')->group(function () {
 
 
 #---------------------------------------------------------------#
-#                   Controlador imagenes                        #
+#                   Controlador informe                         #
 #---------------------------------------------------------------#
 Route::prefix('inicio')->group(function () {
     Route::get('/informe-listar', [ControladorWebInforme::class, 'index'])->name('informe-listar');

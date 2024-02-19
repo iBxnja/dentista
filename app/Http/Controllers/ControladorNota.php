@@ -9,25 +9,25 @@ use Illuminate\Http\Request;
 class ControladorNota extends Controller
 {
     public function index(Request $request)
-    {
-        $buscarpor = $request->get('buscarpor');
-        
-        $nota = new Nota();
-        $query = $nota->query();
-
-        if ($buscarpor) {
-            $query->where(function ($notaQuery) use ($buscarpor) {
-                $notaQuery->where('titulo', 'like', '%' . $buscarpor . '%')
-                          ->orWhereHas('cliente', function ($clienteQuery) use ($buscarpor) {
-                              $clienteQuery->where('nombre', 'like', '%' . $buscarpor . '%');
-                          });
-            });
-        }
-
-        $aNota = $query->with('cliente')->orderBy('idNota')->get();
-
-        return view('notas.notas-listar', compact('aNota', 'buscarpor'));
+{
+    $buscarpor = $request->get('buscarpor');
+    
+    $nota = new Nota();
+    
+    // Utiliza Eloquent para obtener todas las notas
+    $query = $nota->query();
+    
+    // Verifica si se proporcionó un término de búsqueda
+    if ($buscarpor) {
+        $query->where('titulo', 'like', '%' . $buscarpor . '%');
+        // Reemplaza 'nombre_campo_de_busqueda' con el nombre real del campo que deseas buscar en la tabla de notas
     }
+    
+    $aNota = $query->get();
+    
+    return view('notas.notas-listar', compact('aNota', 'buscarpor'));
+}
+
 
     public function enviarNombreApellido()
     {
@@ -40,36 +40,62 @@ class ControladorNota extends Controller
 
 
     public function guardar(Request $request)
-    {
-        // dd($request->all());
-        $Nota = new Nota();
-        $Nota->cargarDesdeRequest($request);
+        {
+            $Nota = new Nota();
+            $Nota->cargarDesdeRequest($request);
 
-        if (empty($Nota->titulo) || empty($Nota->texto) || empty($Nota->numeroSesion) || empty($Nota->fk_idCliente)) {
-            $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
-            return view('inicio.inicio', compact('error'));
-        } else {
-            $Nota->guardar();
-            $mensaje = "¡Excelente, se agregó correctamente la nota <span class='text-black font-bold'></span>!.";
-            // dd($mensaje);
-            $aNota = $Nota->obtenerTodos();
-            return view('inicio.inicio', compact('mensaje'));
+            if (empty($Nota->titulo) || empty($Nota->texto) || empty($Nota->numeroSesion) || empty($Nota->fk_idCliente)) {
+                $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+                return view('inicio.inicio', compact('error'));
+            } else {
+                $Nota->guardar();
+
+                // Almacenar información de la nota en la sesión
+                session(['notaGuardada' => [
+                    'id' => $Nota->idNota,
+                    'titulo' => $Nota->titulo,
+                    'texto' => $Nota->texto,
+                    'numeroSesion' => $Nota->numeroSesion,
+                    'fk_idCliente' => $Nota->fk_idCliente,
+                ]]);
+                dd(session('notaGuardada'));
+                // Mensaje de éxito
+                $mensaje = "¡Excelente, se agregó correctamente la nota!";
+                
+                // Redirigir a la vista con el mensaje
+                return view('inicio.inicio', compact('mensaje'));
+            }
         }
-    }
 
-    public function eliminar($id)
+
+        public function eliminar($id)
     {
-        $nota = Nota::find($id); // Asegúrate de que la clase sea 'imagenes' en lugar de 'Imagenes'
+        $nota = Nota::find($id);
 
         if ($nota) {
-            $nota->eliminar();
-            $mensaje = "<span class='text-black font-bold'>¡Excelente, se eliminó correctamente la nota!.</span>";
-            return view('inicio.inicio', compact('mensaje')); 
+            // Almacenar información de la nota en la sesión antes de eliminarla
+            session(['notaEliminada' => [
+                'id' => $nota->idNota, // Asegúrate de ajustar el nombre de la columna según tu modelo
+                'titulo' => $nota->titulo, // Asegúrate de ajustar el nombre de la columna según tu modelo
+                'contenido' => $nota->texto, // Asegúrate de ajustar el nombre de la columna según tu modelo
+                'numeroSesion' => $nota->numeroSesion, // Asegúrate de ajustar el nombre de la columna según tu modelo
+                'fk_idCliente' => $nota->fk_idCliente, // Asegúrate de ajustar el nombre de la columna según tu modelo
+            ]]);
+
+            // Eliminar la nota
+            $nota->eliminar(); // Asegúrate de tener un método eliminar() en tu modelo Nota
+
+            // Hacer un dd del contenido de la sesión notaEliminada
+            dd(session('notaEliminada'));
         } else {
+            // Mensaje de error
             $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
-            return view('inicio.inicio', compact('error')); 
+
+            // Redirigir a la vista con el mensaje de error
+            return view('inicio.inicio', compact('error'));
         }
     }
+        
 
 
     public function mostrarNota($id)

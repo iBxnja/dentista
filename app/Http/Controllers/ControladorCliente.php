@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Cliente;
-
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class ControladorCliente extends Controller
@@ -35,6 +35,14 @@ class ControladorCliente extends Controller
             return view('inicio.inicio', compact('error'));
         } else {
             $cliente->guardar();
+            session(['cliente' => [
+                'id' => $cliente->idCliente,
+                'nombre' => $cliente->nombre,
+                'apellido' => $cliente->apellido,
+            ]]);
+            
+            // Hacer un dd de la información del cliente en la sesión
+            dd(session('cliente'));
             $mensaje = "<span class='text-black font-bold'>¡Excelente, se agregó correctamente el cliente <span class='text-black font-bold'>$cliente->nombre $cliente->apellido</span>!.</span>";
             // dd($mensaje);
             $aClientes = $cliente->obtenerTodos();
@@ -46,15 +54,27 @@ class ControladorCliente extends Controller
     
     public function eliminar($id) {   
         $cliente = Cliente::find($id);
-        $mensaje = "<span class='text-black font-bold'>¡Excelente, se elimino correctamente el cliente <span class='text-black font-bold'>$cliente->nombre $cliente->apellido</span>!.</span>";
-        $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
     
         if ($cliente) {
+            // Almacenar información del cliente en la sesión antes de eliminarlo
+            session(['clienteEliminado' => [
+                'nombre' => $cliente->nombre,
+                'apellido' => $cliente->apellido,
+            ]]);
+    
+            // Eliminar el cliente
             $cliente->eliminar();
-            return view('inicio.inicio', compact('mensaje'));    
+    
+            // Hacer un dd del contenido de la sesión clienteEliminado
+            dd(session('clienteEliminado'));
         } else {
+            // Mensaje de error
+            $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+    
+            // Redirigir a la vista con el mensaje de error
             return view('cita.cita-listar', compact('error'));  
         }
     }
+    
     
 }

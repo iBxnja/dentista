@@ -47,14 +47,14 @@ class ControladorRegister extends Controller
 
             // Almacenar el ID del usuario en la sesión
             session()->put('usuario_id', $user->id);
-
+            dd(session('usuario_id'));
             // Login del usuario
             auth()->login($user);
 
             // Mensaje de éxito
             Log::info('Registro exitoso. Usuario logueado.', ['user' => $user]);
-            $mensaje = 'Te has registrado correctamente';
-            session()->flash('mensaje', $mensaje);
+            $bienvenido = 'Bienvenido, te has registrado correctamente';
+            session()->flash('bienvenido', $bienvenido);
 
             // Redirección a la página de inicio
             return redirect()->to('/inicio');

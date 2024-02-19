@@ -7,13 +7,13 @@
             <h2 class="text-4xl mt-10">Nueva cita</h2>
             <div class="w-full h-full flex items-center justify-center flex-col my-5">
                 <label for="nombre" class="text-xl cel:text-sm cel:text-center">Nombre completo</label>
-                <input type="text" name="nombre" required placeholder="Escribe el nombre del cliente. Ej: Daniela Mercedes" class="mt-4 text-center w-5/12 h-8 rounded-lg border-2 border-black cel:text-center">
+                <input type="text" name="nombre" required placeholder="Escribe el nombre del cliente. Ej: Daniela Mercedes" class="cel:w-11/12 mt-4 text-center w-5/12 h-8 rounded-lg border-2 border-black cel:text-center">
             </div>
             <div class="w-full h-full flex items-center justify-center flex-col">
                 <label for="fecha" class="text-xl cel:text-sm cel:text-center">Fecha de la cita</label>
-                <input type="datetime-local" name="fecha" required class="mt-4 text-center w-5/12 mb-5 h-8 rounded-lg border-2 border-black cel:text-center">
+                <input type="datetime-local" name="fecha" required class="cel:w-11/12 mt-4 text-center w-5/12 mb-5 h-8 rounded-lg border-2 border-black cel:text-center">
             </div>
-            <button type="submit" onclick="crearCita()" class="bg-teal-500 text-white w-64 h-14 rounded-2xl">Agendar Cita</button>
+            <button type="submit" onclick="crearCita()" class="bg-teal-500 text-white w-64 h-14 rounded-2xl mb-4">Agendar Cita</button>
         </form>
     </section>
 @endsection

@@ -7,19 +7,19 @@
     <title>Login</title>
     @vite('resources/css/app.css')
 </head>
-<body> 
+<body class="flex items-center justify-center flex-col"> 
     @if(session('mensaje'))
-    <div class="alert alert-success">
-        {{ session('mensaje') }}
+    <div class="absolute top-0 w-11/12 cel:mt-5 cel:mb-2 cel:rounded-2xl h-16 bg-green-500 grid place-items-center mt-4">
+        <h2 class="cel:text-base text-white">{{ session('mensaje') }}</h2>
     </div>
     @endif
     @if(isset($error))
-    <div class="w-11/12 cel:mt-5 cel:mb-2 cel:rounded-2xl h-16 bg-red-500 grid place-items-center">
+    <div class="absolute top-0 w-11/12 cel:mt-5 cel:mb-2 cel:rounded-2xl h-16 bg-red-500 grid place-items-center mt-4">
         <h2 class="cel:text-base text-white">{{ $error }}</h2>
     </div>
     @endif
     @if(isset($mensaje))
-    <div class="w-11/12 cel:mt-5 cel:mb-2 cel:rounded-2xl h-16 bg-green-500 grid place-items-center">
+    <div class="absolute top-0 w-11/12 cel:mt-5 cel:mb-2 cel:rounded-2xl h-16 bg-green-500 grid place-items-center mt-4">
         <h2 class="cel:text-base text-white">{{ $mensaje }}</h2>
     </div>
     @endif
@@ -76,4 +76,4 @@
     </main>
     
 </body>
-</html>r
+</html>
