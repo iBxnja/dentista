@@ -62,13 +62,13 @@ class ControladorCalendario extends Controller
             'fecha' => $request->input('fecha'),
         ]);
 
-        // Almacena información de la cita en la sesión antes de mostrar el mensaje
-        session(['citaAgregada' => [
-            'id' => $nuevaCita->idCalendario, // Asegúrate de ajustar el nombre de la columna según tu modelo
-            'nombre' => $nuevaCita->nombre, // Asegúrate de ajustar el nombre de la columna según tu modelo
-            'fecha' => $nuevaCita->fecha, // Asegúrate de ajustar el nombre de la columna según tu modelo
-            // Puedes agregar más campos según sea necesario
-        ]]);
+        // // Almacena información de la cita en la sesión antes de mostrar el mensaje
+        // session(['citaAgregada' => [
+        //     'id' => $nuevaCita->idCalendario, // Asegúrate de ajustar el nombre de la columna según tu modelo
+        //     'nombre' => $nuevaCita->nombre, // Asegúrate de ajustar el nombre de la columna según tu modelo
+        //     'fecha' => $nuevaCita->fecha, // Asegúrate de ajustar el nombre de la columna según tu modelo
+        //     // Puedes agregar más campos según sea necesario
+        // ]]);
 
         // Mensaje de éxito
         $mensaje = "¡Excelente, se agregó correctamente la cita!";
