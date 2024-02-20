@@ -36,6 +36,8 @@ public function loginVerify(Request $request)
         // Autenticar al usuario
         Auth::login($user);
 
+        $request->session()->regenerate();
+        
         // Redirigir a la página deseada después del inicio de sesión
         return redirect('/inicio');
     }

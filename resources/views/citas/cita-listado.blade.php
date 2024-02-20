@@ -33,8 +33,8 @@
             <thead class="w-full flex items-center justify-center bg-teal-400 shadow-neutral-300 shadow-md mt-3 mb-3 h-24 cel:hidden">
                 <tr class="w-full flex items-center justify-center text-center">
                     <th class="w-1/12 cel:text-sm text-2xl cel:hidden"></th>
-                    <th class="w-3/12 cel:text-sm text-2xl ">Nombre completo</th>
-                    <th class="w-3/12 cel:text-sm text-2xl ">Cita</th>
+                    <th class="w-4/12 cel:text-sm text-2xl ">Nombre completo</th>
+                    <th class="w-5/12 cel:text-sm text-2xl ">Cita</th>
                     <th class="w-2/12 cel:text-sm text-2xl"></th>
                 </tr>
             </thead>
@@ -42,8 +42,8 @@
                 @foreach ($aCalendario as $calendar)
                 <tr class="shadow-neutral-300 shadow-md w-full flex cel:flex-col cel:h-full items-center justify-center text-center bg-teal-200 my-3 h-20">
                     <td class="cel:w-full cel:py-3 w-1/12 cel:text-sm text-lg font-normal bg-teal-400 h-full grid place-items-center"><img src="{{ asset('imagenes/cliente.png') }}" alt="Cliente" class="cel:w-10 w-10"></td>
-                    <td class="cel:w-full w-3/12 cel:text-sm text-lg font-bold cel:block cel:mt-2">{{ $calendar->nombre}}</td>
-                    <td class="cel:w-full w-3/12 cel:text-sm text-lg font-bold cel:block cel:mt-3">{{ $calendar->fecha }} Hs</td>
+                    <td class="cel:w-full w-4/12 cel:text-sm text-lg font-bold cel:block cel:mt-2">{{ $calendar->nombre}}</td>
+                    <td class="cel:w-full w-5/12 cel:text-sm text-lg font-bold cel:block cel:mt-3">{{ $calendar->fecha }} Hs</td>
                     <td class="cel:w-full w-2/12 cel:text-sm text-lg font-normal grid place-items-center cel:my-3">
                         <a href="{{ isset($calendar->idCalendario) ? route('cita.eliminar', ['id' => $calendar->idCalendario]) : '' }}" class="w-12 h-12 hover:w-14 hover:h-14 ease-in-out duration-100 cel:rounded-none cel:w-11/12 cel:border-2 cel:border-neutral-500 rounded-full bg-white grid place-items-center cel:text-base text-3xl" name="btnEliminarCliente">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-black">
