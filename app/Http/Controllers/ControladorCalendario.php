@@ -39,7 +39,7 @@ class ControladorCalendario extends Controller
     
             $eventos[] = [
                 'titulo' => $cita->nombre,
-                'fecha' => $fecha->format('d-m-y\TH:i:s'),
+                'fecha' => $fecha->format('d-m-Y\TH:i:s'),
             ];
         }
     

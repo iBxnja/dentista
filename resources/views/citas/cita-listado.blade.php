@@ -25,7 +25,7 @@
         </div>
 <form class="w-full h-full flex items-center justify-center flex-col">
     <div class="w-11/12 h-20 bg-teal-400 flex items-center justify-start cel:justify-center">
-        <input type="text" name="buscarpor" id="buscarpor" class=" text-center cel:w-7/12 w-1/4 h-10 cel:ml-0 ml-5 rounded-lg border-2 border-black" placeholder="Buscar un cliente..." value="">
+        <input type="text" name="buscarpor" id="buscarpor" class="text-center cel:w-7/12 w-1/4 h-10 cel:ml-0 ml-5 rounded-lg border-2 border-black" placeholder="Buscar un cliente..." value="">
         <button type="submit" class="cel:w-20 w-40 h-10 bg-green-500 text-white ml-5 rounded-lg">Buscar</button>
     </div>
     <div class="w-11/12 h-20">
