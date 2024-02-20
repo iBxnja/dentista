@@ -31,15 +31,11 @@ class Calendario extends Model
 
 
 
-    #--------------------------------------------------------------------------------------
-    public function eliminar(){
-        #crear query(consulta) en una variable
-        $sql = "DELETE FROM calendario WHERE idCalendario=?";
-    
-        $affected = DB::delete($sql, [$this->idCalendario]);
+    public function eliminar()
+    {
+        DB::table('calendario')->where('idCalendario', $this->idCalendario)->delete();
     }
-    #--------------------------------------------------------------------------------------
-
+    
 
 
 }

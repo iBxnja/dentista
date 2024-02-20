@@ -57,18 +57,6 @@ Route::get('inicio/odontograma-nuevo', function () {
 
 
 
-#---------------------------------------------------------------#
-#                  Controlador Odontograma                      #
-#---------------------------------------------------------------#
-Route::prefix('inicio')->group(function () {
-    Route::get('/odontograma-listar', [ControladorOdontograma::class, 'index'])->name('odontograma-listar');
-});
-
-
-#---------------------------------------------------------------#
-
-
-
 
 
 #---------------------------------------------------------------#
@@ -117,6 +105,24 @@ Route::prefix('inicio')->group(function () {
 
 
 
+
+#---------------------------------------------------------------#
+#                  Controlador Odontograma                      #
+#---------------------------------------------------------------#
+Route::prefix('inicio')->group(function () {
+    Route::get('/odontograma-listar', [ControladorOdontograma::class, 'index'])->name('odontograma-listar');
+    Route::post('/odontograma-nuevo', [ControladorOdontograma::class, 'guardar']);
+    Route::get('/odontograma-nuevo', [ControladorOdontograma::class, 'enviarNombreApellido']);
+});
+
+
+#---------------------------------------------------------------#
+
+
+
+
+
+
 #---------------------------------------------------------------#
 #                  Controlador Nota                             #
 #---------------------------------------------------------------#
@@ -143,6 +149,7 @@ Route::prefix('inicio')->group(function () {
 Route::prefix('inicio')->group(function () {
     Route::get('/cita-listar', [ControladorCalendario::class, 'index'])->name('cita-listar');
     Route::get('/cita-listado', [ControladorCalendario::class, 'enviarListado'])->name('cita-listado');
+    // Route::post('/cita-listado', [ControladorCalendario::class, 'buscarpor']);
     Route::get('/cita-listar/events', [ControladorCalendario::class, 'getEvents'])->name('cita-listar-events');
     Route::post('/cita-nuevo/crear', [ControladorCalendario::class, 'crearCita'])->name('cita-nuevo-crear');
     Route::get('/cita-listar/{id}/eliminar', [ControladorCalendario::class, 'eliminar'])->name('cita.eliminar');

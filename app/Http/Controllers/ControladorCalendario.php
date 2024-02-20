@@ -12,6 +12,35 @@ class ControladorCalendario extends Controller
     {
         return view('citas.cita-listar');
     }
+
+
+
+//     public function buscarpor(Request $request)
+// {
+//     // Obtiene el valor de búsqueda desde la solicitud
+//     $buscarpor = $request->get('buscarpor');
+
+//     // Instancia del modelo Calendario
+//     $calendario = new Calendario();
+
+//     // Utiliza Eloquent para obtener todas las citas
+//     $query = $calendario->query();
+
+//     // Verifica si se proporcionó un término de búsqueda
+//     if ($buscarpor) {
+//         $query->where('nombre', 'like', '%' . $buscarpor . '%');
+//         // Reemplaza 'nombre' con el nombre real del campo que deseas buscar en la tabla de citas
+//     }
+
+//     // Obtén todas las citas según la búsqueda o sin ella
+//     $aCitas = $query->get();
+
+//     // Pasar datos a la vista, asegurándote de incluir $buscarpor
+//     return view('citas.cita-listado', compact('aCitas', 'buscarpor'));
+// }
+
+
+
     public function enviarListado(){
         $calendario = New Calendario();
         $aCalendario = $calendario->obtenerTodos();
@@ -39,7 +68,7 @@ class ControladorCalendario extends Controller
     
             $eventos[] = [
                 'titulo' => $cita->nombre,
-                'fecha' => $fecha->format('d-m-Y\TH:i:s'),
+                'fecha' => $fecha->format('Y-m-d\TH:i:s'),
             ];
         }
     
@@ -62,13 +91,13 @@ class ControladorCalendario extends Controller
             'fecha' => $request->input('fecha'),
         ]);
 
-        // // Almacena información de la cita en la sesión antes de mostrar el mensaje
-        // session(['citaAgregada' => [
-        //     'id' => $nuevaCita->idCalendario, // Asegúrate de ajustar el nombre de la columna según tu modelo
-        //     'nombre' => $nuevaCita->nombre, // Asegúrate de ajustar el nombre de la columna según tu modelo
-        //     'fecha' => $nuevaCita->fecha, // Asegúrate de ajustar el nombre de la columna según tu modelo
-        //     // Puedes agregar más campos según sea necesario
-        // ]]);
+        // Almacena información de la cita en la sesión antes de mostrar el mensaje
+        session(['citaAgregada' => [
+            'id' => $nuevaCita->idCalendario, // Asegúrate de ajustar el nombre de la columna según tu modelo
+            'nombre' => $nuevaCita->nombre, // Asegúrate de ajustar el nombre de la columna según tu modelo
+            'fecha' => $nuevaCita->fecha, // Asegúrate de ajustar el nombre de la columna según tu modelo
+            // Puedes agregar más campos según sea necesario
+        ]]);
 
         // Mensaje de éxito
         $mensaje = "¡Excelente, se agregó correctamente la cita!";
