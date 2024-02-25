@@ -1,4 +1,9 @@
 @extends('plantilla')
+@section('breadcrumb')
+    <a href="/inicio" class="decoration-transparent">Inicio</a>
+    <span class="ml-5">/</span>
+    <span class="ml-5">Listado de notas</span>
+@endsection
 @section('contenido')
 <section class="w-full h-full flex items-center justify-center flex-col">
   <div class="w-11/12 h-full flex items-center cel:justify-around">
@@ -29,39 +34,44 @@
     </a>
   </div>
   <form action="" class="w-full h-full flex items-center flex-col justify-center">
-    <div class="w-11/12 h-20 bg-teal-400 flex items-center justify-start cel:justify-center">
-      <input type="text" name="buscarpor" id="buscarpor" class="text-center cel:w-7/12 w-1/4 h-10 cel:ml-0 ml-5 rounded-lg border-2 border-black" placeholder="Buscar una nota..." value="{{ $buscarpor }}">
+    <div class="shadow-md shadow-neutral-500 w-11/12 h-20 bg-teal-300 flex items-center justify-start cel:justify-center">
+      <input type="text" name="buscarpor" id="buscarpor" class="text-center cel:w-7/12 w-1/4 h-10 cel:ml-0 ml-5 rounded-lg border-2 border-black" placeholder="Buscar una titulo" value="{{ $buscarpor }}">
       <button type="submit" class="cel:w-20 w-40 h-10 bg-green-500 text-white ml-5 rounded-lg">Buscar</button>
     </div>
     
     
     
-    <div class="w-11/12 h-full flex items-center justify-between mt-3 flex-wrap cel:justify-center cel:flex-col">
+    <div class="w-11/12 h-full flex items-center justify-around mt-3 flex-wrap cel:justify-center cel:flex-col">
       <!--foreach-->
       @foreach ($aNota as $nota)
-          <div class="cel:w-11/12 w-80 h-96 bg-teal-200 my-5 relative flex items-center justify-center flex-col border-4 border-teal-500 text-center overflow-hidden">
-              <span class="absolute bg-teal-500 border-2 border-teal-400 w-12 h-12 rounded-tl-3xl rounded-br-3xl top-5 left-5 text-white text-2xl font-bold grid place-items-center" >{{ $nota->numeroSesion }}</span>
-              <a href="{{ route('notas.eliminar', ['id' => $nota->idNota]) }}" class="absolute bg-teal-500 border-2 border-teal-400 w-12 h-12 rounded-tl-3xl rounded-br-3xl top-5 right-5 text-white text-2xl font-bold grid place-items-center" ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white ">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                </svg>
-              </a>
-              <h2 class="text-lg font-semibold">#{{ $nota->numeroSesion }} - Sesión</h2>
-              <h2 class="text-lg font-semibold">{{ $nota->cliente->nombre }} {{ $nota->cliente->apellido }}</h2>
-              <span class="w-11/12 text-lg font-light">{{ $nota->titulo }}</span>
-              <a href="/inicio/notas-mostrar/{{ $nota->idNota }}" class="decoration-transparent text-white w-11/12 bg-teal-400 border-2 border-teal-500 grid place-items-center h-12 absolute bottom-4">Leer la nota</a>
+          <div class="w-96 h-56 mt-4 mb-4 bg-neutral-100 text-black border-2 border-neutral-600 shadow-md shadow-neutral-500 flex items-center justify-center flex-col">
+            <div class="w-full h-12  overflow-hidden">
+              <h2 class="text-base font-normal mt-2 ml-2">{{ $nota->cliente->nombre }} {{ $nota->cliente->apellido }}</h2>
             </div>
+            <div class="w-full h-14  overflow-hidden">
+              <h2 class="text-xl ml-2">{{ $nota->titulo }}</h2>
+            </div>
+            <div class="w-full h-6 mb-2">
+              <span class="font-thin ml-2">Numero de sesión: {{ $nota->numeroSesion }}</span>
+            </div>
+            <div class="w-full h-14 flex items-center justify-start">
+              <a href="/inicio/notas-mostrar/{{ $nota->idNota }}" class="ml-2"><img src="{{ asset('imagenes/ojo.png') }}" class="w-8"></a>
+              <a href="{{ route('notas.eliminar', ['id' => $nota->idNota]) }}" class="ml-8" ><img src="{{ asset('imagenes/eliminar.png') }}" class="w-5"></a>
+            </div>
+          </div>
       @endforeach
       <!--endforeach-->
   </div>
-  
-
-
-
   </form>
-
-
-
-
-
 </section>
 @endsection
+
+
+{{-- 
+  {{ $nota->numeroSesion }}
+  <a href="{{ route('notas.eliminar', ['id' => $nota->idNota]) }}" class="absolute bg-white border-2 border-teal-400 w-12 h-12 rounded-tl-3xl rounded-br-3xl top-5 right-5 text-white text-2xl font-bold grid place-items-center" ></a>
+  {{ $nota->numeroSesion }}
+|  {{ $nota->cliente->nombre }} {{ $nota->cliente->apellido }}
+|  {{ $nota->titulo }}
+                <a href="/inicio/notas-mostrar/{{ $nota->idNota }}" class="decoration-transparent text-white w-11/12 bg-teal-400 border-2 border-teal-500 grid place-items-center h-12 absolute bottom-4">Leer la nota</a>
+  --}}

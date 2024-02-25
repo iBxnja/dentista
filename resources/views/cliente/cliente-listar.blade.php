@@ -1,4 +1,9 @@
 @extends('plantilla')
+@section('breadcrumb')
+    <a href="/inicio" class="decoration-transparent">Inicio</a>
+    <span class="ml-5">/</span>
+    <span class="ml-5">Listado de clientes</span>
+@endsection
 @section('contenido')
     <section class="w-full h-full flex items-center justify-center flex-col">
         @if(isset($mensaje))
@@ -36,13 +41,13 @@
                     </a>
                 </div>
             <form class="w-full h-full flex items-center justify-center flex-col">
-                <div class="w-11/12 h-20 bg-teal-400 flex items-center justify-start cel:justify-center">
+                <div class="w-11/12 h-20 bg-teal-300 flex items-center justify-start cel:justify-center shadow-md shadow-neutral-500">
                     <input type="text" name="buscarpor" id="buscarpor" class=" text-center cel:w-7/12 w-1/4 h-10 cel:ml-0 ml-5 rounded-lg border-2 border-black" placeholder="Buscar un cliente..." value="{{ $buscarpor }}">
                     <button type="submit" class="cel:w-20 w-40 h-10 bg-green-500 text-white ml-5 rounded-lg">Buscar</button>
                 </div>
                 <div class="w-11/12 h-20">
                     <table class="w-full flex items-center justify-center flex-col">
-                        <thead class="w-full flex items-center justify-center bg-teal-400 shadow-neutral-300 shadow-md mt-3 mb-3 h-24 cel:hidden">
+                        <thead class="w-full flex items-center justify-center bg-teal-300 shadow-md shadow-neutral-500 mt-3 mb-3 h-24 cel:hidden">
                             <tr class="w-full flex items-center justify-center text-center">
                                 <th class="w-1/12 cel:text-sm text-2xl cel:hidden"></th>
                                 <th class="w-3/12 cel:text-sm text-2xl ">Nombre</th>
@@ -54,8 +59,8 @@
                         </thead>
                         <tbody class="w-full flex items-center justify-center flex-col mt-">
                             @foreach ($aClientes as $clientes)
-                            <tr class="shadow-neutral-300 shadow-md w-full flex cel:flex-col cel:h-full items-center justify-center text-center bg-teal-200 my-3 h-20">
-                                <td class="cel:w-full cel:py-3 w-1/12 cel:text-sm text-lg font-normal bg-teal-400 h-full grid place-items-center"><img src="{{ asset('imagenes/cliente.png') }}" alt="Cliente" class="cel:w-10 w-10"></td>
+                            <tr class="shadow-md shadow-neutral-500 w-full flex cel:flex-col cel:h-full items-center justify-center text-center bg-teal-200 my-3 h-20">
+                                <td class="cel:w-full cel:py-3 w-1/12 cel:text-sm text-lg font-normal bg-teal-300 h-full grid place-items-center"><img src="{{ asset('imagenes/cliente.png') }}" alt="Cliente" class="cel:w-10 w-10"></td>
                                 <td class="cel:w-full w-3/12 cel:text-sm text-lg font-bold hidden cel:block cel:mt-2">Nombre:</td>
                                 <td class="cel:w-full w-3/12 cel:text-sm text-lg font-normal ">{{$clientes->nombre}}</td>
                                 <td class="cel:w-full w-3/12 cel:text-sm text-lg font-bold hidden cel:block cel:mt-3">Apellido:</td>
@@ -66,9 +71,7 @@
                                 <td class="cel:w-full w-1/12 cel:text-sm text-lg font-normal ">{{$clientes->edad}}</td>
                                 <td class="cel:w-full w-2/12 cel:text-sm text-lg font-normal grid place-items-center cel:my-3">
                                     <a href="{{ isset($clientes->idCliente) ? route('cliente.eliminar', ['id' => $clientes->idCliente]) : '' }}" class="w-12 h-12 hover:w-14 hover:h-14 ease-in-out duration-100 cel:rounded-none cel:w-11/12 cel:border-2 cel:border-neutral-500 rounded-full bg-white grid place-items-center cel:text-base text-3xl" name="btnEliminarCliente">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-black">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                                    </svg>
+                                        <img src="{{ asset('imagenes/eliminar.png') }}" alt="" class="w-5">
                                     </a>
                                 </td>
                             </tr>

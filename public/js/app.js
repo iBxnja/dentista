@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
+        locale: "es",
         initialView: 'dayGridMonth',
         events: function (fetchInfo, successCallback, failureCallback) {
             // Obtén la lista actualizada de citas desde el servidor
@@ -28,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         },
-        locale: 'es',
         // ... Otras configuraciones del calendario
     });
     calendar.render();
@@ -94,6 +94,28 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+// -----------------------------------------------------------------------------------------------
 
 
 });

@@ -42,7 +42,7 @@ class ControladorCliente extends Controller
             ]]);
             
             // Hacer un dd de la información del cliente en la sesión
-            dd(session('cliente'));
+            // dd(session('cliente'));
             $mensaje = "<span class='text-black font-bold'>¡Excelente, se agregó correctamente el cliente <span class='text-black font-bold'>$cliente->nombre $cliente->apellido</span>!.</span>";
             // dd($mensaje);
             $aClientes = $cliente->obtenerTodos();
@@ -58,15 +58,17 @@ class ControladorCliente extends Controller
         if ($cliente) {
             // Almacenar información del cliente en la sesión antes de eliminarlo
             session(['clienteEliminado' => [
+                'id' => $cliente->idCliente,
                 'nombre' => $cliente->nombre,
                 'apellido' => $cliente->apellido,
             ]]);
     
             // Eliminar el cliente
             $cliente->eliminar();
-    
+            $mensaje = "Excelente, se elimino el cliente con exito";
+            return view('inicio.inicio', compact('mensaje'));  
             // Hacer un dd del contenido de la sesión clienteEliminado
-            dd(session('clienteEliminado'));
+            // dd(session('clienteEliminado'));
         } else {
             // Mensaje de error
             $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";

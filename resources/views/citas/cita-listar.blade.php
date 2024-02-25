@@ -1,7 +1,11 @@
 @extends('plantilla')
-
+@section('breadcrumb')
+    <a href="/inicio" class="decoration-transparent">Inicio</a>
+    <span class="ml-5">/</span>
+    <span class="ml-5">Calendario de citas</span>
+@endsection
 @section('contenido')
-    <section class="w-full h-full grid place-items-center">
+    <section class="w-full h-full grid place-items-center pb-5">
         @if(isset($error))
             <div class="w-11/12 cel:mt-5 cel:mb-2 cel:rounded-2xl h-16 bg-red-500 grid place-items-center">
                 <h2 class="cel:text-base text-white">{{ $error }}</h2>
@@ -36,7 +40,8 @@
                     </a>
                 </div>
         
-        <div id='calendar' class="w-11/12 h-screen mb-5"></div>
+        <div id='calendar' class="w-11/12 h-screen mb-5 "></div>
         
     </section>
 @endsection
+

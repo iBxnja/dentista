@@ -53,8 +53,12 @@ Route::get('inicio/odontograma-nuevo', function () {
     return view('odontograma/odontograma-nuevo');
 });
 
-
-
+Route::get('json', function () {
+    return view('json')->name('json');
+});
+Route::get('clinica', function () {
+    return view('principio');
+});
 
 
 
@@ -113,6 +117,13 @@ Route::prefix('inicio')->group(function () {
     Route::get('/odontograma-listar', [ControladorOdontograma::class, 'index'])->name('odontograma-listar');
     Route::post('/odontograma-nuevo', [ControladorOdontograma::class, 'guardar']);
     Route::get('/odontograma-nuevo', [ControladorOdontograma::class, 'enviarNombreApellido']);
+    Route::get('/odontograma-listar/{id}/eliminar', [ControladorOdontograma::class, 'eliminar'])->name('odontograma.eliminar');
+    Route::get('/odontograma', [ControladorOdontograma::class, 'odontograma']);
+    Route::get('/odontograma-mostrar/{id}', [ControladorOdontograma::class, 'mostrarOdontograma'])->name('odontograma-mostrar');
+    // Route::get('/odontograma-mostrar/{id}', [ControladorOdontograma::class, 'mostrarTabla']);
+
+
+    // Route::post('/odontograma-nuevo/crear', [ControladorOdontograma::class, 'json'])->name('odontograma-nuevo-crear');
 });
 
 
@@ -149,7 +160,7 @@ Route::prefix('inicio')->group(function () {
 Route::prefix('inicio')->group(function () {
     Route::get('/cita-listar', [ControladorCalendario::class, 'index'])->name('cita-listar');
     Route::get('/cita-listado', [ControladorCalendario::class, 'enviarListado'])->name('cita-listado');
-    // Route::post('/cita-listado', [ControladorCalendario::class, 'buscarpor']);
+    Route::get('/cita-listado', [ControladorCalendario::class, 'buscarpor']);
     Route::get('/cita-listar/events', [ControladorCalendario::class, 'getEvents'])->name('cita-listar-events');
     Route::post('/cita-nuevo/crear', [ControladorCalendario::class, 'crearCita'])->name('cita-nuevo-crear');
     Route::get('/cita-listar/{id}/eliminar', [ControladorCalendario::class, 'eliminar'])->name('cita.eliminar');

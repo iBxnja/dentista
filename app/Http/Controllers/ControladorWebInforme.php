@@ -6,6 +6,7 @@ use App\Models\Imagenes;
 use App\Models\Cita;
 use App\Models\Nota;
 use App\Models\Calendario;
+use App\Models\Odontograma;
 use Illuminate\Http\Request;
 
 class ControladorWebInforme extends Controller
@@ -19,7 +20,8 @@ class ControladorWebInforme extends Controller
         $totalImagenes = Imagenes::count();
         $totalNotas = Nota::count();
         $totalCalendario = Calendario::count();
+        $totalOdontograma = Odontograma::count();
 
-        return view('informe.informe-listar', compact('totalClientes', 'totalImagenes', 'totalNotas', 'aClientes', 'totalCalendario'));
+        return view('informe.informe-listar', compact('totalClientes', 'totalImagenes', 'totalNotas', 'aClientes', 'totalCalendario', 'totalOdontograma'));
     }
 }

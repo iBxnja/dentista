@@ -43,7 +43,7 @@ class ControladorNota extends Controller
         {
             $Nota = new Nota();
             $Nota->cargarDesdeRequest($request);
-
+            // dd($Nota);
             if (empty($Nota->titulo) || empty($Nota->texto) || empty($Nota->numeroSesion) || empty($Nota->fk_idCliente)) {
                 $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
                 return view('inicio.inicio', compact('error'));
@@ -58,7 +58,7 @@ class ControladorNota extends Controller
                     'numeroSesion' => $Nota->numeroSesion,
                     'fk_idCliente' => $Nota->fk_idCliente,
                 ]]);
-                dd(session('notaGuardada'));
+                // dd(session('notaGuardada'));
                 // Mensaje de éxito
                 $mensaje = "¡Excelente, se agregó correctamente la nota!";
                 
@@ -84,9 +84,10 @@ class ControladorNota extends Controller
 
             // Eliminar la nota
             $nota->eliminar(); // Asegúrate de tener un método eliminar() en tu modelo Nota
-
+            $mensaje = "Excelente, se elimino la nota con exito";
+            return view('inicio.inicio', compact('mensaje')); 
             // Hacer un dd del contenido de la sesión notaEliminada
-            dd(session('notaEliminada'));
+            // dd(session('notaEliminada'));
         } else {
             // Mensaje de error
             $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";

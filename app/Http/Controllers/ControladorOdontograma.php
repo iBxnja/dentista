@@ -8,12 +8,22 @@ use Illuminate\Http\Request;
 
 class ControladorOdontograma extends Controller
 {
-    public function index(){
-        $odontograma = New Odontograma();
-        $aOdontograma = $odontograma->obtenerTodos();
-
-        return view('odontograma.odontograma-listar', compact('aOdontograma'));
+    public function index(Request $request)
+    {
+        $buscarpor = $request->get('buscarpor');
+    
+        $odontograma = new Odontograma();
+    
+        $aOdontograma = $odontograma->when($buscarpor, function ($query) use ($buscarpor) {
+            return $query->whereHas('cliente', function ($subquery) use ($buscarpor) {
+                $subquery->where('nombre', 'like', '%' . $buscarpor . '%');
+            });
+        })->with('cliente')->get(); // Cargar datos del cliente asociado
+    
+        return view('odontograma.odontograma-listar', compact('aOdontograma', 'buscarpor'));
     }
+    
+
     public function enviarNombreApellido(){
         $cliente = new Cliente();
         $aCliente = $cliente->obtenerNombreApellido();
@@ -21,19 +31,67 @@ class ControladorOdontograma extends Controller
         $aOdontograma = $odontograma->obtenerTodos();
         return view('odontograma.odontograma-nuevo', compact('aCliente','aOdontograma'));
     }
+    
+    public function guardar(Request $request)
+{
+    // dd($request->all());
+    $odontograma = new Odontograma();
+    $odontograma->cargarDesdeRequest($request);
+    // dd($odontograma);
+    if (empty($odontograma->piezasPadecientes)) {
+        $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+        return view('inicio.inicio', compact('error'));
+    } else {
+        // Obtener el JSON desde la solicitud
+        $odontogramaJSON = $request->input('odontogramaJSON');
 
-    public function guardar(Request $request){
-        // dd($request->all());
-        $odontograma = new Odontograma();
-        $odontograma->cargarDesdeRequest($request);
+        // Convertir el JSON a un array
+        $odontogramaArray = json_decode($odontogramaJSON, true);
+        // dd($odontogramaArray);
+        // Guardar los datos en la base de datos
+        $odontograma->guardar($odontogramaArray);
 
-        if (empty($odontograma->fk_idCliente) || empty($odontograma->doctora)){
-            $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
-            return view('inicio.inicio', compact('error'));
-        } else {
-            // dd('bien, se ha agregado');
-            $odontograma->guardar();
-            session(['odontograma' => [
+        // Almacenar información del odontograma en la sesión
+        session(['odontogramaGuardado' => [
+            'id' => $odontograma->idOdontograma,
+            'piezasPadecientes' => $odontograma->piezasPadecientes,
+            'infantil' => $odontograma->infantil,
+            'adulto' => $odontograma->adulto,
+            'mayor' => $odontograma->mayor,
+            'doctora' => $odontograma->doctora,
+            'cariado' => $odontograma->cariado,
+            'obturado' => $odontograma->obturado,
+            'perdida' => $odontograma->perdida,
+            'extraccion' => $odontograma->extraccion,
+            'sano' => $odontograma->sano,
+            'observacion' => $odontograma->observacion,
+            'numeroOdontograma' => $odontograma->numeroOdontograma,
+            'odontogramaJSON' => $odontogramaJSON,
+        ]]);
+        // $mensajeSession = 'session';
+        // dd(session('odontogramaGuardado'), 'mensajeSession');
+
+        // Mensaje de éxito
+        $mensaje = "¡Perfecto, se agregó correctamente el odontograma!";
+
+        // Redirigir a la vista con el mensaje
+        return view('inicio.inicio', compact('mensaje'));
+    }
+}
+
+    
+    
+    
+
+    
+    
+
+    public function eliminar($id) {   
+        $odontograma = Odontograma::find($id);
+    
+        if ($odontograma) {
+            // Almacenar información del cliente en la sesión antes de eliminarlo
+            session(['odontogramaEliminado' => [
                 'id' => $odontograma->idOdontograma,
                 'piezasPadecientes' => $odontograma->piezasPadecientes,
                 'infantil' => $odontograma->infantil,
@@ -46,16 +104,62 @@ class ControladorOdontograma extends Controller
                 'extraccion' => $odontograma->extraccion,
                 'sano' => $odontograma->sano,
                 'observacion' => $odontograma->observacion,
+                'numeroOdontograma' => $odontograma->numeroOdontograma,
                 'fk_idCliente' => $odontograma->fk_idCliente,
             ]]);
-            
-            // Hacer un dd de la información del cliente en la sesión
-            dd(session('odontograma'));
+    
+            // Eliminar el cliente
+            $odontograma->eliminar();
+            $mensaje = "¡Perfecto, se eliminó correctamente el odontograma!";
+            return view('inicio.inicio', compact('mensaje'));  
+            // Hacer un dd del contenido de la sesión clienteEliminado
+            // dd(session('odontogramaEliminado'));
+        } else {
+            // Mensaje de error
+            $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+    
+            // Redirigir a la vista con el mensaje de error
+            return view('inicio.inicio', compact('error'));  
         }
-
-
-
-
     }
+
+    public function mostrarOdontograma($id)
+{
+    $odontograma = Odontograma::with('cliente')->find($id);
+
+    if (!$odontograma) {
+        abort(404); // Devuelve un error 404 si el odontograma no existe
+    }
+
+    $datosJson = json_decode($odontograma->dientes, true);
+
+    return view('odontograma.odontograma-mostrar', compact('odontograma', 'datosJson'));
+}
+
+
+
+
+
+
+    // public function json(Request $request) {
+    //     // Obtener los datos de los dientes
+    //     dd($request->all());
+    //     $odontograma = new Odontograma();
+    //     $odontograma->cargarDesdeRequest($request);
+
+    //         // Obtener el JSON desde la solicitud
+    //         $odontogramaJSON = $request->input('odontogramaJSON');
+
+    //         // Convertir el JSON a un array
+    //         $odontogramaArray = json_decode($odontogramaJSON, true);
+
+    //         // Guardar los datos en la base de datos
+    //         $odontograma->guardar($odontogramaArray);          
+    // }
+
+
+
+
+
 
 }

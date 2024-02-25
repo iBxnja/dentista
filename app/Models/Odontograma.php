@@ -13,7 +13,7 @@ class Odontograma extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idOdontograma', 'piezasPadecientes', 'infantil', 'adulto', 'mayor', 'doctora', 'cariado', 'obturado', 'perdida', 'extraccion', 'sano', 'observacion', 'fk_idCliente',
+        'idOdontograma', 'piezasPadecientes', 'infantil', 'adulto', 'mayor', 'doctora', 'cariado', 'obturado', 'perdida', 'extraccion', 'sano', 'observacion', 'fk_idCliente', 'dientes', 'numeroOdontograma',
     ];
 
     protected $hidden = [];
@@ -31,10 +31,14 @@ class Odontograma extends Model
         $this->extraccion = $request->input('extraccion');
         $this->sano = $request->input('sano');
         $this->observacion = $request->input('observacion');
+        $this->numeroOdontograma = $request->input('numeroOdontograma');
         $this->fk_idCliente = $request->input('fk_idCliente');
     }
       
-
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'fk_idCliente');
+    }
     public function obtenerTodos()
     {
         $sql = "SELECT
@@ -50,7 +54,8 @@ class Odontograma extends Model
                   extraccion,
                   sano,
                   observacion,
-                  fk_idCliente
+                  fk_idCliente,
+                  numeroOdontograma
                 FROM odontograma ORDER BY idOdontograma";
         $lstRetorno = DB::select($sql);
         return $lstRetorno;
@@ -58,9 +63,10 @@ class Odontograma extends Model
     
 
 
-    public function guardar()
+    public function guardar($datosDientes)
 {
-    $odontograma = Odontograma::updateOrCreate(
+    // Actualizar o crear el registro en la base de datos
+    $this->updateOrCreate(
         ['idOdontograma' => $this->idOdontograma],
         [
             'piezasPadecientes' => $this->piezasPadecientes,
@@ -75,13 +81,11 @@ class Odontograma extends Model
             'sano' => $this->sano,
             'observacion' => $this->observacion,
             'fk_idCliente' => $this->fk_idCliente,
+            'numeroOdontograma' => $this->numeroOdontograma,
+            'dientes' => json_encode($datosDientes),
         ]
     );
 }
-
-
-
-
 
 
     

@@ -8,36 +8,26 @@ use Illuminate\Http\Request;
 
 class ControladorCalendario extends Controller
 {
-    public function index()
+    public function buscarpor(Request $request)
     {
-        return view('citas.cita-listar');
+        $buscarpor = $request->get('buscarpor');
+
+        $calendario = New Calendario();
+        $query = $calendario->query();
+        if ($buscarpor) {
+            $query->where('nombre', 'like', '%' . $buscarpor . '%');
+            // Reemplaza 'nombre_campo_de_busqueda' con el nombre real del campo que deseas buscar en la tabla de notas
+        }
+        $aCalendario = $query->get();
+        return view('citas.cita-listado', compact('aCalendario', 'buscarpor'));
     }
 
 
 
-//     public function buscarpor(Request $request)
-// {
-//     // Obtiene el valor de búsqueda desde la solicitud
-//     $buscarpor = $request->get('buscarpor');
-
-//     // Instancia del modelo Calendario
-//     $calendario = new Calendario();
-
-//     // Utiliza Eloquent para obtener todas las citas
-//     $query = $calendario->query();
-
-//     // Verifica si se proporcionó un término de búsqueda
-//     if ($buscarpor) {
-//         $query->where('nombre', 'like', '%' . $buscarpor . '%');
-//         // Reemplaza 'nombre' con el nombre real del campo que deseas buscar en la tabla de citas
-//     }
-
-//     // Obtén todas las citas según la búsqueda o sin ella
-//     $aCitas = $query->get();
-
-//     // Pasar datos a la vista, asegurándote de incluir $buscarpor
-//     return view('citas.cita-listado', compact('aCitas', 'buscarpor'));
-// }
+    public function index()
+{
+    return view('citas.cita-listar');
+}
 
 
 
@@ -101,9 +91,9 @@ class ControladorCalendario extends Controller
 
         // Mensaje de éxito
         $mensaje = "¡Excelente, se agregó correctamente la cita!";
-
+        return view('inicio.inicio', compact('mensaje'));
         // Hacer un dd del contenido de la sesión citaAgregada
-        dd(session('citaAgregada'));
+        // dd(session('citaAgregada'));
     } catch (\Exception $e) {
         // Mensaje de error
         $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
@@ -129,9 +119,8 @@ public function eliminar($id) {
 
         // Elimina la cita
         $calendario->eliminar();
-
         // Hacer un dd del contenido de la sesión citaEliminada
-        dd(session('citaEliminada'));
+        // dd(session('citaEliminada'));
 
         // Mensaje de éxito
         $mensaje = "<span class='text-black font-bold'>¡Excelente, se eliminó correctamente la cita!.</span>";

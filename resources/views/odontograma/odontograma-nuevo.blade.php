@@ -1,107 +1,313 @@
 @extends('plantilla')
+@section('breadcrumb')
+    <a href="/inicio" class="decoration-transparent">Inicio</a>
+    <span class="ml-5">/</span>
+    <span class="ml-5">Nuevo odontograma</span>
+@endsection
 @section('contenido')
   <section class="w-full h-full flex items-center justify-center flex-col">
     <div class="w-11/12 h-full flex items-center justify-center">
-      <form action="" method="POST" class="w-full h-full flex items-center justify-center flex-col">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+      <form action="" method="POST" id="formulario" class="w-full h-full flex items-center justify-center flex-col">
+        @csrf
         <input type="hidden" name="id" value="{{ isset($odontograma) ? $odontograma->idOdontograma : '0' }}">
-
+        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
       <h2 class="my-4">Crear odontograma</h2>
-      <div class="w-full h-full bg-neutral-200 flex items-center justify-center">
-        <div class="w-1/4 h-96 grid place-items-center">
-          <img src="{{ asset('imagenes/cliente.png') }}" alt="Cliente" class="cel:w-10 w-full ">
+      @include('odontograma.perfil')
+      @include('odontograma.observacion')
+
+      <div class="w-full h-full flex flex-col items-center justify-center">
+        <div class="w-full bg-teal-300 py-5 h-full flex items-center justify-center mt-5">
+            <div class="w-2/4 h-full flex items-center justify-around flex-col">
+                <h2 class="mb-5 text-white text-lg font-semibold">Crear Registro</h2>
+                <img src="{{ asset('imagenes/diente.png') }}" alt="Cliente" class="cel:w-10 w-5/12">
+            </div>
+            <div class="w-2/4 h-full flex items-center justify-around flex-col">
+                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6">
+                    <label for="tipoDiente1" class="text-white text-lg font-semibold">Diente</label>
+                    <select name="tipoDiente1" id="tipoDiente1" class="w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
+                        <option class="text-white" value="" selected disabled>Selecciona un diente</option>
+                        <option class="text-white" value="" disabled>- - - - Incisivos - - - -</option>
+                        <option class="text-black" value="Incisivo central superior derecho">Incisivo central superior derecho</option>
+                        <option class="text-black" value="Incisivo central superior izquierdo">Incisivo central superior izquierdo</option>
+                        <option class="text-black" value="Incisivo lateral superior derecho">Incisivo lateral superior derecho</option>
+                        <option class="text-black" value="Incisivo central superior izquierdo">Incisivo lateral superior izquierdo</option>
+                        <option class="text-black" value="Incisivo central inferior derecho">Incisivo central inferior derecho</option>
+                        <option class="text-black" value="Incisivo central inferior izquierdo">Incisivo central inferior izquierdo</option>
+                        <option class="text-black" value="Incisivo lateral inferior derecho">Incisivo lateral inferior derecho</option>
+                        <option class="text-black" value="Incisivo lateral inferior izquierdo">Incisivo lateral inferior izquierdo</option>
+                        <option class="text-white" value="" disabled>- - - - Caninos  - - - -</option>
+                        <option class="text-black" value="Canino superior derecho">Canino superior derecho</option>
+                        <option class="text-black" value="Canino superior izquierdo">Canino superior izquierdo</option>
+                        <option class="text-black" value="Canino inferior derecho">Canino inferior derecho</option>
+                        <option class="text-black" value="Canino inferior izquierdo">Canino inferior izquierdo</option>
+                        <option class="text-white" value="" disabled>- - - - Premolares - - - -</option>
+                        <option class="text-black" value="Primer premolar superior derecho">Primer premolar superior derecho</option>
+                        <option class="text-black" value="Primer premolar superior izquierdo">Primer premolar superior izquierdo</option>
+                        <option class="text-black" value="Segundo  premolar superior derecho">Segundo  premolar superior derecho</option>
+                        <option class="text-black" value="Segundo  premolar superior izquierdo">Segundo  premolar superior izquierdo</option>
+                        <option class="text-black" value="Primer premolar inferior derecho">Primer premolar inferior derecho</option>
+                        <option class="text-black" value="Primer premolar inferior izquierdo">Primer premolar inferior izquierdo</option>
+                        <option class="text-black" value="Segundo  premolar inferior derecho">Segundo  premolar inferior derecho</option>
+                        <option class="text-black" value="Segundo  premolar inferior izquierdo">Segundo  premolar inferior izquierdo</option>
+                        <option class="text-white" value="" disabled>- - - - Molares - - - -</option>
+                        <option class="text-black" value="Primer molar superior derecho">Primer molar superior derecho</option>
+                        <option class="text-black" value="Primer molar superior izquierdo">Primer molar superior izquierdo</option>
+                        <option class="text-black" value="Segundo molar superior derecho">Segundo molar superior derecho</option>
+                        <option class="text-black" value="Segundo molar superior izquierdo">Segundo molar superior izquierdo</option>
+                        <option class="text-black" value="Tercer molar superior derecho">Tercer molar superior derecho</option>
+                        <option class="text-black" value="Tercer molar superior izquierdo">Tercer molar superior izquierdo</option>
+                        <option class="text-black" value="Primer molar inferior derecho">Primer molar inferior derecho</option>
+                        <option class="text-black" value="Primer molar inferior izquierdo">Primer molar inferior izquierdo</option>
+                        <option class="text-black" value="Segundo molar inferior derecho">Segundo molar inferior derecho</option>
+                        <option class="text-black" value="Segundo molar inferior izquierdo">Segundo molar inferior izquierdo</option>
+                        <option class="text-black" value="Tercer molar inferior derecho">Tercer molar inferior derecho</option>
+                        <option class="text-black" value="Tercer molar inferior izquierdo">Tercer molar inferior izquierdo</option>
+                    </select>
+                </div>
+                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6">
+                    <label for="estadoDiente1" class="text-white text-lg font-semibold">Estado</label>
+                    <select name="estadoDiente1" id="estadoDiente1" class="w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
+                        <option class="text-white" value="" selected disabled>Seleccione un estado</option>
+                        <option class="text-black" value="Sano">Sano</option>
+                        <option class="text-black" value="Extraccion">Extracción</option>
+                        <option class="text-black" value="Careado">Careado</option>
+                        <option class="text-black" value="Tratamiento de conducto">Tratamiento de conducto</option>
+                        <option class="text-black" value="Empaste">Empaste</option>
+                        <option class="text-black" value="Ortodoncia">Ortodoncia</option>
+                        <option class="text-black" value="Injerto">Injerto</option>
+                        <option class="text-black" value="Blanqueamiento">Blanqueamiento</option>
+                        <option class="text-black" value="Periodontitis">Periodontitis</option>
+                        <option class="text-black" value="Fractura">Fractura</option>
+                        <option class="text-black" value="Implante">Implante</option>
+                    </select>
+                </div>
+                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6">
+                    <label for="coronaSuperior" class="text-white text-lg font-semibold">Corona Superior</label>
+                    <select name="coronaSuperior" id="coronaSuperior" class="w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
+                        <option value="" selected disabled>Seleccione un estado</option>
+                        <option class="text-black" value="Sano">Sano</option>
+                        <option class="text-black" value="Extraccion">Extracción</option>
+                        <option class="text-black" value="Careado">Careado</option>
+                        <option class="text-black" value="Tratamiento de conducto">Tratamiento de conducto</option>
+                        <option class="text-black" value="Empaste">Empaste</option>
+                        <option class="text-black" value="Ortodoncia">Ortodoncia</option>
+                        <option class="text-black" value="Injerto">Injerto</option>
+                        <option class="text-black" value="Blanqueamiento">Blanqueamiento</option>
+                        <option class="text-black" value="Periodontitis">Periodontitis</option>
+                        <option class="text-black" value="Fractura">Fractura</option>
+                        <option class="text-black" value="Implante">Implante</option>
+                    </select>
+                </div>
+                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6">
+                    <label for="coronaInferior" class="text-white text-lg font-semibold">Corona Inferior</label>
+                    <select name="coronaInferior" id="coronaInferior" class="w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
+                        <option value="" selected disabled>Seleccione un estado</option>
+                        <option class="text-black" value="Sano">Sano</option>
+                        <option class="text-black" value="Extraccion">Extracción</option>
+                        <option class="text-black" value="Careado">Careado</option>
+                        <option class="text-black" value="Tratamiento de conducto">Tratamiento de conducto</option>
+                        <option class="text-black" value="Empaste">Empaste</option>
+                        <option class="text-black" value="Ortodoncia">Ortodoncia</option>
+                        <option class="text-black" value="Injerto">Injerto</option>
+                        <option class="text-black" value="Blanqueamiento">Blanqueamiento</option>
+                        <option class="text-black" value="Periodontitis">Periodontitis</option>
+                        <option class="text-black" value="Fractura">Fractura</option>
+                        <option class="text-black" value="Implante">Implante</option>
+                    </select>
+                </div>
+                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6">
+                    <label for="coronaIzquierda" class="text-white text-lg font-semibold">Corona Izquierda</label>
+                    <select name="coronaIzquierda" id="coronaIzquierda" class="w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
+                        <option value="" selected disabled>Seleccione un estado</option>
+                        <option class="text-black" value="Sano">Sano</option>
+                        <option class="text-black" value="Extraccion">Extracción</option>
+                        <option class="text-black" value="Careado">Careado</option>
+                        <option class="text-black" value="Tratamiento de conducto">Tratamiento de conducto</option>
+                        <option class="text-black" value="Empaste">Empaste</option>
+                        <option class="text-black" value="Ortodoncia">Ortodoncia</option>
+                        <option class="text-black" value="Injerto">Injerto</option>
+                        <option class="text-black" value="Blanqueamiento">Blanqueamiento</option>
+                        <option class="text-black" value="Periodontitis">Periodontitis</option>
+                        <option class="text-black" value="Fractura">Fractura</option>
+                        <option class="text-black" value="Implante">Implante</option>
+                    </select>
+                </div>
+                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6">
+                    <label for="coronaCentral" class="text-white text-lg font-semibold">Corona Central</label>
+                    <select name="coronaCentral" id="coronaCentral" class="w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
+                        <option value="" selected disabled>Seleccione un estado</option>
+                        <option class="text-black" value="Sano">Sano</option>
+                        <option class="text-black" value="Extraccion">Extracción</option>
+                        <option class="text-black" value="Careado">Careado</option>
+                        <option class="text-black" value="Tratamiento de conducto">Tratamiento de conducto</option>
+                        <option class="text-black" value="Empaste">Empaste</option>
+                        <option class="text-black" value="Ortodoncia">Ortodoncia</option>
+                        <option class="text-black" value="Injerto">Injerto</option>
+                        <option class="text-black" value="Blanqueamiento">Blanqueamiento</option>
+                        <option class="text-black" value="Periodontitis">Periodontitis</option>
+                        <option class="text-black" value="Fractura">Fractura</option>
+                        <option class="text-black" value="Implante">Implante</option>
+                    </select>
+                </div>
+                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6">
+                    <label for="coronaDerecha" class="text-white text-lg font-semibold">Corona Derecha</label>
+                    <select name="coronaDerecha" id="coronaDerecha" class="w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
+                        <option value="" selected disabled>Seleccione un estado</option>
+                        <option class="text-black" value="Sano">Sano</option>
+                        <option class="text-black" value="Extraccion">Extracción</option>
+                        <option class="text-black" value="Careado">Careado</option>
+                        <option class="text-black" value="Tratamiento de conducto">Tratamiento de conducto</option>
+                        <option class="text-black" value="Empaste">Empaste</option>
+                        <option class="text-black" value="Ortodoncia">Ortodoncia</option>
+                        <option class="text-black" value="Injerto">Injerto</option>
+                        <option class="text-black" value="Blanqueamiento">Blanqueamiento</option>
+                        <option class="text-black" value="Periodontitis">Periodontitis</option>
+                        <option class="text-black" value="Fractura">Fractura</option>
+                        <option class="text-black" value="Implante">Implante</option>
+                    </select>
+                </div>
+            </div>
         </div>
-        <div class="w-3/4  h-96 flex items-center justify-center flex-col">
-          <div class="w-full h-full flex items-center justify-center">
-            <div class="w-7/12 h-12 flex items-center justify-center">
-              <label for="fk_idCliente" class="text-lg mr-3 cel:text-sm cel:text-center">Cliente asociado</label>
-              <select name="fk_idCliente" id="fk_idCliente" class="w-8/12 text-center border-b-2 border-black bg-transparent">
-                @foreach ($aCliente as $cliente)
-                    <option value="{{ $cliente->idCliente }}">{{ $cliente->nombre }} {{ $cliente->apellido }}</option>
-                @endforeach
-            </select>  
-            </div>
-            
-            <div class="w-5/12 h-12 flex items-center justify-center">
-              <label for="piezasPadecientes" class="text-lg mr-3 cel:text-sm cel:text-center">Piezas padecientes</label>
-              <input type="text" name="piezasPadecientes" id="piezasPadecientes" class="w-4/12 text-center border-b-2 border-black bg-transparent">
-            </div>
-          </div>
-
-          <div class="w-full h-full flex items-center justify-center">
-            <div class="w-4/12 h-12 flex items-center justify-center">
-              <label for="infantil" class="text-lg mr-3 cel:text-sm cel:text-center">Infantil</label>
-              <input type="text" name="infantil" id="infantil" class="w-4/12 text-center border-b-2 border-black bg-transparent">
-            </div>
-            <div class="w-4/12 h-12 flex items-center justify-center">
-              <label for="adulto" class="text-lg mr-3 cel:text-sm cel:text-center">Adulto</label>
-              <input type="text" name="adulto" id="adulto" class="w-4/12 text-center border-b-2 border-black bg-transparent">
-            </div>
-            <div class="w-4/12 h-12 flex items-center justify-center">
-              <label for="mayor" class="text-lg mr-3 cel:text-sm cel:text-center">Mayor</label>
-              <input type="text" name="mayor" id="mayor" class="w-4/12 text-center border-b-2 border-black bg-transparent">
-            </div>
-          </div>
-
-          <div class="w-full h-full flex items-center justify-center">
-            <div class="w-7/12 h-12 flex items-center justify-center">
-              <label for="doctora" class="text-lg mr-3 cel:text-sm cel:text-center">Doctora responsable</label>
-              <input type="text" name="doctora" id="doctora" class="w-7/12 text-center border-b-2 border-black bg-transparent">
-            </div>
-            <div class="w-5/12 h-12 flex items-center justify-center">
-              <label for="" class="text-lg mr-3 cel:text-sm cel:text-center">Otro campo</label>
-              <input type="text" name="" id="" class="w-4/12 text-center border-b-2 border-black bg-transparent">
-            </div>
-          </div>
-
         </div>
+        <div>
+          <button type="button" name="btnAgregar" class="w-40 h-12 bg-teal-400 text-white rounded-full mt-4">Cargar diente</button>
+        </div>
+        <div class="w-full mt-5 mb-5 h-full flex items-center justify-center flex-col">
+          <label for="" class="w-full h-20 bg-teal-400 grid place-items-center text-white font-bold text-2xl">Dientes cargados</label>
+          <table class="w-full bg-white border border-gray-300 shadow-md rounded-md">
+              <thead class="">
+                  <tr class="w-full h-full flex items-center justify-center">
+                      <th class="w-2/12 grid place-items-center h-14">Tipo de Diente</th>
+                      <th class="w-2/12 grid place-items-center h-14">Estado de Diente</th>
+                      <th class="w-2/12 grid place-items-center h-14">Corona Superior</th>
+                      <th class="w-2/12 grid place-items-center h-14">Corona Inferior</th>
+                      <th class="w-2/12 grid place-items-center h-14">Corona Izquierda</th>
+                      <th class="w-2/12 grid place-items-center h-14">Corona Central</th>
+                      <th class="w-2/12 grid place-items-center h-14">Corona Derecha</th>
+                  </tr>
+              </thead>
+              <tbody id="odontogramaJSON" class="w-11/12 h-full text-center">
+                
+
+              </tbody>
+          </table>
       </div>
 
-      <div class="w-full h-full bg-neutral-200 flex items-center justify-center my-5 py-10">
-        <div class="w-1/4 h-96 flex items-center justify-center flex-col">
-          <h4 class="text-lg">Informe general de dientes</h4>
-          <div class="w-full h-full  flex items-center justify-center flex-col">
-            
-            <div class="w-full flex items-center justify-center mb-4 mt-4">
-              <label for="cariado" class="w-2/4 text-center">Cariado</label>
-              <input type="text" name="cariado" class="w-2/4 border-b-2 border-black bg-transparent">
-            </div>
-            
-            <div class="w-full flex items-center justify-center mt-4 mb-4">
-              <label for="obturado" class="w-2/4 text-center">Obturado</label>
-              <input type="text" name="obturado" class="w-2/4 border-b-2 border-black bg-transparent">
-            </div>
-            
-            <div class="w-full flex items-center justify-center mt-4 mb-4">
-              <label for="perdida" class="w-2/4 text-center">Perdida por caries</label>
-              <input type="text" name="perdida" class="w-2/4 border-b-2 border-black bg-transparent">
-            </div>
-
-            <div class="w-full flex items-center justify-center mt-4 mb-4">
-              <label for="extraccion" class="w-2/4 text-center">Extraccion indicada</label>
-              <input type="text" name="extraccion" class="w-2/4 border-b-2 border-black bg-transparent">
-            </div>
-
-            <div class="w-full flex items-center justify-center mt-4 mb-4">
-              <label for="sano" class="w-2/4 text-center">Sano</label>
-              <input type="text" name="sano" class="w-2/4 border-b-2 border-black bg-transparent">
-            </div>
-
-          </div>
-        </div>
-
-        <div class="ml-5 w-8/12 h-96 flex items-start justify-center flex-col">
-          <h4 class="text-lg">Observaciones:</h4>
-          <textarea name="observacion" id="observacion" class="resize-none h-full w-full overflow-x-hidden"></textarea>
-        </div>
-
       </div>
-
-
-
-
-      <button type="submit" name="btnAgregar" class="bg-purple-700 text-white w-56 h-14 my-2 rounded-2xl">Agregar</button>
+      <!-- ... (Continuación del formulario) -->
+      <button type="submit" name="btnagregar" class="bg-teal-500 text-white w-56 h-14 my-2 rounded-full">Agregar</button>
     </form>
-    </div>
-  </section>
+  </div>
+</section>
+
+
+
+
+
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Seleccionar elementos del DOM
+    const formulario = document.getElementById('formulario');
+    const odontogramaJSON = document.getElementById('odontogramaJSON');
+    const dientesArray = []; // Nuevo array para almacenar los dientes
+
+    // Variable para almacenar el valor seleccionado del cliente
+    let selectedCliente = document.getElementById('fk_idCliente').value;
+
+    // Evento de cambio en el select del cliente
+    document.getElementById('fk_idCliente').addEventListener('change', function () {
+        selectedCliente = this.value;  // Actualizar la variable al cambiar
+    });
+
+    // Evento al hacer clic en "Cargar diente"
+    document.querySelector('button[name="btnAgregar"]').addEventListener('click', function () {
+        // Obtener valores seleccionados de los selects
+        const tipoDiente = document.getElementById('tipoDiente1').value;
+        const estadoDiente = document.getElementById('estadoDiente1').value;
+        const coronaSuperior = document.getElementById('coronaSuperior').value;
+        const coronaInferior = document.getElementById('coronaInferior').value;
+        const coronaIzquierda = document.getElementById('coronaIzquierda').value;
+        const coronaCentral = document.getElementById('coronaCentral').value;
+        const coronaDerecha = document.getElementById('coronaDerecha').value;
+
+        // Crear objeto con los valores
+        const diente = {
+            tipoDiente,
+            estadoDiente,
+            coronaSuperior,
+            coronaInferior,
+            coronaIzquierda,
+            coronaCentral,
+            coronaDerecha
+        };
+
+        // Agregar el objeto al array de dientes
+        dientesArray.push(diente);
+
+        // Agregar el objeto a la tabla y convertirlo a formato JSON
+        const newRow = odontogramaJSON.insertRow(-1);
+
+        // Aplicar clases a la fila
+        newRow.classList.add('w-full', 'h-full', 'flex', 'items-center', 'justify-center');
+
+        let cellIndex = 0;
+        for (const prop in diente) {
+            const cell = newRow.insertCell(cellIndex++);
+            cell.classList.add('w-2/12', 'grid', 'place-items-center', 'h-14');
+            // Establecer el contenido de la celda
+            cell.textContent = diente[prop];
+        }
+
+        // Limpieza de selects después de cargar el diente
+        resetSelects();
+        // Restablecer el valor del select del cliente después de cargar el diente
+        document.getElementById('fk_idCliente').value = selectedCliente;
+    });
+
+    // Función para limpiar los selects después de cargar el diente
+    function resetSelects() {
+        const selects = formulario.querySelectorAll('select');
+        selects.forEach(select => {
+            select.value = select.options[0].value; // Establecer el valor predeterminado
+        });
+    }
+
+    // Evento para enviar el formulario y mostrar el JSON en la ruta del action
+    formulario.addEventListener('submit', function (event) {
+        // Convertir el array de dientes a JSON
+        const dientesJSON = JSON.stringify(dientesArray);
+
+        // Agregar un campo oculto al formulario con el JSON
+        const inputJSON = document.createElement('input');
+        inputJSON.setAttribute('type', 'hidden');
+        inputJSON.setAttribute('name', 'odontogramaJSON');
+        inputJSON.setAttribute('value', dientesJSON);
+        formulario.appendChild(inputJSON);
+    });
+
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @endsection
+
+
+
+

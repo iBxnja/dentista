@@ -19,3 +19,12 @@ html {
   #dental-chart {
     text-align: center;
   }
+
+#principio,
+#login,
+#register{
+  background-image: url(../../public/imagenes/inicio.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -7,8 +7,7 @@
     <title>Register</title>
     @vite('resources/css/app.css')
 </head>
-<body> 
-    <div class="absolute top-0 -z-10 h-full w-full bg-white"><div class="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]"></div></div>
+<body id="register"> 
     <main class="w-full h-full flex items-center justify-center">
         <section class="w-full h-screen grid place-items-center">
             <div class="
@@ -19,7 +18,7 @@
                 cel:w-11/12
                 w-2/4 h-4/5 flex items-center justify-center flex-col">
                     @csrf
-                    <h2 class="text-5xl font-bold text-purple-500 mb-5
+                    <h2 class="text-5xl font-bold text-white mb-5
                     cel:text-3xl
                     md:text-4xl
                     ">Register</h2>
@@ -27,7 +26,7 @@
                     cel:m-0
                     md:m-1
                     m-3 flex flex-col items-center justify-center w-5/6">
-                        <label for="name" class="text-xl cel:text-base">Nombre completo</label>
+                        <label for="name" class="text-xl cel:text-base text-white">Nombre completo</label>
                         <input type="text" class="
                         cel:h-8
                         text-center border-2 border-gray-200 rounded-md bg-white w-full
@@ -38,7 +37,7 @@
                     cel:m-0
                     md:m-1
                     m-3 flex flex-col items-center justify-center w-5/6">
-                        <label for="email" class="text-xl cel:text-base">Email</label>
+                        <label for="email" class="text-xl cel:text-base text-white">Email</label>
                         <input type="email" class="
                         cel:h-8
                         text-center border-2 border-gray-200 rounded-md bg-white w-full
@@ -49,7 +48,7 @@
                     cel:m-0
                     md:m-1
                     m-3 flex flex-col items-center justify-center w-5/6">
-                        <label for="password" class="text-xl cel:text-base">Contraseña</label>
+                        <label for="password" class="text-xl cel:text-base text-white">Contraseña</label>
                         <input type="password" class="
                         cel:h-8
                         text-center border-2 border-gray-200 rounded-md bg-white w-full
@@ -60,7 +59,7 @@
                     cel:m-0
                     md:m-1
                     m-3 flex flex-col items-center justify-center w-5/6">
-                        <label for="passwordConfirmed" class="text-xl cel:text-base">Confirmar contraseña</label>
+                        <label for="passwordConfirmed" class="text-xl cel:text-base text-white">Confirmar contraseña</label>
                         <input type="password" class="
                         cel:h-8
                         text-center border-2 border-gray-200 rounded-md bg-white w-full
@@ -71,7 +70,7 @@
                     cel:m-0 text-center
                     md:mb-2
                     mb-5">
-                        <span class="text-sm">Ya tienes cuenta? </span><a href="/login/login" class="text-green-900 cel:text-sm">Ingresa aca.</a>
+                        <span class="text-sm">Ya tienes cuenta? </span><a href="/login/login" class="text-white cel:text-sm">Ingresa aca.</a>
                     </div>
                     @error('message')
                     <p>* Error</p>
@@ -79,7 +78,7 @@
                     <button type="submit" class="
                     cel:w-32 cel:text-sm
                     md:w-28 md:py-1
-                    rounded-md bg-purple-500 w-40 text-lg
+                    rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 border-2 border-teal-700 w-40 text-lg
                     text-white font-semibold p-2 my-3">Registrar</button>
                 </form>
             </div>
