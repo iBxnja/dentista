@@ -45,7 +45,7 @@ class ControladorNota extends Controller
             $Nota->cargarDesdeRequest($request);
             // dd($Nota);
             if (empty($Nota->titulo) || empty($Nota->texto) || empty($Nota->numeroSesion) || empty($Nota->fk_idCliente)) {
-                $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+                $error = "¡Parece que ocurrió un error!.";
                 return view('inicio.inicio', compact('error'));
             } else {
                 $Nota->guardar();
@@ -90,7 +90,7 @@ class ControladorNota extends Controller
             // dd(session('notaEliminada'));
         } else {
             // Mensaje de error
-            $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+            $error = "¡Parece que ocurrió un error!.";
 
             // Redirigir a la vista con el mensaje de error
             return view('inicio.inicio', compact('error'));

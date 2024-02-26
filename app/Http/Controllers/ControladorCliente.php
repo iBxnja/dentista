@@ -31,7 +31,7 @@ class ControladorCliente extends Controller
         $cliente->cargarDesdeRequest($request);
         
         if (empty($cliente->nombre) || empty($cliente->apellido) || empty($cliente->edad)) {
-            $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+            $error = "¡Parece que ocurrió un error!.";
             return view('inicio.inicio', compact('error'));
         } else {
             $cliente->guardar();
@@ -43,7 +43,7 @@ class ControladorCliente extends Controller
             
             // Hacer un dd de la información del cliente en la sesión
             // dd(session('cliente'));
-            $mensaje = "<span class='text-black font-bold'>¡Excelente, se agregó correctamente el cliente <span class='text-black font-bold'>$cliente->nombre $cliente->apellido</span>!.</span>";
+            $mensaje = "¡Excelente, se agregó correctamente el cliente <span class='text-white font-bold'>$cliente->nombre $cliente->apellido</span>!.";
             // dd($mensaje);
             $aClientes = $cliente->obtenerTodos();
             return view('inicio.inicio', compact('mensaje'));  
@@ -71,7 +71,7 @@ class ControladorCliente extends Controller
             // dd(session('clienteEliminado'));
         } else {
             // Mensaje de error
-            $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+            $error = "¡Parece que ocurrió un error!.";
     
             // Redirigir a la vista con el mensaje de error
             return view('cita.cita-listar', compact('error'));  

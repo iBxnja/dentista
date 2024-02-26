@@ -39,7 +39,7 @@ class ControladorOdontograma extends Controller
     $odontograma->cargarDesdeRequest($request);
     // dd($odontograma);
     if (empty($odontograma->piezasPadecientes)) {
-        $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+        $error = "¡Parece que ocurrió un error!.";
         return view('inicio.inicio', compact('error'));
     } else {
         // Obtener el JSON desde la solicitud

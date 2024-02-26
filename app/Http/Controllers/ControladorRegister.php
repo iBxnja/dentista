@@ -23,6 +23,7 @@ class ControladorRegister extends Controller
     
     public function store(Request $request)
     {
+        // dd($request->all());
         try {
             // Validación
             $validatedData = $request->validate([
@@ -47,7 +48,7 @@ class ControladorRegister extends Controller
 
             // Almacenar el ID del usuario en la sesión
             session()->put('usuario_id', $user->id);
-            dd(session('usuario_id'));
+            // dd(session('usuario_id'));
             // Login del usuario
             auth()->login($user);
 

@@ -170,7 +170,7 @@
         </div>
         </div>
         <div>
-          <button type="button" name="btnAgregar" class="w-40 h-12 bg-teal-400 text-white rounded-full mt-4">Cargar diente</button>
+          <button type="button" name="btnAgregar" class="w-40 h-12 bg-teal-400 text-white rounded-full mt-4 shadow-md shadow-neutral-500">Cargar diente</button>
         </div>
         <div class="w-full mt-5 mb-5 h-full flex items-center justify-center flex-col">
           <label for="" class="w-full h-20 bg-teal-400 grid place-items-center text-white font-bold text-2xl">Dientes cargados</label>
@@ -195,7 +195,7 @@
 
       </div>
       <!-- ... (Continuación del formulario) -->
-      <button type="submit" name="btnagregar" class="bg-teal-500 text-white w-56 h-14 my-2 rounded-full">Agregar</button>
+      <button type="submit" name="btnagregar" class="bg-teal-500 text-white w-56 h-14 my-2 rounded-full shadow-md shadow-neutral-500">Agregar</button>
     </form>
   </div>
 </section>

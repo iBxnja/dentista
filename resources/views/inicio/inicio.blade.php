@@ -27,6 +27,11 @@
                 {{ session('mensaje') }}
             </div>
         @endif
+        @if(session('bienvenido'))
+            <div class="alert alert-success">
+                {{ session('bienvenido') }}
+            </div>
+        @endif
         <div class="w-full cel:h-full md:h-full lg:h-screen xl:h-screen 2xl:h-screen flex items-center justify-center cel:flex-col cel:text-center md:flex-col md:text-center">
             <div class="cel:w-11/12 w-6/12 flex cel:items-center items-start justify-center flex-col md:items-center">
                 <h2 class="cel:ml-0 md:ml-0 ml-10 cel:text-6xl text-9xl cel:mt-5 text-teal-400 font-bold">Clínica</h2>
@@ -40,23 +45,29 @@
         </div>
     </section>
     <section id="arrancar" class="w-full h-full flex items-center flex-wrap justify-around text-white pb-10">
-        <a href="{{route('cliente-listar')}}" class="lg:hover:bg-teal-500 xl:hover:bg-teal-500 2xl:hover:bg-teal-500 ease-in-out duration-100 border-4 border-teal-600 bg-teal-400 mt-20 ml-10 mr-10 w-80 h-48 text-xl rounded-xl grid place-items-center cel:w-48 cel:ml-5 cel:mr-5 md:w-72">
+        <a href="{{route('cliente-listar')}}" class="relative decoration-transparent lg:hover:bg-teal-500 xl:hover:bg-teal-500 2xl:hover:bg-teal-500 ease-in-out duration-100 border-4 border-teal-600 bg-teal-400 mt-20 ml-10 mr-10 w-80 h-48 text-xl rounded-xl flex items-center justify-center flex-col cel:w-48 cel:ml-5 cel:mr-5 md:w-72">
             <img src="{{ asset('imagenes/personal.png') }}" alt="" class="w-32">
+            <span class="absolute bottom-3 tracking-widest mt-2 text-white text-2xl">Cliente</span>
         </a>
-        <a href="{{route('notas-listar')}}" class="lg:hover:bg-teal-500 xl:hover:bg-teal-500 2xl:hover:bg-teal-500 ease-in-out duration-100 border-4 border-teal-600 bg-teal-400 mt-20 ml-10 mr-10 w-80 h-48 text-xl rounded-xl grid place-items-center cel:w-48 cel:ml-5 cel:mr-5 md:w-72">
-            <img src="{{ asset('imagenes/notas.png') }}" alt="" class="w-32">           
+        <a href="{{route('notas-listar')}}" class="relative decoration-transparent lg:hover:bg-teal-500 xl:hover:bg-teal-500 2xl:hover:bg-teal-500 ease-in-out duration-100 border-4 border-teal-600 bg-teal-400 mt-20 ml-10 mr-10 w-80 h-48 text-xl rounded-xl flex items-center justify-center flex-col cel:w-48 cel:ml-5 cel:mr-5 md:w-72">
+            <img src="{{ asset('imagenes/notas.png') }}" alt="" class="w-28 mb-2"> 
+            <span class="absolute bottom-3 tracking-widest mt-2 text-white text-2xl">Notas</span>       
         </a>
-        <a href="{{route('imagenes')}}" class="lg:hover:bg-teal-500 xl:hover:bg-teal-500 2xl:hover:bg-teal-500 ease-in-out duration-100 border-4 border-teal-600 bg-teal-400 mt-20 ml-10 mr-10 w-80 h-48 text-xl rounded-xl grid place-items-center cel:w-48 cel:ml-5 cel:mr-5 md:w-72">
-            <img src="{{ asset('imagenes/imagenes.png') }}" alt="" class="w-32">
+        <a href="{{route('imagenes')}}" class="relative decoration-transparent lg:hover:bg-teal-500 xl:hover:bg-teal-500 2xl:hover:bg-teal-500 ease-in-out duration-100 border-4 border-teal-600 bg-teal-400 mt-20 ml-10 mr-10 w-80 h-48 text-xl rounded-xl flex items-center justify-center flex-col cel:w-48 cel:ml-5 cel:mr-5 md:w-72">
+            <img src="{{ asset('imagenes/imagenes.png') }}" alt="" class="w-28">
+            <span class="absolute bottom-3 tracking-widest mt-2 text-white text-2xl">Imagenes</span>
           </a>
-        <a href="{{route('cita-listar')}}" class="lg:hover:bg-teal-500 xl:hover:bg-teal-500 2xl:hover:bg-teal-500 ease-in-out duration-100 border-4 border-teal-600 bg-teal-400 mt-20 ml-10 mr-10 w-80 h-48 text-xl rounded-xl grid place-items-center cel:w-48 cel:ml-5 cel:mr-5 md:w-72">
-            <img src="{{ asset('imagenes/calendario.png') }}" alt="" class="w-32">
+        <a href="{{route('cita-listar')}}" class="relative decoration-transparent lg:hover:bg-teal-500 xl:hover:bg-teal-500 2xl:hover:bg-teal-500 ease-in-out duration-100 border-4 border-teal-600 bg-teal-400 mt-20 ml-10 mr-10 w-80 h-48 text-xl rounded-xl flex items-center justify-center flex-col cel:w-48 cel:ml-5 cel:mr-5 md:w-72">
+            <img src="{{ asset('imagenes/calendario.png') }}" alt="" class="w-28 mb-4">
+            <span class="absolute bottom-3 tracking-widest mt-2 text-white text-2xl">Citas</span>
         </a>
-        <a href="{{route('odontograma-listar')}}" class="lg:hover:bg-teal-500 xl:hover:bg-teal-500 2xl:hover:bg-teal-500 ease-in-out duration-100 border-4 border-teal-600 bg-teal-400 mt-20 ml-10 mr-10 w-80 h-48 text-xl rounded-xl grid place-items-center cel:w-48 cel:ml-5 cel:mr-5 md:w-72">
-            <img src="{{ asset('imagenes/diente.png') }}" alt="" class="w-24">
+        <a href="{{route('odontograma-listar')}}" class="relative decoration-transparent lg:hover:bg-teal-500 xl:hover:bg-teal-500 2xl:hover:bg-teal-500 ease-in-out duration-100 border-4 border-teal-600 bg-teal-400 mt-20 ml-10 mr-10 w-80 h-48 text-xl rounded-xl flex items-center justify-center flex-col cel:w-48 cel:ml-5 cel:mr-5 md:w-72">
+            <img src="{{ asset('imagenes/diente.png') }}" alt="" class="w-20 mb-4 ">
+            <span class="absolute bottom-3 tracking-widest mt-2 text-white text-2xl">Odontograma</span>
         </a>
-        <a href="{{route('informe-listar')}}" class="lg:hover:bg-teal-500 xl:hover:bg-teal-500 2xl:hover:bg-teal-500 ease-in-out duration-100 border-4 border-teal-600 bg-teal-400 mt-20 ml-10 mr-10 w-80 h-48 text-xl rounded-xl grid place-items-center cel:w-48 cel:ml-5 cel:mr-5 md:w-72">
-            <img src="{{ asset('imagenes/informe.png') }}" alt="" class="w-32">
+        <a href="{{route('informe-listar')}}" class="relative decoration-transparent lg:hover:bg-teal-500 xl:hover:bg-teal-500 2xl:hover:bg-teal-500 ease-in-out duration-100 border-4 border-teal-600 bg-teal-400 mt-20 ml-10 mr-10 w-80 h-48 text-xl rounded-xl flex items-center justify-center flex-col cel:w-48 cel:ml-5 cel:mr-5 md:w-72">
+            <img src="{{ asset('imagenes/informe.png') }}" alt="" class="w-28 mb-4">
+            <span class="absolute bottom-3 tracking-widest mt-2 text-white text-2xl">Informe</span>
         </a>
     </section>
 @endsection

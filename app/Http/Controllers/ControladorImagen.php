@@ -81,11 +81,11 @@ class ControladorImagen extends Controller
                 // Hacer un dd del contenido de la sesión imagenGuardada
                 // dd(session('imagenGuardada'));
             } catch (\Exception $e) {
-                $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+                $error = "¡Parece que ocurrió un error!.";
                 return view('inicio.inicio', compact('error'));  
             }
         } else {
-            $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+            $error = "¡Parece que ocurrió un error!.";
             return view('inicio.inicio', compact('error'));  
         }
     }
@@ -109,12 +109,12 @@ class ControladorImagen extends Controller
             // Eliminar la imagen
             $imagen->eliminar();
             $mensaje = "¡Excelente, se eliminó correctamente la imagen!";
-            return view('inicio.inicio', compact('error')); 
+            return view('inicio.inicio', compact('mensaje')); 
             // Hacer un dd del contenido de la sesión imagenEliminada
             // dd(session('imagenEliminada'));
         } else {
             // Mensaje de error
-            $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+            $error = "¡Parece que ocurrió un error!.";
     
             // Redirigir a la vista con el mensaje de error
             return view('inicio.inicio', compact('error'));  

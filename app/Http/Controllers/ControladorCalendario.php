@@ -96,7 +96,7 @@ class ControladorCalendario extends Controller
         // dd(session('citaAgregada'));
     } catch (\Exception $e) {
         // Mensaje de error
-        $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+        $error = "¡Parece que ocurrió un error!.";
         return view('inicio.inicio', compact('error'));
     }
 }
@@ -123,11 +123,11 @@ public function eliminar($id) {
         // dd(session('citaEliminada'));
 
         // Mensaje de éxito
-        $mensaje = "<span class='text-black font-bold'>¡Excelente, se eliminó correctamente la cita!.</span>";
+        $mensaje = "¡Excelente, se eliminó correctamente la cita!.";
         return view('inicio.inicio', compact('mensaje'));    
     } else {
         // Mensaje de error
-        $error = "<span class='text-black font-bold'>¡Parece que ocurrió un error!.</span>";
+        $error = "¡Parece que ocurrió un error!.";
         return view('cita.cita-listar', compact('error'));  
     }
 }
