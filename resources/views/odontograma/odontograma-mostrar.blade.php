@@ -13,22 +13,55 @@ dd($odontograma, $datosJson);
     <section clasS="w-full h-full flex-col flex items-center justify-center text-white">
         <h2 class="my-5 text-black">Odontograma digital</h2>
 
-        <div class="flex bg-teal-300 shadow-md shadow-neutral-500 items-center justify-center w-11/12 h-full">
+        <div class="flex bg-teal-300 shadow-md shadow-neutral-500 items-center justify-center w-11/12 h-full py-2">
             <div class="w-1/4 h-96 grid place-items-center">
                 <img src="{{ asset('imagenes/cliente.png') }}" alt="Cliente" class="cel:w-10 w-11/12">
             </div>
-            <div class="w-3/4 h-96 flex items-start justify-center flex-col">
-                <h4 class="text-base font-bold ml-10">Nombre del paciente:</h4>
+            <div class="w-3/4 h-full flex items-start justify-center">
+              <div class="w-2/4 h-full flex items-start justify-center flex-col">
+                <h4 class="text-xl font-bold ml-10">Nombre del paciente:</h4>
                 <span class="text-lg ml-10 ">{{ $odontograma->cliente->nombre }} {{ $odontograma->cliente->apellido }}</span>
-                <h4 class="text-base font-bold ml-10 mt-3">Doctora responsable:</h4>
-                <span class="text-lg ml-10 ">{{ $odontograma->doctora }}</span>
-                <h4 class="text-base font-bold ml-10 mt-3">Numero de odontograma:</h4>
-                <span class="text-lg ml-10 ">{{ $odontograma->numeroOdontograma }}</span>
-                <h4 class="text-base font-bold ml-10 mt-3">Piezas padecientes:</h4>
-                <span class="text-lg ml-10 ">{{ $odontograma->piezasPadecientes }}</span>
+                <h4 class="text-xl font-bold ml-10 mt-3">Obra social:</h4>
+                <span class="text-lg ml-10 ">{{ $odontograma->obraSocial }}</span>
+                <h4 class="text-xl font-bold ml-10 mt-3">Codigo:</h4>
+                <span class="text-lg ml-10 ">{{ $odontograma->codigo }}</span>
+              </div>
+              <div class="w-2/4 h-full flex items-start justify-center flex-col">
+                <h4 class="text-xl font-bold ml-10">Titular:</h4>
+                <span class="text-lg ml-10 ">{{ $odontograma->titular }}</span>
+                <h4 class="text-xl font-bold ml-10 mt-3">Grupo familiar:</h4>
+                <span class="text-lg ml-10 ">{{ $odontograma->grupoFamiliar }}</span>
+                <h4 class="text-xl font-bold ml-10 mt-3">Parentesco:</h4>
+                <span class="text-lg ml-10 ">{{ $odontograma->parentesco }}</span>
+
+              </div>
             </div>
         </div>
-
+        
+        <div class="flex bg-teal-300 shadow-md shadow-neutral-500 items-center justify-center w-11/12 h-full py-5 mt-5">
+          <div class="w-2/4 h-full flex items-start justify-center flex-col">
+            <h4 class="text-xl font-bold ml-10 mt-3">Lugar de trabajo del titular:</h4>
+            <span class="text-lg ml-10 ">{{ $odontograma->lugarTitular }}</span>
+            <h4 class="text-xl font-bold ml-10 mt-3">Domicilio:</h4>
+            <span class="text-lg ml-10 ">{{ $odontograma->domicilio }}</span>
+            <h4 class="text-xl font-bold ml-10 mt-3">Fecha de nacimiento:</h4>
+            <span class="text-lg ml-10 ">{{ $odontograma->fechaNac }}</span>
+            <h4 class="text-xl font-bold ml-10 mt-3">Mes:</h4>
+            <span class="text-lg ml-10 ">{{ $odontograma->mes }}</span>
+          </div>
+          <div class="w-2/4 h-full flex items-start justify-center flex-col">
+            <h4 class="text-xl font-bold ml-10 mt-3">Afiliado:</h4>
+            <span class="text-lg ml-10 ">{{ $odontograma->afiliado }}</span>
+            <h4 class="text-xl font-bold ml-10 mt-3">Plan:</h4>
+            <span class="text-lg ml-10 ">{{ $odontograma->plan }}</span>
+            <h4 class="text-xl font-bold ml-10 mt-3">Año:</h4>
+            <span class="text-lg ml-10 ">{{ $odontograma->anio }}</span>
+            <h4 class="text-xl font-bold ml-10 mt-3">Edad:</h4>
+            <span class="text-lg ml-10 ">{{ $odontograma->edad }}</span>
+          </div>
+          
+        </div>
+        
         <div class="w-11/12 h-full bg-teal-300 shadow-md shadow-neutral-500 flex items-center justify-center my-5 py-10">
             <div class="w-1/4 h-96 flex items-center justify-center flex-col">
               <h4 class="text-lg">Informe general de dientes</h4>

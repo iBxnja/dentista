@@ -13,7 +13,7 @@ class ControladorOdontograma extends Controller
         $buscarpor = $request->get('buscarpor');
     
         $odontograma = new Odontograma();
-    
+
         $aOdontograma = $odontograma->when($buscarpor, function ($query) use ($buscarpor) {
             return $query->whereHas('cliente', function ($subquery) use ($buscarpor) {
                 $subquery->where('nombre', 'like', '%' . $buscarpor . '%');
@@ -38,7 +38,7 @@ class ControladorOdontograma extends Controller
     $odontograma = new Odontograma();
     $odontograma->cargarDesdeRequest($request);
     // dd($odontograma);
-    if (empty($odontograma->piezasPadecientes)) {
+    if (empty($odontograma->obraSocial)) {
         $error = "¡Parece que ocurrió un error!.";
         return view('inicio.inicio', compact('error'));
     } else {
@@ -54,11 +54,6 @@ class ControladorOdontograma extends Controller
         // Almacenar información del odontograma en la sesión
         session(['odontogramaGuardado' => [
             'id' => $odontograma->idOdontograma,
-            'piezasPadecientes' => $odontograma->piezasPadecientes,
-            'infantil' => $odontograma->infantil,
-            'adulto' => $odontograma->adulto,
-            'mayor' => $odontograma->mayor,
-            'doctora' => $odontograma->doctora,
             'cariado' => $odontograma->cariado,
             'obturado' => $odontograma->obturado,
             'perdida' => $odontograma->perdida,
@@ -66,6 +61,20 @@ class ControladorOdontograma extends Controller
             'sano' => $odontograma->sano,
             'observacion' => $odontograma->observacion,
             'numeroOdontograma' => $odontograma->numeroOdontograma,
+            'lugarTitular' => $odontograma->lugarTitular,
+            'localidad' => $odontograma->localidad,
+            'domicilio' => $odontograma->domicilio,
+            'fechaNac' => $odontograma->fechaNac,
+            'edad' => $odontograma->edad,
+            'parentesco' => $odontograma->parentesco,
+            'grupoFamiliar' => $odontograma->grupoFamiliar,
+            'titular' => $odontograma->titular,
+            'plan' => $odontograma->plan,
+            'afiliado' => $odontograma->afiliado,
+            'anio' => $odontograma->anio,
+            'mes' => $odontograma->mes,
+            'codigo' => $odontograma->codigo,
+            'obraSocial' => $odontograma->obraSocial,
             'odontogramaJSON' => $odontogramaJSON,
         ]]);
         // $mensajeSession = 'session';
@@ -93,11 +102,6 @@ class ControladorOdontograma extends Controller
             // Almacenar información del cliente en la sesión antes de eliminarlo
             session(['odontogramaEliminado' => [
                 'id' => $odontograma->idOdontograma,
-                'piezasPadecientes' => $odontograma->piezasPadecientes,
-                'infantil' => $odontograma->infantil,
-                'adulto' => $odontograma->adulto,
-                'mayor' => $odontograma->mayor,
-                'doctora' => $odontograma->doctora,
                 'cariado' => $odontograma->cariado,
                 'obturado' => $odontograma->obturado,
                 'perdida' => $odontograma->perdida,
@@ -105,6 +109,20 @@ class ControladorOdontograma extends Controller
                 'sano' => $odontograma->sano,
                 'observacion' => $odontograma->observacion,
                 'numeroOdontograma' => $odontograma->numeroOdontograma,
+                'lugarTitular' => $odontograma->lugarTitular,
+                'localidad' => $odontograma->localidad,
+                'domicilio' => $odontograma->domicilio,
+                'fechaNac' => $odontograma->fechaNac,
+                'edad' => $odontograma->edad,
+                'parentesco' => $odontograma->parentesco,
+                'grupoFamiliar' => $odontograma->grupoFamiliar,
+                'titular' => $odontograma->titular,
+                'plan' => $odontograma->plan,
+                'afiliado' => $odontograma->afiliado,
+                'anio' => $odontograma->anio,
+                'mes' => $odontograma->mes,
+                'codigo' => $odontograma->codigo,
+                'obraSocial' => $odontograma->obraSocial,
                 'fk_idCliente' => $odontograma->fk_idCliente,
             ]]);
     

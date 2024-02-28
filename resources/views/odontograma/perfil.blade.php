@@ -1,49 +1,126 @@
-<div class="w-full h-full bg-teal-300 shadow-neutral-300 shadow-md flex items-center justify-center">
-    <div class="w-1/4 h-96 grid place-items-center">
-      <img src="{{ asset('imagenes/cliente.png') }}" alt="Cliente" class="cel:w-10 w-10/12 ">
-    </div>
-    <div class="w-3/4  h-96 flex items-center justify-center flex-col">
-      <div class="w-full h-full flex items-center justify-center">
-        <div class="w-7/12 h-12 flex items-center justify-center">
-          <label for="fk_idCliente" class="text-lg mr-3 cel:text-sm cel:text-center text-white">Cliente asociado</label>
-          <select name="fk_idCliente" id="fk_idCliente" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none appearance-none bg-transparent">
-            @foreach ($aCliente as $cliente)
-                <option class="text-black" value="{{ $cliente->idCliente }}">{{ $cliente->nombre }} {{ $cliente->apellido }}</option>
-            @endforeach
-        </select>  
-        </div>
-        
-        <div class="w-5/12 h-12 flex items-center justify-center">
-          <label for="piezasPadecientes" class="text-lg mr-3 cel:text-sm cel:text-center text-white">Piezas padecientes</label>
-          <input type="text" name="piezasPadecientes" id="piezasPadecientes" placeholder="Ej: 32" class="w-4/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
-        </div>
+<div class="w-full h-full flex items-center justify-center flex-col">
+  <div class="w-full h-full bg-teal-300 shadow-neutral-300 shadow-md flex flex-col items-center justify-center">
+      <div id="obraSocial" class="w-full h-40 flex items-center justify-center">
+          <div class="w-1/4 text-center">
+              <h2 class="text-3xl italic text-white">CIRCULO<br>
+              ODONTOLOGICO<br>
+          CONCORDIA</h2>
+          </div>
+          <div class="w-3/4 ">
+              <div class="w-full flex items-center justify-start mb-4">
+                  <label for="obraSocial" class="text-lg mr-3 cel:text-sm cel:text-center text-white">Obra social:</label>
+                  <input type="text" name="obraSocial" id="obraSocial" placeholder="Ej: 32" class="w-9/12 text-start border-b-2 border-white text-white focus:outline-none bg-transparent">
+              </div>
+              <div class="w-full flex items-center justify-start">
+                  <label for="codigo" class="text-lg mr-3 cel:text-sm cel:text-center text-white">Codigo N°</label>
+                  <input type="text" name="codigo" id="codigo" placeholder="Ej: 32" class="w-9/12 text-start border-b-2 border-white text-white focus:outline-none bg-transparent">
+              </div>
+          </div>
       </div>
-
-      <div class="w-full h-full flex items-center justify-center">
-        <div class="w-4/12 h-12 flex items-center justify-center">
-          <label for="infantil" class="text-lg mr-3 cel:text-sm cel:text-center text-white">Infantil</label>
-          <input type="text" placeholder="Ej: Si/No" name="infantil" id="infantil" class="w-4/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
-        </div>
-        <div class="w-4/12 h-12 flex items-center justify-center">
-          <label for="adulto" class="text-lg mr-3 cel:text-sm cel:text-center text-white">Adulto</label>
-          <input type="text" placeholder="Ej: Si/No" name="adulto" id="adulto" class="w-4/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
-        </div>
-        <div class="w-4/12 h-12 flex items-center justify-center">
-          <label for="mayor" class="text-lg mr-3 cel:text-sm cel:text-center text-white">Mayor</label>
-          <input type="text" placeholder="Ej: Si/No" name="mayor" id="mayor" class="w-4/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
-        </div>
-      </div>
-
-      <div class="w-full h-full flex items-center justify-center">
-        <div class="w-7/12 h-12 flex items-center justify-center">
-          <label for="doctora" class="text-lg mr-3 cel:text-sm cel:text-center text-white">Doctora responsable</label>
-          <input type="text" placeholder="Ej: Carolina Dominguez" name="doctora" id="doctora" class="w-7/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
-        </div>
-        <div class="w-5/12 h-12 flex items-center justify-center">
-          <label for="numeroOdontograma" class="text-lg mr-3 cel:text-sm cel:text-center text-white">N° Odontograma</label>
-          <input type="text" name="numeroOdontograma" placeholder="Ej: 1" id="numeroOdontograma" class="w-4/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
-        </div>
-      </div>
-
-    </div>
   </div>
+
+
+  <div class="w-full mt-12 h-full bg-teal-300 shadow-neutral-300 shadow-md flex flex-col items-center justify-center">
+      <div class="w-full flex items-center justify-center py-5">
+              <div class="flex items-center justify-center w-2/4 flex-col">
+                  <label for="mes" class="text-lg cel:text-sm cel:text-center text-white">Mes</label>
+                  <select name="mes" id="mes" class="w-8/12 text-center border-b-2 border-white cursor-pointer text-white appearance-none focus:outline-none bg-transparent">
+                      <option disabled selected>Seleccione un mes</option>
+                      <option class="text-black" value="Enero">Enero</option>
+                      <option class="text-black" value="Febrero">Febrero</option>
+                      <option class="text-black" value="Marzo">Marzo</option>
+                      <option class="text-black" value="Abril">Abril</option>
+                      <option class="text-black" value="Mayo">Mayo</option>
+                      <option class="text-black" value="Junio">Junio</option>
+                      <option class="text-black" value="Julio">Julio</option>
+                      <option class="text-black" value="Agosto">Agosto</option>
+                      <option class="text-black" value="Septiembre">Septiembre</option>
+                      <option class="text-black" value="Septiembre">Septiembre</option>
+                      <option class="text-black" value="Octubre">Octubre</option>
+                      <option class="text-black" value="Noviembre">Noviembre</option>
+                      <option class="text-black" value="Diciembre">Diciembre</option>
+                  </select>
+              </div>
+              <div class="flex items-center justify-center w-2/4 flex-col">
+                  <label for="anio" class="text-lg cel:text-sm cel:text-center text-white">Año</label>
+                  <input type="text" name="anio" id="anio" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+              </div>
+      </div>
+
+      <div class="w-full flex items-center justify-center pb-5">
+          <div class="flex items-center justify-center w-2/4 flex-col">
+              <label for="fk_idCliente" class="text-lg cel:text-sm cel:text-center text-white">Paciente</label>
+              <select name="fk_idCliente" id="fk_idCliente" class="w-8/12 text-center border-b-2 border-white text-white appearance-none cursor-pointer focus:outline-none bg-transparent">
+              {{-- foreach --}}
+              <option disabled selected>Seleccione un cliente</option>
+                  @foreach ($aCliente as $cliente)
+                  <option class="text-black" value="{{ $cliente->idCliente }}">{{ $cliente->nombre }} {{ $cliente->apellido }}</option>
+              @endforeach
+              {{-- endForeach --}}
+              </select>
+          </div>
+          <div class="flex items-center justify-center w-2/4 flex-col">
+              <label for="afiliado" class="text-lg cel:text-sm cel:text-center text-white">Afiliado</label>
+              <input type="text" name="afiliado" id="afiliado" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+          </div>
+      </div>
+
+      <div class="w-full flex items-center justify-center pb-5">
+          <div class="flex items-center justify-center w-2/4 flex-col">
+              <label for="plan" class="text-lg cel:text-sm cel:text-center text-white">Plan</label>
+              <input type="text" name="plan" id="plan" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+          </div>
+          <div class="flex items-center justify-center w-2/4 flex-col">
+              <label for="titular" class="text-lg cel:text-sm cel:text-center text-white">Titular</label>
+              <input type="text" name="titular" id="titular" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+          </div>
+      </div>
+
+      <div class="w-full flex items-center justify-center pb-5">
+          <div class="flex items-center justify-center w-2/4 flex-col">
+              <label for="grupoFamiliar" class="text-lg cel:text-sm cel:text-center text-white">Grupo Familiar</label>
+              <input type="text" name="grupoFamiliar" id="grupoFamiliar" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+          </div>
+          <div class="flex items-center justify-center w-2/4 flex-col">
+              <label for="parentesco" class="text-lg cel:text-sm cel:text-center text-white">Parentesco</label>
+              <input type="text" name="parentesco" id="parentesco" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+          </div>
+      </div>
+
+      <div class="w-full flex items-center justify-center pb-5">
+          <div class="flex items-center justify-center w-2/4 flex-col">
+              <label for="edad" class="text-lg cel:text-sm cel:text-center text-white">Edad</label>
+              <input type="text" name="edad" id="edad" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+          </div>
+          <div class="flex items-center justify-center w-2/4 flex-col">
+              <label for="fechaNac" class="text-lg cel:text-sm cel:text-center text-white">Fecha Nacimiento</label>
+              <input type="text" name="fechaNac" id="fechaNac" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+          </div>
+      </div>
+
+      <div class="w-full flex items-center justify-center pb-5">
+          <div class="flex items-center justify-center w-2/4 flex-col">
+              <label for="domicilio" class="text-lg cel:text-sm cel:text-center text-white">Domicilio</label>
+              <input type="text" name="domicilio" id="domicilio" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+          </div>
+          <div class="flex items-center justify-center w-2/4 flex-col">
+              <label for="localidad" class="text-lg cel:text-sm cel:text-center text-white">Localidad</label>
+              <input type="text" name="localidad" id="localidad" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+          </div>
+      </div>
+
+      <div class="w-full flex items-center justify-center pb-5">
+          <div class="flex items-center justify-center w-2/4 flex-col">
+              <label for="lugarTitular" class="text-lg cel:text-sm cel:text-center text-white">Lugar de trabajo del titular</label>
+              <input type="text" name="lugarTitular" id="lugarTitular" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+          </div>
+          <div class="flex items-center justify-center w-2/4 flex-col">
+              <label for="numeroOdontograma" class="text-lg cel:text-sm cel:text-center text-white">Doc N°</label>
+              <input type="text" name="numeroOdontograma" id="numeroOdontograma" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+          </div>
+      </div>
+
+  </div>
+
+
+</div>

@@ -1,139 +1,127 @@
 @extends('plantilla')
-
 @section('contenido')
-<section class="w-full h-full flex items-center justify-center">
-    <form class="w-full h-full flex flex-col items-center justify-center">
-        @csrf
-        <h2 class="mt-5">Crear odontograma</h2>
-        <div class="w-11/12 h-full flex items-center justify-center mt-5">
-            <div class="w-1/4 h-full bg-yellow-500 grid place-items-center">
-                <img src="{{ asset('imagenes/cliente.png') }}" alt="Cliente" class="cel:w-10 w-10/12">
+<div class="w-full h-full flex items-center justify-center flex-col">
+    <div class="w-full h-full bg-teal-300 shadow-neutral-300 shadow-md flex flex-col items-center justify-center">
+        <div id="obraSocial" class="w-full h-40 flex items-center justify-center">
+            <div class="w-1/4 text-center">
+                <h2 class="text-3xl italic text-white">CIRCULO<br>
+                ODONTOLOGICO<br>
+            CONCORDIA</h2>
             </div>
-            <div class="w-3/4 h-full bg-blue-500 flex items-center justify-around flex-wrap">
-                <!-- ... (Continuación en la próxima parte) -->
-                <!-- ... (Continuación de la primera parte) -->
-                <div class="bg-red-500 w-2/6 mt-4 mr-6">
-                    <label for="tipoDiente1">Diente</label>
-                    <select name="tipoDiente1" id="tipoDiente1" class="w-8/12 text-center border-b-2 border-black bg-transparent">
-                        <option value="Colmillo">Colmillo</option>
-                        <option value="Muela">Muela</option>
-                        <option value="Paleta">Paleta</option>
-                    </select>
+            <div class="w-3/4 ">
+                <div class="w-full flex items-center justify-start mb-4">
+                    <label for="obraSocial" class="text-lg mr-3 cel:text-sm cel:text-center text-white">Obra social:</label>
+                    <input type="text" name="obraSocial" id="obraSocial" placeholder="Ej: 32" class="w-9/12 text-start border-b-2 border-white text-white focus:outline-none bg-transparent">
                 </div>
-                <div class="bg-red-500 w-3/12 mt-4 mr-6">
-                    <label for="estadoDiente1">Estado</label>
-                    <select name="estadoDiente1" id="estadoDiente1" class="w-9/12 text-center border-b-2 border-black bg-transparent">
-                        <option value="Sano">Sano</option>
-                        <option value="Extraccion">Extracción</option>
-                        <option value="Careado">Careado</option>
-                    </select>
-                </div>
-                <div class="bg-green-500 w-4/12 mt-4 mr-6">
-                    <label for="coronaSuperior">Corona Superior</label>
-                    <select name="coronaSuperior" id="coronaSuperior" class="w-6/12 text-center border-b-2 border-black bg-transparent">
-                        <option value="Sano">Sano</option>
-                        <option value="Extraccion">Extracción</option>
-                        <option value="Careado">Careado</option>
-                    </select>
-                </div>
-                <div class="bg-red-500 w-4/12 mt-4 mr-6">
-                    <label for="coronaInferior">Corona Inferior</label>
-                    <select name="coronaInferior" id="coronaInferior" class="w-6/12 text-center border-b-2 border-black bg-transparent">
-                        <option value="Sano">Sano</option>
-                        <option value="Extraccion">Extracción</option>
-                        <option value="Careado">Careado</option>
-                    </select>
-                </div>
-                <div class="bg-red-500 w-4/12 mt-4 mr-6">
-                    <label for="coronaIzquierda">Corona Izquierda</label>
-                    <select name="coronaIzquierda" id="coronaIzquierda" class="w-6/12 text-center border-b-2 border-black bg-transparent">
-                        <option value="Sano">Sano</option>
-                        <option value="Extraccion">Extracción</option>
-                        <option value="Careado">Careado</option>
-                    </select>
-                </div>
-                <div class="bg-red-500 w-4/12 mt-4 mr-6">
-                    <label for="coronaCentral">Corona Central</label>
-                    <select name="coronaCentral" id="coronaCentral" class="w-6/12 text-center border-b-2 border-black bg-transparent">
-                        <option value="Sano">Sano</option>
-                        <option value="Extraccion">Extracción</option>
-                        <option value="Careado">Careado</option>
-                    </select>
-                </div>
-                <div class="bg-red-500 w-4/12 mt-4 mr-6">
-                    <label for="coronaDerecha">Corona Derecha</label>
-                    <select name="coronaDerecha" id="coronaDerecha" class="w-6/12 text-center border-b-2 border-black bg-transparent">
-                        <option value="Sano">Sano</option>
-                        <option value="Extraccion">Extracción</option>
-                        <option value="Careado">Careado</option>
-                    </select>
+                <div class="w-full flex items-center justify-start">
+                    <label for="codigo" class="text-lg mr-3 cel:text-sm cel:text-center text-white">Codigo N°</label>
+                    <input type="text" name="codigo" id="codigo" placeholder="Ej: 32" class="w-9/12 text-start border-b-2 border-white text-white focus:outline-none bg-transparent">
                 </div>
             </div>
         </div>
-        <!-- ... (Continuación en la próxima parte) -->
-        <!-- ... (Continuación de la tercera parte) -->
+    </div>
+
+
+    <div class="w-11/12 mt-12 h-full bg-teal-300 shadow-neutral-300 shadow-md flex flex-col items-center justify-center">
+        <div class="w-full flex items-center justify-center py-5">
+                <div class="flex items-center justify-center w-2/4 flex-col">
+                    <label for="mes" class="text-lg cel:text-sm cel:text-center text-white">Mes</label>
+                    <select name="mes" id="mes" class="w-8/12 text-center border-b-2 border-white cursor-pointer text-white appearance-none focus:outline-none bg-transparent">
+                        <option value="" selected disabled>Selecciona un mes</option>
+                        <option value="">Enero</option>
+                        <option value="">Enero</option>
+                        <option value="">Enero</option>
+                        <option value="">Enero</option>
+                        <option value="">Enero</option>
+                        <option value="">Enero</option>
+                        <option value="">Enero</option>
+                        <option value="">Enero</option>
+                        <option value="">Enero</option>
+                        <option value="">Enero</option>
+                        <option value="">Enero</option>
+                        <option value="">Enero</option>
+                    </select>
+                </div>
+                <div class="flex items-center justify-center w-2/4 flex-col">
+                    <label for="anio" class="text-lg cel:text-sm cel:text-center text-white">Año</label>
+                    <input type="text" name="anio" id="anio" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+                </div>
         </div>
-        <div>
-            <button type="button" class="w-24 h-10 bg-pink-500 rounded-full mt-4"
-                onclick="guardarDientes()">Guardar</button>
+
+        <div class="w-full flex items-center justify-center pb-5">
+            <div class="flex items-center justify-center w-2/4 flex-col">
+                <label for="fk_idCliente" class="text-lg cel:text-sm cel:text-center text-white">Paciente</label>
+                <select name="fk_idCliente" id="fk_idCliente" class="w-8/12 text-center border-b-2 border-white text-white appearance-none cursor-pointer focus:outline-none bg-transparent">
+                {{-- foreach --}}
+                    @foreach ($aCliente as $cliente)
+                    <option class="text-black" value="{{ $cliente->idCliente }}">{{ $cliente->nombre }} {{ $cliente->apellido }}</option>
+                @endforeach
+                {{-- endForeach --}}
+                </select>
+            </div>
+            <div class="flex items-center justify-center w-2/4 flex-col">
+                <label for="afiliado" class="text-lg cel:text-sm cel:text-center text-white">Afiliado</label>
+                <input type="text" name="afiliado" id="afiliado" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+            </div>
         </div>
-        <div class="w-11/12 mt-5 mb-5 h-full flex items-center justify-center flex-col ">
-            <label for="" class="w-full h-20 bg-teal-400 grid place-items-center">Odontograma JSON:</label>
-            <table class="w-full h-full flex items-center justify-center flex-col">
-                <tbody id="odontogramaJSON" class="w-full h-full flex items-center justify-center flex-col">
 
-                </tbody>
-            </table>
+        <div class="w-full flex items-center justify-center pb-5">
+            <div class="flex items-center justify-center w-2/4 flex-col">
+                <label for="plan" class="text-lg cel:text-sm cel:text-center text-white">Plan</label>
+                <input type="text" name="plan" id="plan" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+            </div>
+            <div class="flex items-center justify-center w-2/4 flex-col">
+                <label for="titular" class="text-lg cel:text-sm cel:text-center text-white">Titular</label>
+                <input type="text" name="titular" id="titular" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+            </div>
         </div>
-    </form>
-</section>
 
-{{-- Variable para la ruta de las imágenes --}}
-<script>
-    var assetBaseUrl = "{{ asset('') }}";
-</script>
+        <div class="w-full flex items-center justify-center pb-5">
+            <div class="flex items-center justify-center w-2/4 flex-col">
+                <label for="grupoFamiliar" class="text-lg cel:text-sm cel:text-center text-white">Grupo Familiar</label>
+                <input type="text" name="grupoFamiliar" id="grupoFamiliar" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+            </div>
+            <div class="flex items-center justify-center w-2/4 flex-col">
+                <label for="parentesco" class="text-lg cel:text-sm cel:text-center text-white">Parentesco</label>
+                <input type="text" name="parentesco" id="parentesco" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+            </div>
+        </div>
 
-{{-- Incluir script de JavaScript --}}
-<script>
-    // Array para almacenar los datos de los dientes
-    var odontograma = [];
+        <div class="w-full flex items-center justify-center pb-5">
+            <div class="flex items-center justify-center w-2/4 flex-col">
+                <label for="edad" class="text-lg cel:text-sm cel:text-center text-white">Edad</label>
+                <input type="text" name="edad" id="edad" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+            </div>
+            <div class="flex items-center justify-center w-2/4 flex-col">
+                <label for="fechaNac" class="text-lg cel:text-sm cel:text-center text-white">Fecha Nacimiento</label>
+                <input type="text" name="fechaNac" id="fechaNac" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+            </div>
+        </div>
 
-    // Función para guardar los datos de los dientes
-// Función para guardar los datos de los dientes
-function guardarDientes() {
-    var tipoDiente1 = document.getElementById('tipoDiente1').value;
-    var estadoDiente1 = document.getElementById('estadoDiente1').value;
-    var coronaSuperior = document.getElementById('coronaSuperior').value;
-    var coronaInferior = document.getElementById('coronaInferior').value;
-    var coronaIzquierda = document.getElementById('coronaIzquierda').value;
-    var coronaCentral = document.getElementById('coronaCentral').value;
-    var coronaDerecha = document.getElementById('coronaDerecha').value;
+        <div class="w-full flex items-center justify-center pb-5">
+            <div class="flex items-center justify-center w-2/4 flex-col">
+                <label for="domicilio" class="text-lg cel:text-sm cel:text-center text-white">Domicilio</label>
+                <input type="text" name="domicilio" id="domicilio" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+            </div>
+            <div class="flex items-center justify-center w-2/4 flex-col">
+                <label for="localidad" class="text-lg cel:text-sm cel:text-center text-white">Localidad</label>
+                <input type="text" name="localidad" id="localidad" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+            </div>
+        </div>
 
-    // Agregar datos al array
-    var nuevoDiente = [
-        { tipo: tipoDiente1, estado: estadoDiente1 },
-        { tipo: "Corona Superior", estado: coronaSuperior },
-        { tipo: "Corona Inferior", estado: coronaInferior },
-        { tipo: "Corona Izquierda", estado: coronaIzquierda },
-        { tipo: "Corona Central", estado: coronaCentral },
-        { tipo: "Corona Derecha", estado: coronaDerecha }
-    ];
+        <div class="w-full flex items-center justify-center pb-5">
+            <div class="flex items-center justify-center w-2/4 flex-col">
+                <label for="lugarTitular" class="text-lg cel:text-sm cel:text-center text-white">Lugar de trabajo del titular</label>
+                <input type="text" name="lugarTitular" id="lugarTitular" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+            </div>
+            <div class="flex items-center justify-center w-2/4 flex-col">
+                <label for="numeroOdontograma" class="text-lg cel:text-sm cel:text-center text-white">Doc N°</label>
+                <input type="text" name="numeroOdontograma" id="numeroOdontograma" class="w-8/12 text-center border-b-2 border-white text-white focus:outline-none bg-transparent">
+            </div>
+        </div>
 
-    // Agregar la nueva fila al array
-    odontograma.push(nuevoDiente);
+    </div>
 
-    // Mostrar el JSON actualizado de forma más legible
-    var formattedJSON = odontograma.map(function(fila, index) {
-        var datosFila = fila.map(function(diente) {
-            return `<td class="w-1/6 h-20 grid place-items-center text-center font-bold bg-teal-300">${diente.tipo}:</td>
-                    <td class="w-1/6 h-20 grid place-items-center text-center bg-teal-200">${diente.estado}</td>`;
-        }).join('\n');
 
-        return `<tr class="w-full h-full flex items-center justify-center border-b-2 border-black mt-2 bg-blue-500">${datosFila}</tr>`;
-    }).join('\n');
-
-    document.getElementById('odontogramaJSON').innerHTML = formattedJSON;
-}
-
-</script>
+</div>
 @endsection

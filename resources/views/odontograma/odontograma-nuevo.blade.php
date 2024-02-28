@@ -214,12 +214,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const odontogramaJSON = document.getElementById('odontogramaJSON');
     const dientesArray = []; // Nuevo array para almacenar los dientes
 
-    // Variable para almacenar el valor seleccionado del cliente
+    // Variables para almacenar los valores seleccionados
     let selectedCliente = document.getElementById('fk_idCliente').value;
+    let selectedMes = document.getElementById('mes').value;
 
     // Evento de cambio en el select del cliente
     document.getElementById('fk_idCliente').addEventListener('change', function () {
         selectedCliente = this.value;  // Actualizar la variable al cambiar
+    });
+
+    // Evento de cambio en el select del mes
+    document.getElementById('mes').addEventListener('change', function () {
+        selectedMes = this.value;  // Actualizar la variable al cambiar
     });
 
     // Evento al hacer clic en "Cargar diente"
@@ -265,13 +271,17 @@ document.addEventListener('DOMContentLoaded', function () {
         resetSelects();
         // Restablecer el valor del select del cliente después de cargar el diente
         document.getElementById('fk_idCliente').value = selectedCliente;
+        // Restablecer el valor del select del mes después de cargar el diente
+        document.getElementById('mes').value = selectedMes;
     });
 
     // Función para limpiar los selects después de cargar el diente
     function resetSelects() {
         const selects = formulario.querySelectorAll('select');
         selects.forEach(select => {
-            select.value = select.options[0].value; // Establecer el valor predeterminado
+            if (select.id !== 'fk_idCliente' && select.id !== 'mes') {
+                select.value = select.options[0].value; // Establecer el valor predeterminado
+            }
         });
     }
 
@@ -289,6 +299,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+
 
 </script>
 

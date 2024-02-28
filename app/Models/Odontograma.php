@@ -13,7 +13,9 @@ class Odontograma extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idOdontograma', 'piezasPadecientes', 'infantil', 'adulto', 'mayor', 'doctora', 'cariado', 'obturado', 'perdida', 'extraccion', 'sano', 'observacion', 'fk_idCliente', 'dientes', 'numeroOdontograma',
+        'idOdontograma', 'cariado', 'obturado', 'perdida', 'extraccion', 'sano', 'observacion', 'fk_idCliente', 'dientes', 'numeroOdontograma',
+        'obraSocial', 'codigo', 'mes', 'anio', 'afiliado', 'plan', 'titular', 'grupoFamiliar','parentesco',
+        'edad', 'fechaNac', 'domicilio', 'localidad','lugarTitular',
     ];
 
     protected $hidden = [];
@@ -33,6 +35,21 @@ class Odontograma extends Model
         $this->observacion = $request->input('observacion');
         $this->numeroOdontograma = $request->input('numeroOdontograma');
         $this->fk_idCliente = $request->input('fk_idCliente');
+
+        $this->obraSocial = $request->input('obraSocial');
+        $this->codigo = $request->input('codigo');
+        $this->mes = $request->input('mes');
+        $this->anio = $request->input('anio');
+        $this->afiliado = $request->input('afiliado');
+        $this->plan = $request->input('plan');
+        $this->titular = $request->input('titular');
+        $this->grupoFamiliar = $request->input('grupoFamiliar');
+        $this->parentesco = $request->input('parentesco');
+        $this->edad = $request->input('edad');
+        $this->fechaNac = $request->input('fechaNac');
+        $this->domicilio = $request->input('domicilio');
+        $this->localidad = $request->input('localidad');
+        $this->lugarTitular = $request->input('lugarTitular');
     }
       
     public function cliente()
@@ -43,11 +60,20 @@ class Odontograma extends Model
     {
         $sql = "SELECT
                   idOdontograma,
-                  piezasPadecientes,
-                  infantil,
-                  adulto,
-                  mayor,
-                  doctora,
+                  lugarTitular,
+                  localidad,
+                  domicilio,
+                  fechaNac,
+                  edad,
+                  parentesco,
+                  grupoFamiliar,
+                  titular,
+                  plan,
+                  afiliado,
+                  anio,
+                  mes,
+                  codigo,
+                  obraSocial,
                   cariado,
                   obturado,
                   perdida,
@@ -70,10 +96,6 @@ class Odontograma extends Model
         ['idOdontograma' => $this->idOdontograma],
         [
             'piezasPadecientes' => $this->piezasPadecientes,
-            'infantil' => $this->infantil,
-            'adulto' => $this->adulto,
-            'mayor' => $this->mayor,
-            'doctora' => $this->doctora,
             'cariado' => $this->cariado,
             'obturado' => $this->obturado,
             'perdida' => $this->perdida,
@@ -82,6 +104,20 @@ class Odontograma extends Model
             'observacion' => $this->observacion,
             'fk_idCliente' => $this->fk_idCliente,
             'numeroOdontograma' => $this->numeroOdontograma,
+            'lugarTitular' => $this->lugarTitular,
+            'localidad' => $this->localidad,
+            'domicilio' => $this->domicilio,
+            'fechaNac' => $this->fechaNac,
+            'edad' => $this->edad,
+            'parentesco' => $this->parentesco,
+            'grupoFamiliar' => $this->grupoFamiliar,
+            'titular' => $this->titular,
+            'plan' => $this->plan,
+            'afiliado' => $this->afiliado,
+            'anio' => $this->anio,
+            'mes' => $this->mes,
+            'codigo' => $this->codigo,
+            'obraSocial' => $this->obraSocial,
             'dientes' => json_encode($datosDientes),
         ]
     );
