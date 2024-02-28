@@ -2,7 +2,7 @@
     <button id="menuAbrir" class="text-white sm:hidden absolute cel:left-0 top-5 left-5 lg:hidden xl:hidden 2xl:hidden">
         <svg class="h-10 w-10 cel:ml-5"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="4" y1="6" x2="20" y2="6" />  <line x1="4" y1="12" x2="20" y2="12" />  <line x1="4" y1="18" x2="20" y2="18" /></svg>
     </button>
-    <nav id="navbar" class="hidden flex cel:flex-col sm:flex-col md:flex-col items-center justify-center w-full h-full gap-12 lg:flex xl:flex 2xl:flex">
+    <nav id="navbar" class="hidden flex cel:flex-col sm:flex-col md:flex-col items-center justify-center w-full h-full gap-12 cel:gap-8 lg:flex xl:flex 2xl:flex">
         <button id="menuCerrar" class="text-white hidden sm:block absolute top-5 left-5 cel:text-4xl lg:hidden xl:hidden 2xl:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -22,7 +22,7 @@
         @if(auth()->check())
         <form action="{{ route('login.destroy') }}" method="POST">
             @csrf
-            <button type="submit" class="list-none text-white mt-2 ml-6">
+            <button type="submit" class="list-none text-white mt-2 ml-6 cel:ml-0 cel:absolute cel:top-5 cel:right-5">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
                   </svg>

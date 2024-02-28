@@ -39,7 +39,7 @@
               </div>
             <!--foreach-->
             @foreach ($aImagenes as $imagen)
-                <div class="relative cel:w-11/12 w-5/12 h-4/12 flex items-center justify-center flex-col my-10 border-b-2 border-black ">
+                <div class="relative cel:text-center cel:w-11/12 w-5/12 h-4/12 flex items-center justify-center flex-col my-10 border-b-2 border-black ">
                     <h2 class="mb-4 mt-2 text-xl font-medium shadow-md shadow-neutral-500 text-white bg-teal-300 w-full border-2 border-black tracking-widest rounded-lg h-16 grid place-items-center">{{ $imagen->cliente->nombre }} {{ $imagen->cliente->apellido }}</h2>
                     <h2 class="mb-2 font-semibold text-3xl text-teal-300 text-center ">{{ $imagen->titulo }}</h2>
                     <p class="text-center w-full mb-2 font-thin">{{ $imagen->texto }}</p>

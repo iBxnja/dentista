@@ -44,7 +44,7 @@
     <div class="w-11/12 h-full flex items-center justify-around mt-3 flex-wrap cel:justify-center cel:flex-col">
       <!--foreach-->
       @foreach ($aNota as $nota)
-          <div class="w-96 h-56 mt-4 mb-4 bg-neutral-100 text-black border-2 border-neutral-600 shadow-md shadow-neutral-500 flex items-center justify-center flex-col">
+          <div class="w-96 cel:w-full h-56 mt-4 mb-4 bg-neutral-100 text-black border-2 border-neutral-600 shadow-md shadow-neutral-500 flex items-center justify-center flex-col">
             <div class="w-full h-12  overflow-hidden">
               <h2 class="text-base font-normal mt-2 ml-2">{{ $nota->cliente->nombre }} {{ $nota->cliente->apellido }}</h2>
             </div>

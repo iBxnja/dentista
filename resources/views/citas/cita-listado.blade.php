@@ -45,7 +45,7 @@
             </thead>
             <tbody class="w-full flex items-center justify-center flex-col mt-">
                 @foreach ($aCalendario as $calendar)
-                <tr class="shadow-md shadow-neutral-500 w-full flex cel:flex-col cel:h-full items-center justify-center text-center bg-teal-200 my-3 h-20">
+                <tr class="shadow-md shadow-neutral-500 w-full cel:text-center flex cel:flex-col cel:h-full items-center justify-center text-center bg-teal-200 my-3 h-20">
                     <td class="cel:w-full cel:py-3 w-1/12 cel:text-sm text-lg font-normal bg-teal-400 h-full grid place-items-center"><img src="{{ asset('imagenes/cliente.png') }}" alt="Cliente" class="cel:w-10 w-10"></td>
                     <td class="cel:w-full w-4/12 cel:text-sm text-lg font-normal cel:block cel:mt-2">{{ $calendar->nombre}}</td>
                     <td class="cel:w-full w-5/12 cel:text-sm text-lg font-normal  cel:block cel:mt-3">{{ $calendar->fecha }} Hs</td>

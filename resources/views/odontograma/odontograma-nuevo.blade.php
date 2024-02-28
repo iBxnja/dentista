@@ -16,15 +16,15 @@
       @include('odontograma.observacion')
 
       <div class="w-full h-full flex flex-col items-center justify-center">
-        <div class="w-full bg-teal-300 py-5 h-full flex items-center justify-center mt-5">
-            <div class="w-2/4 h-full flex items-center justify-around flex-col">
+        <div class="w-full bg-teal-300 py-5 h-full flex cel:flex-col items-center justify-center mt-5">
+            <div class="w-2/4 cel:w-full h-full flex items-center justify-around flex-col">
                 <h2 class="mb-5 text-white text-lg font-semibold">Crear Registro</h2>
-                <img src="{{ asset('imagenes/diente.png') }}" alt="Cliente" class="cel:w-10 w-5/12">
+                <img src="{{ asset('imagenes/diente.png') }}" alt="Cliente" class="cel:w-5/12 w-5/12">
             </div>
-            <div class="w-2/4 h-full flex items-center justify-around flex-col">
-                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6">
+            <div class="w-2/4 cel:w-full cel:justify-center h-full flex items-center justify-around flex-col">
+                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6 cel:mr-0">
                     <label for="tipoDiente1" class="text-white text-lg font-semibold">Diente</label>
-                    <select name="tipoDiente1" id="tipoDiente1" class="w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
+                    <select name="tipoDiente1" id="tipoDiente1" class="cel:w-10/12 w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
                         <option class="text-white" value="" selected disabled>Selecciona un diente</option>
                         <option class="text-white" value="" disabled>- - - - Incisivos - - - -</option>
                         <option class="text-black" value="Incisivo central superior derecho">Incisivo central superior derecho</option>
@@ -64,9 +64,9 @@
                         <option class="text-black" value="Tercer molar inferior izquierdo">Tercer molar inferior izquierdo</option>
                     </select>
                 </div>
-                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6">
+                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6 cel:mr-0">
                     <label for="estadoDiente1" class="text-white text-lg font-semibold">Estado</label>
-                    <select name="estadoDiente1" id="estadoDiente1" class="w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
+                    <select name="estadoDiente1" id="estadoDiente1" class="cel:w-10/12 w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
                         <option class="text-white" value="" selected disabled>Seleccione un estado</option>
                         <option class="text-black" value="Sano">Sano</option>
                         <option class="text-black" value="Extraccion">Extracción</option>
@@ -81,9 +81,9 @@
                         <option class="text-black" value="Implante">Implante</option>
                     </select>
                 </div>
-                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6">
+                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6 cel:mr-0">
                     <label for="coronaSuperior" class="text-white text-lg font-semibold">Corona Superior</label>
-                    <select name="coronaSuperior" id="coronaSuperior" class="w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
+                    <select name="coronaSuperior" id="coronaSuperior" class="cel:w-10/12 w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
                         <option value="" selected disabled>Seleccione un estado</option>
                         <option class="text-black" value="Sano">Sano</option>
                         <option class="text-black" value="Extraccion">Extracción</option>
@@ -98,9 +98,9 @@
                         <option class="text-black" value="Implante">Implante</option>
                     </select>
                 </div>
-                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6">
+                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6 cel:mr-0">
                     <label for="coronaInferior" class="text-white text-lg font-semibold">Corona Inferior</label>
-                    <select name="coronaInferior" id="coronaInferior" class="w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
+                    <select name="coronaInferior" id="coronaInferior" class="cel:w-10/12 w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
                         <option value="" selected disabled>Seleccione un estado</option>
                         <option class="text-black" value="Sano">Sano</option>
                         <option class="text-black" value="Extraccion">Extracción</option>
@@ -115,9 +115,9 @@
                         <option class="text-black" value="Implante">Implante</option>
                     </select>
                 </div>
-                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6">
+                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6 cel:mr-0">
                     <label for="coronaIzquierda" class="text-white text-lg font-semibold">Corona Izquierda</label>
-                    <select name="coronaIzquierda" id="coronaIzquierda" class="w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
+                    <select name="coronaIzquierda" id="coronaIzquierda" class="cel:w-10/12 w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
                         <option value="" selected disabled>Seleccione un estado</option>
                         <option class="text-black" value="Sano">Sano</option>
                         <option class="text-black" value="Extraccion">Extracción</option>
@@ -132,9 +132,9 @@
                         <option class="text-black" value="Implante">Implante</option>
                     </select>
                 </div>
-                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6">
+                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6 cel:mr-0">
                     <label for="coronaCentral" class="text-white text-lg font-semibold">Corona Central</label>
-                    <select name="coronaCentral" id="coronaCentral" class="w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
+                    <select name="coronaCentral" id="coronaCentral" class="cel:w-10/12 w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
                         <option value="" selected disabled>Seleccione un estado</option>
                         <option class="text-black" value="Sano">Sano</option>
                         <option class="text-black" value="Extraccion">Extracción</option>
@@ -149,9 +149,9 @@
                         <option class="text-black" value="Implante">Implante</option>
                     </select>
                 </div>
-                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6">
+                <div class="flex items-center justify-center flex-col w-full mt-4 mr-6 cel:mr-0">
                     <label for="coronaDerecha" class="text-white text-lg font-semibold">Corona Derecha</label>
-                    <select name="coronaDerecha" id="coronaDerecha" class="w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
+                    <select name="coronaDerecha" id="coronaDerecha" class="cel:w-10/12 w-6/12 text-center border-b-2 border-white focus:outline-none appearance-none bg-transparent text-white">
                         <option value="" selected disabled>Seleccione un estado</option>
                         <option class="text-black" value="Sano">Sano</option>
                         <option class="text-black" value="Extraccion">Extracción</option>
@@ -176,7 +176,7 @@
           <label for="" class="w-full h-20 bg-teal-400 grid place-items-center text-white font-bold text-2xl">Dientes cargados</label>
           <table class="w-full bg-white border border-gray-300 shadow-md rounded-md">
               <thead class="">
-                  <tr class="w-full h-full flex items-center justify-center">
+                  <tr class="w-full h-full flex items-center justify-center cel:hidden">
                       <th class="w-2/12 grid place-items-center h-14">Tipo de Diente</th>
                       <th class="w-2/12 grid place-items-center h-14">Estado de Diente</th>
                       <th class="w-2/12 grid place-items-center h-14">Corona Superior</th>
@@ -257,12 +257,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const newRow = odontogramaJSON.insertRow(-1);
 
         // Aplicar clases a la fila
-        newRow.classList.add('w-full', 'h-full', 'flex', 'items-center', 'justify-center');
+        newRow.classList.add('w-full', 'h-full', 'flex', 'items-center', 'justify-center', 'cel:flex-col', 'cel:text-center', 'cel:border-b-2', 'cel:border-t-2', 'cel:border-teal-400', 'cel:my-5');
 
         let cellIndex = 0;
         for (const prop in diente) {
             const cell = newRow.insertCell(cellIndex++);
-            cell.classList.add('w-2/12', 'grid', 'place-items-center', 'h-14');
+            cell.classList.add('w-2/12', 'grid', 'place-items-center', 'h-14', 'cel:w-full', 'cel:mb-5', 'cel:h-8');
             // Establecer el contenido de la celda
             cell.textContent = diente[prop];
         }
