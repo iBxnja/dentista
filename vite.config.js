@@ -3,7 +3,8 @@ import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
   build: {
-    outDir: 'dist', 
+    outDir: 'dist',
+    emptyOutDir: true, // Añade esta línea para asegurar que el directorio de salida esté vacío antes de construir
   },
   plugins: [
     laravel({
